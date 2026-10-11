@@ -20,11 +20,11 @@ Built Oct 10 to 11, 2026 for DEV Hacktoberfest Week 1 ("Touch Grass").
 ## How to play
 
 1. **First photo.** Point the camera at anything outside (things, not people). Doppel names what it sees.
-2. **Walk.** The screen goes quiet: "Find its twin. Walk." The twin shot unlocks after about 50 m (GPS), or after 45 s if GPS isn't available or is too vague (worse than 30 m). It also suggests what to look for: "Look for something ridged, layered or wrinkled."
+2. **Walk.** The screen goes quiet: "Find its twin. Walk." The twin shot unlocks after about 50 m (GPS), or after 45 s if GPS isn't available or is too vague (worse than 30 m). You see your real photo and what Doppel sees in it ("cloud / sky"), what to look for ("Look for something ridged, layered or wrinkled.") and three twins to try ("TRY seed pod · corn on the cob · seashell"). Not happy with the first photo? Retake it, free.
 3. **Its twin.** Photograph a different kind of thing that looks like the first.
-4. **Reveal.** Both photos, printed in Sanzo Wada's inks, slide together; the score counts up.
+4. **Reveal.** Both real photos slide together and turn into a two-ink print in Sanzo Wada's colors while the score counts up (press and hold a print to see the photo). Very different kinds of thing that still look alike earn a **stretch bonus** (up to +10). You may try one more twin per pair (another walk); the better one counts.
 
-Shots Doppel can't use are refused and **not counted**: screens, rooms, documents and people ("Take it outside."), photos it can't read ("Get closer and fill the frame."), the same photo twice, or the same kind of thing ("Find something different that looks like it."). Stuck? **Need an idea?** offers three hints a day.
+Shots Doppel can't use are refused and **not counted**: screens, rooms, documents and people ("Take it outside."), photos it can't read ("Get closer and fill the frame."), the same photo twice, or the same kind of thing ("Find something different that looks like it."). Stuck? **Need an idea?** offers three hints a day, nudged toward a daily theme ("Today: Round things").
 
 ## How it works
 
@@ -51,9 +51,9 @@ Shots Doppel can't use are refused and **not counted**: screens, rooms, document
 
 It works because EmbeddingGemma 2 puts photos and text into one vector space. Photo↔photo similarity is the score; photo↔text similarity gives the labels and the shared attributes that make the score explainable.
 
-**Calibration** (`data/twin-scoring.json`, from `tools/twin_calibrate.py` on browser embeddings of 23 of V's outdoor photos): cosine 0.664 (10th percentile of all pairs) maps to 0 and 0.834 (95th percentile) to 100. Bands: Uncanny ≥ 80, Cousins ≥ 50, Distant ≥ 30. Same kind = label text similarity ≥ 0.90; same photo = cosine > 0.97; uncertain = label margin < 0.003.
+**Calibration** (`data/twin-scoring.json`, from `tools/twin_calibrate.py` on browser embeddings of 23 of V's outdoor photos): cosine 0.664 (10th percentile of all pairs) maps to 0 and 0.834 (95th percentile) to 100. Bands: Uncanny ≥ 80, Cousins ≥ 50, Distant ≥ 30. Same kind = label text similarity ≥ 0.90; same photo = cosine > 0.97; near-synonym labels (≥ 0.85) are shown together, not counted as doubt; "can't tell" = margin < 0.003 against a different kind *and* a weak top match (< 0.67), or a dark/blurry photo. Stretch bonus: 1 − label text similarity ≥ 0.205, Cousins or better, up to +10 at 0.30.
 
-**Results** on 44 CC0 test photos with the real model: see [`docs/eval.md`](docs/eval.md). Twins average 58, strangers 20; 6 of 8 twin pairs reach Cousins or better and 8 of 8 strangers stay Distant or below. It misses tire ↔ donut (18) and zebra ↔ striped awning (0).
+**Results** on 44 CC0 test photos with the real model: see [`docs/eval.md`](docs/eval.md). Twins average 58.6, strangers 19.9; 6 of 8 twin pairs reach Cousins or better and 8 of 8 strangers stay Distant or below. It misses tire ↔ donut (18) and zebra ↔ striped awning (0).
 
 ## Privacy
 
