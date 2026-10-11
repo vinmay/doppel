@@ -1,0 +1,9 @@
+torch
+torchvision
+sentence-transformers>=5
+transformers
+pillow
+numpy
+jsonschema
+pytest
+pillow-heif

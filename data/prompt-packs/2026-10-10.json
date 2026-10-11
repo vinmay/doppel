@@ -1,0 +1,92 @@
+{
+  "date": "2026-10-10",
+  "model": "gemma-4-e4b",
+  "region": "Charlotte, NC, autumn",
+  "prompts": [
+    {
+      "id": "2026-10-10-1",
+      "text": "some brittle brown stems on dry ground",
+      "hint": "Under brush and long grass in the park.",
+      "decoys": [
+        "a small black pebble",
+        "a light green patch of moss",
+        "a dark blue plastic container",
+        "a white plastic trash bag",
+        "a rusty iron bracket",
+        "a chipped terracotta pot",
+        "a purple fallen flower",
+        "a pale gray patch of lichen",
+        "a jagged twig",
+        "a square drainage grate"
+      ]
+    },
+    {
+      "id": "2026-10-10-2",
+      "text": "a weathered gray wooden post near a path",
+      "hint": "Along the perimeter of the neighborhood park.",
+      "decoys": [
+        "a red fire hydrant",
+        "a yellow plastic bucket",
+        "a smooth river stone",
+        "a cluster of red berries",
+        "a green painted fence section",
+        "a pale yellow autumn gourd",
+        "a metal chain link",
+        "a dark gray patch of asphalt",
+        "a small yellow trash can",
+        "a piece of cardboard"
+      ]
+    },
+    {
+      "id": "2026-10-10-3",
+      "text": "a pale yellow shelf growing on a log",
+      "hint": "Look under fallen wood or large stumps.",
+      "decoys": [
+        "an orange pumpkin",
+        "a smooth gray pebble",
+        "a brown piece of dried leaf",
+        "a purple cluster of berries",
+        "a yellow plastic bottle",
+        "a black drain grate",
+        "a white piece of mortar",
+        "a green patch of lichen",
+        "a rust-colored nail",
+        "a dark gray pine cone"
+      ]
+    },
+    {
+      "id": "2026-10-10-4",
+      "text": "a small orange pumpkin resting on grass",
+      "hint": "Near decorative displays or property borders.",
+      "decoys": [
+        "a red fire hydrant",
+        "a pale yellow plastic bucket",
+        "a smooth gray stone",
+        "a dark brown seedpod",
+        "a purple cluster of berries",
+        "a weathered wooden bench",
+        "a small gray curbstone",
+        "a brittle brown stem",
+        "a jagged twig",
+        "a green plastic bottle"
+      ]
+    },
+    {
+      "id": "2026-10-10-5",
+      "text": "a smooth gray stone next to a curb",
+      "hint": "Along sidewalks, often near drainage grates.",
+      "decoys": [
+        "a rusty iron bracket",
+        "a brittle brown stem",
+        "a pale yellow shelf",
+        "a purple cluster of berries",
+        "a dark brown seedpod",
+        "a piece of painted fence",
+        "a yellow plastic bottle",
+        "a small gray post",
+        "a red fire hydrant",
+        "a piece of terracotta pot"
+      ]
+    }
+  ]
+}

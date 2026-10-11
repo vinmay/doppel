@@ -1,0 +1,152 @@
+{
+ "source": "data/wada/colors.json (mattdesl/dictionary-of-colour-combinations, MIT)",
+ "base_combination": 166,
+ "base": {
+  "bg": {
+   "name": "Deep Slate Green",
+   "slug": "deep-slate-green",
+   "hex": "#112f2c",
+   "lab": [
+    16.881055924315252,
+    -12.143968871595334,
+    -2.2295719844357933
+   ]
+  },
+  "surface": {
+   "name": "Deep Slate Green",
+   "slug": "deep-slate-green",
+   "hex": "#112f2c",
+   "lab": [
+    16.881055924315252,
+    -12.143968871595334,
+    -2.2295719844357933
+   ]
+  },
+  "fg": {
+   "name": "Naples Yellow",
+   "slug": "naples-yellow",
+   "hex": "#fbe6a0",
+   "lab": [
+    91.7265583276112,
+    0.31906614785992815,
+    36.56809338521401
+   ]
+  },
+  "accent": {
+   "name": "Grenadine Pink",
+   "slug": "grenadine-pink",
+   "hex": "#f48067",
+   "lab": [
+    66.89402609292745,
+    43.82879377431905,
+    34.70038910505838
+   ]
+  }
+ },
+ "ramp": [
+  {
+   "name": "Deep Lyons Blue",
+   "slug": "deep-lyons-blue",
+   "hex": "#1c4286",
+   "lab": [
+    28.532845044632637,
+    6.560311284046691,
+    -42.68093385214007
+   ]
+  },
+  {
+   "name": "Blue Violet",
+   "slug": "blue-violet",
+   "hex": "#6450a1",
+   "lab": [
+    39.12260624093995,
+    23.571984435797674,
+    -41.91050583657588
+   ]
+  },
+  {
+   "name": "Eupatorium Purple",
+   "slug": "eupatorium-purple",
+   "hex": "#bf5892",
+   "lab": [
+    52.24536507209888,
+    46.71206225680933,
+    -11.723735408560316
+   ]
+  },
+  {
+   "name": "Grenadine Pink",
+   "slug": "grenadine-pink",
+   "hex": "#f48067",
+   "lab": [
+    66.89402609292745,
+    43.82879377431905,
+    34.70038910505838
+   ]
+  },
+  {
+   "name": "Cream Yellow",
+   "slug": "cream-yellow",
+   "hex": "#fdbf68",
+   "lab": [
+    81.81277180132753,
+    16.46692607003891,
+    51.97665369649806
+   ]
+  },
+  {
+   "name": "Naples Yellow",
+   "slug": "naples-yellow",
+   "hex": "#fbe6a0",
+   "lab": [
+    91.7265583276112,
+    0.31906614785992815,
+    36.56809338521401
+   ]
+  }
+ ],
+ "ramp_pairs": [
+  {
+   "from": "Deep Lyons Blue",
+   "to": "Blue Violet",
+   "combinations": []
+  },
+  {
+   "from": "Blue Violet",
+   "to": "Eupatorium Purple",
+   "combinations": [
+    322
+   ]
+  },
+  {
+   "from": "Eupatorium Purple",
+   "to": "Grenadine Pink",
+   "combinations": [
+    315
+   ]
+  },
+  {
+   "from": "Grenadine Pink",
+   "to": "Cream Yellow",
+   "combinations": [
+    300
+   ]
+  },
+  {
+   "from": "Cream Yellow",
+   "to": "Naples Yellow",
+   "combinations": []
+  }
+ ],
+ "contrast": {
+  "fg/bg": 11.54,
+  "fg/surface": 11.54,
+  "accent/bg": 5.54,
+  "temp-0/bg": 1.48,
+  "temp-1/bg": 2.18,
+  "temp-2/bg": 3.43,
+  "temp-3/bg": 5.54,
+  "temp-4/bg": 8.75,
+  "temp-5/bg": 11.54
+ }
+}

@@ -1,0 +1,37 @@
+# Render Blueprint: static site for the Doppel PWA.
+# New > Blueprint in the Render dashboard, pick this repo, Apply.
+services:
+  - type: web
+    name: doppel
+    runtime: static
+    rootDir: web
+    buildCommand: npm ci && npm run build
+    staticPublishPath: ./dist
+    pullRequestPreviewsEnabled: false
+    headers:
+      # The service worker must always be revalidated or updates never ship.
+      - path: /sw.js
+        name: Cache-Control
+        value: no-cache
+      - path: /
+        name: Cache-Control
+        value: no-cache
+      - path: /index.html
+        name: Cache-Control
+        value: no-cache
+      # Render serves .webmanifest as binary/octet-stream (with nosniff).
+      - path: /manifest.webmanifest
+        name: Content-Type
+        value: application/manifest+json
+      # Vocab vectors: the file name carries a hash of model + texts.
+      - path: /vocab-*.bin
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+      # Not content-hashed (copied from the npm package), so keep this short;
+      # the service worker's runtime cache is keyed by the SDK version.
+      - path: /litertlm-wasm/*
+        name: Cache-Control
+        value: public, max-age=86400

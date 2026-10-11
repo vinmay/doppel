@@ -1,0 +1,92 @@
+{
+  "date": "2026-10-19",
+  "model": "gemma-4-e4b",
+  "region": "Charlotte, NC, autumn",
+  "prompts": [
+    {
+      "id": "2026-10-19-1",
+      "text": "an intense yellow leaf on dark asphalt",
+      "hint": "Where sidewalks meet busy roads.",
+      "decoys": [
+        "a gray pebble",
+        "some green moss",
+        "a brown acorn",
+        "a black seed",
+        "a gray root",
+        "a gray rock",
+        "some brown dirt clump",
+        "a small twig",
+        "a gray curb",
+        "a brown husk"
+      ]
+    },
+    {
+      "id": "2026-10-19-2",
+      "text": "some brittle brown seed heads on dirt",
+      "hint": "Near fences or along overgrown paths.",
+      "decoys": [
+        "a gray stone",
+        "some green patch",
+        "a brown twig",
+        "a white fungus",
+        "a gray branch",
+        "a red rock",
+        "some brown bark",
+        "a gray pebble",
+        "some green moss",
+        "a red bloom"
+      ]
+    },
+    {
+      "id": "2026-10-19-3",
+      "text": "a thick gray branch fragment on grass",
+      "hint": "Under large, mature deciduous trees.",
+      "decoys": [
+        "a gray pebble",
+        "some green moss",
+        "a white seed head",
+        "a gray rock",
+        "some dark soil",
+        "a red bloom",
+        "a yellow leaf",
+        "some brown root",
+        "a green patch",
+        "a gray curb"
+      ]
+    },
+    {
+      "id": "2026-10-19-4",
+      "text": "a rough reddish stone near a path",
+      "hint": "Garden beds or stream edges in the park.",
+      "decoys": [
+        "a green patch",
+        "a brown leaf",
+        "some gray bark",
+        "a brown seed",
+        "a white fungus",
+        "some dark dirt",
+        "a green moss",
+        "a gray twig",
+        "a red bloom",
+        "a gray curb"
+      ]
+    },
+    {
+      "id": "2026-10-19-5",
+      "text": "some dark brown mushroom growing in moss",
+      "hint": "Where damp leaves meet shadowed ground.",
+      "decoys": [
+        "a yellow leaf",
+        "a gray pebble",
+        "some green moss",
+        "a brown seed",
+        "a gray rock",
+        "a brown root",
+        "a yellow bloom",
+        "a gray twig",
+        "some brown bark",
+        "a dark dirt patch"
+      ]
+    }
+  ]
+}

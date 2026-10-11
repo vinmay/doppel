@@ -1,0 +1,29 @@
+{
+  "name": "Doppel",
+  "short_name": "Doppel",
+  "description": "Find two different things that look the same. Outside. EmbeddingGemma 2 on your phone judges the twins.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#112f2c",
+  "theme_color": "#112f2c",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

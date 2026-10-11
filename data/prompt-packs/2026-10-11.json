@@ -1,0 +1,92 @@
+{
+  "date": "2026-10-11",
+  "model": "gemma-4-e4b",
+  "region": "Charlotte, NC, autumn",
+  "prompts": [
+    {
+      "id": "2026-10-11-1",
+      "text": "a brown acorn on green grass",
+      "hint": "Fallen under oaks, scattered by the wind.",
+      "decoys": [
+        "a smooth gray stone on dirt",
+        "a small white shell on a twig",
+        "a small pebble on gray pavement",
+        "a patch of bright moss on dirt",
+        "a few brown leaves on soil",
+        "a cluster of dried dirt on gravel",
+        "a pale rock near a gravel pile",
+        "a tiny flower on a stem",
+        "a short piece of bark on a tree",
+        "a small twig lying on dirt"
+      ]
+    },
+    {
+      "id": "2026-10-11-2",
+      "text": "some white seeds scattered on asphalt",
+      "hint": "From weeds and grasses, near the drive.",
+      "decoys": [
+        "a short green vine along a curb",
+        "a dark brown root in the ground",
+        "a smooth gray stone on pavement",
+        "a patch of yellow lichen on bark",
+        "a piece of wood on the ground",
+        "a handful of dirt near a path",
+        "a small patch of grass in the street",
+        "a curled twig on the pavement",
+        "a low cluster of pebbles on dirt",
+        "a fallen leaf on asphalt"
+      ]
+    },
+    {
+      "id": "2026-10-11-3",
+      "text": "a light gray lichen growing on bark",
+      "hint": "On tree trunks, where moisture lingers.",
+      "decoys": [
+        "a dark piece of bark on a log",
+        "a smooth gray stone near a fence",
+        "a small root sticking out of soil",
+        "a fallen leaf on the ground",
+        "a handful of fine dirt near a curb",
+        "a short green vine on a fence",
+        "a cluster of pebbles in a path",
+        "a small twig lying on dirt",
+        "a patch of green moss on wood",
+        "a handful of gray gravel near a path"
+      ]
+    },
+    {
+      "id": "2026-10-11-4",
+      "text": "some twisted brown root poking through dirt",
+      "hint": "Underground life exposed by the soil.",
+      "decoys": [
+        "a small gray stone in dark dirt",
+        "a handful of pebbles on pavement",
+        "a dark piece of wood on the ground",
+        "a bright orange leaf on dirt",
+        "a small patch of green grass on dirt",
+        "a curved twig on the soil",
+        "a piece of light bark on the ground",
+        "a cluster of fine dirt near a path",
+        "a growing red vine on a wall",
+        "a light patch of lichen on a stone"
+      ]
+    },
+    {
+      "id": "2026-10-11-5",
+      "text": "a deep red vine trailing along a fence",
+      "hint": "Climbing structure near the perimeter.",
+      "decoys": [
+        "a brown acorn on dry soil",
+        "a tiny stone on concrete pavement",
+        "a pale patch of moss on a log",
+        "some scattered white seeds on dirt",
+        "a short piece of gravel by a path",
+        "a curved piece of bark on the ground",
+        "a twisted brown root in the dirt",
+        "a small dry twig on the pavement",
+        "a small pebble on the grass",
+        "a bright orange leaf on dark soil"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1792 @@
+{
+ "model": "google/embeddinggemma-2 (text, SearchQuery prompt)",
+ "dedupe_threshold": 0.9,
+ "date": "2026-10-10",
+ "count": 446,
+ "items": [
+  {
+   "text": "an orange leaf on concrete pavement",
+   "source": "secret"
+  },
+  {
+   "text": "some gray bark on a mature tree trunk",
+   "source": "secret"
+  },
+  {
+   "text": "a pale mushroom growing in damp grass",
+   "source": "secret"
+  },
+  {
+   "text": "a red fire hydrant near a sidewalk",
+   "source": "secret"
+  },
+  {
+   "text": "a brown seedpod hanging on dry weeds",
+   "source": "secret"
+  },
+  {
+   "text": "some rough brown bark on a birch tree",
+   "source": "secret"
+  },
+  {
+   "text": "some small purple berries on a bush",
+   "source": "secret"
+  },
+  {
+   "text": "a patch of green moss on a stone",
+   "source": "secret"
+  },
+  {
+   "text": "a yellow maple leaf on dark soil",
+   "source": "secret"
+  },
+  {
+   "text": "a weathered wooden park bench",
+   "source": "secret"
+  },
+  {
+   "text": "some brittle brown stems on dry ground",
+   "source": "secret"
+  },
+  {
+   "text": "a weathered gray wooden post near a path",
+   "source": "secret"
+  },
+  {
+   "text": "a pale yellow shelf growing on a log",
+   "source": "secret"
+  },
+  {
+   "text": "a small orange pumpkin resting on grass",
+   "source": "secret"
+  },
+  {
+   "text": "a smooth gray stone next to a curb",
+   "source": "secret"
+  },
+  {
+   "text": "a brown acorn on green grass",
+   "source": "secret"
+  },
+  {
+   "text": "some white seeds scattered on asphalt",
+   "source": "secret"
+  },
+  {
+   "text": "a light gray lichen growing on bark",
+   "source": "secret"
+  },
+  {
+   "text": "some twisted brown root poking through dirt",
+   "source": "secret"
+  },
+  {
+   "text": "a deep red vine trailing along a fence",
+   "source": "secret"
+  },
+  {
+   "text": "some intense red berries on green foliage",
+   "source": "secret"
+  },
+  {
+   "text": "a pale gray root piece sticking from the dirt",
+   "source": "secret"
+  },
+  {
+   "text": "a soft orange growth on a fallen log",
+   "source": "secret"
+  },
+  {
+   "text": "a mossy green patch on a concrete curb",
+   "source": "secret"
+  },
+  {
+   "text": "a large fluffy pale brown seed head on dry weeds",
+   "source": "secret"
+  },
+  {
+   "text": "a pale yellow chrysanthemum bloom",
+   "source": "secret"
+  },
+  {
+   "text": "some slender brown twig on the ground",
+   "source": "secret"
+  },
+  {
+   "text": "a patch of yellow grass in the lawn",
+   "source": "secret"
+  },
+  {
+   "text": "a large brown pinecone on the path",
+   "source": "secret"
+  },
+  {
+   "text": "a light gray curb next to the street",
+   "source": "secret"
+  },
+  {
+   "text": "a light brown nut on dry soil",
+   "source": "secret"
+  },
+  {
+   "text": "some red stem with small green leaves",
+   "source": "secret"
+  },
+  {
+   "text": "a small yellow fungus growing on wood",
+   "source": "secret"
+  },
+  {
+   "text": "a weathered red brick near a sidewalk",
+   "source": "secret"
+  },
+  {
+   "text": "a thin brown tendril winding around a branch",
+   "source": "secret"
+  },
+  {
+   "text": "some white shelf fungus on damp wood",
+   "source": "secret"
+  },
+  {
+   "text": "a brown hickory nut on dirt",
+   "source": "secret"
+  },
+  {
+   "text": "a curled brown fern frond on path",
+   "source": "secret"
+  },
+  {
+   "text": "a faded green painted railing",
+   "source": "secret"
+  },
+  {
+   "text": "some yellow thistle bloom in dry ground",
+   "source": "secret"
+  },
+  {
+   "text": "a single yellow flower growing in grass",
+   "source": "secret"
+  },
+  {
+   "text": "a light brown pod lying on pavement",
+   "source": "secret"
+  },
+  {
+   "text": "a gray rectangular paving stone near a path",
+   "source": "secret"
+  },
+  {
+   "text": "some pale green moss growing on concrete",
+   "source": "secret"
+  },
+  {
+   "text": "a dark purple stalk on dry ground",
+   "source": "secret"
+  },
+  {
+   "text": "some brown reed stalks in wet ground",
+   "source": "secret"
+  },
+  {
+   "text": "a rusty bracket growing on damp tree",
+   "source": "secret"
+  },
+  {
+   "text": "a gray circular utility cover on asphalt",
+   "source": "secret"
+  },
+  {
+   "text": "a dark red fruit hanging from branch",
+   "source": "secret"
+  },
+  {
+   "text": "some small gray gravel near a path edge",
+   "source": "secret"
+  },
+  {
+   "text": "a bright red toadstool on damp soil",
+   "source": "secret"
+  },
+  {
+   "text": "a green and red autumn leaf on grass",
+   "source": "secret"
+  },
+  {
+   "text": "a rotting gray stump in a garden bed",
+   "source": "secret"
+  },
+  {
+   "text": "a rusted metal grate near a storm drain",
+   "source": "secret"
+  },
+  {
+   "text": "a dry orange seed head on dark soil",
+   "source": "secret"
+  },
+  {
+   "text": "an intense yellow leaf on dark asphalt",
+   "source": "secret"
+  },
+  {
+   "text": "some brittle brown seed heads on dirt",
+   "source": "secret"
+  },
+  {
+   "text": "a thick gray branch fragment on grass",
+   "source": "secret"
+  },
+  {
+   "text": "a rough reddish stone near a path",
+   "source": "secret"
+  },
+  {
+   "text": "some dark brown mushroom growing in moss",
+   "source": "secret"
+  },
+  {
+   "text": "a deep red maple leaf on concrete",
+   "source": "secret"
+  },
+  {
+   "text": "a light gray patch of bark on a tree",
+   "source": "secret"
+  },
+  {
+   "text": "a white clustered mushroom growing in dirt",
+   "source": "secret"
+  },
+  {
+   "text": "a dark black seed on dry pavement",
+   "source": "secret"
+  },
+  {
+   "text": "a rounded gray stone on gravel",
+   "source": "secret"
+  },
+  {
+   "text": "some brittle yellow grass in a patch",
+   "source": "secret"
+  },
+  {
+   "text": "a weathered gray wooden fence section",
+   "source": "secret"
+  },
+  {
+   "text": "a dry brown husk on the soil",
+   "source": "secret"
+  },
+  {
+   "text": "a dark red clump of dried weeds",
+   "source": "secret"
+  },
+  {
+   "text": "some light gray wood on a fallen branch",
+   "source": "secret"
+  },
+  {
+   "text": "an orange leaf lying on pavement",
+   "source": "eval"
+  },
+  {
+   "text": "a red fire hydrant on a sidewalk",
+   "source": "eval"
+  },
+  {
+   "text": "a pine cone on the ground",
+   "source": "eval"
+  },
+  {
+   "text": "a brown mushroom growing in grass",
+   "source": "eval"
+  },
+  {
+   "text": "a tree trunk with peeling bark",
+   "source": "eval"
+  },
+  {
+   "text": "a wooden park bench",
+   "source": "eval"
+  },
+  {
+   "text": "a yellow leaf still on a branch",
+   "source": "eval"
+  },
+  {
+   "text": "a pumpkin on a front porch",
+   "source": "eval"
+  },
+  {
+   "text": "an acorn on the ground",
+   "source": "eval"
+  },
+  {
+   "text": "a stop sign",
+   "source": "eval"
+  },
+  {
+   "text": "a puddle reflecting the sky",
+   "source": "eval"
+  },
+  {
+   "text": "moss growing on a rock",
+   "source": "eval"
+  },
+  {
+   "text": "a storm drain grate in a street",
+   "source": "eval"
+  },
+  {
+   "text": "a crape myrtle tree with smooth bark",
+   "source": "eval"
+  },
+  {
+   "text": "a pile of fallen leaves",
+   "source": "eval"
+  },
+  {
+   "text": "a white pebble",
+   "source": "decoy"
+  },
+  {
+   "text": "a straight stick",
+   "source": "decoy"
+  },
+  {
+   "text": "green moss",
+   "source": "decoy"
+  },
+  {
+   "text": "brown plank",
+   "source": "decoy"
+  },
+  {
+   "text": "gray rock",
+   "source": "decoy"
+  },
+  {
+   "text": "black dirt",
+   "source": "decoy"
+  },
+  {
+   "text": "dry twig",
+   "source": "decoy"
+  },
+  {
+   "text": "blue plastic",
+   "source": "decoy"
+  },
+  {
+   "text": "yellow flower",
+   "source": "decoy"
+  },
+  {
+   "text": "rusty nail",
+   "source": "decoy"
+  },
+  {
+   "text": "brown fallen log",
+   "source": "decoy"
+  },
+  {
+   "text": "white chunk of stone",
+   "source": "decoy"
+  },
+  {
+   "text": "dark soil patch",
+   "source": "decoy"
+  },
+  {
+   "text": "small pine cone",
+   "source": "decoy"
+  },
+  {
+   "text": "dried grass stem",
+   "source": "decoy"
+  },
+  {
+   "text": "silver metal fence post",
+   "source": "decoy"
+  },
+  {
+   "text": "red brick",
+   "source": "decoy"
+  },
+  {
+   "text": "purple wildflower",
+   "source": "decoy"
+  },
+  {
+   "text": "a cracked acorn",
+   "source": "decoy"
+  },
+  {
+   "text": "a dry pine cone",
+   "source": "decoy"
+  },
+  {
+   "text": "green clover patch",
+   "source": "decoy"
+  },
+  {
+   "text": "a yellow dandelion",
+   "source": "decoy"
+  },
+  {
+   "text": "a tangled root",
+   "source": "decoy"
+  },
+  {
+   "text": "red berry cluster",
+   "source": "decoy"
+  },
+  {
+   "text": "a small flat stone",
+   "source": "decoy"
+  },
+  {
+   "text": "a yellow trash can",
+   "source": "decoy"
+  },
+  {
+   "text": "a metallic street sign",
+   "source": "decoy"
+  },
+  {
+   "text": "a black bicycle tire",
+   "source": "decoy"
+  },
+  {
+   "text": "a white utility box",
+   "source": "decoy"
+  },
+  {
+   "text": "a green dumpster",
+   "source": "decoy"
+  },
+  {
+   "text": "a wooden fence post",
+   "source": "decoy"
+  },
+  {
+   "text": "a metal drain cover",
+   "source": "decoy"
+  },
+  {
+   "text": "a brown mailbox",
+   "source": "decoy"
+  },
+  {
+   "text": "a gray lamp post",
+   "source": "decoy"
+  },
+  {
+   "text": "a small dark berry",
+   "source": "decoy"
+  },
+  {
+   "text": "a green clover",
+   "source": "decoy"
+  },
+  {
+   "text": "a dry straw piece",
+   "source": "decoy"
+  },
+  {
+   "text": "a light gray stone",
+   "source": "decoy"
+  },
+  {
+   "text": "a black clump of soil",
+   "source": "decoy"
+  },
+  {
+   "text": "a thick piece of grass",
+   "source": "decoy"
+  },
+  {
+   "text": "a reddish fallen leaf",
+   "source": "decoy"
+  },
+  {
+   "text": "a thin brown stick",
+   "source": "decoy"
+  },
+  {
+   "text": "a moss patch",
+   "source": "decoy"
+  },
+  {
+   "text": "a rusty metal bench in park",
+   "source": "decoy"
+  },
+  {
+   "text": "a small white flower growing low",
+   "source": "decoy"
+  },
+  {
+   "text": "a fallen piece of driftwood",
+   "source": "decoy"
+  },
+  {
+   "text": "a smooth gray river stone",
+   "source": "decoy"
+  },
+  {
+   "text": "a brown cap mushroom in mulch",
+   "source": "decoy"
+  },
+  {
+   "text": "a patch of green moss on log",
+   "source": "decoy"
+  },
+  {
+   "text": "a mound of dark brown soil",
+   "source": "decoy"
+  },
+  {
+   "text": "a bright red maple leaf",
+   "source": "decoy"
+  },
+  {
+   "text": "a bent small twig on earth",
+   "source": "decoy"
+  },
+  {
+   "text": "a light birch bark piece on ground",
+   "source": "decoy"
+  },
+  {
+   "text": "a purple crocus flower in grass",
+   "source": "decoy"
+  },
+  {
+   "text": "a cracked gray sidewalk stone",
+   "source": "decoy"
+  },
+  {
+   "text": "a wooden garden bench section",
+   "source": "decoy"
+  },
+  {
+   "text": "a red cap mushroom on wood",
+   "source": "decoy"
+  },
+  {
+   "text": "a round gray garden stone",
+   "source": "decoy"
+  },
+  {
+   "text": "some blue berries on a low bush",
+   "source": "decoy"
+  },
+  {
+   "text": "a rough oak bark chunk",
+   "source": "decoy"
+  },
+  {
+   "text": "an iron park bench near trail",
+   "source": "decoy"
+  },
+  {
+   "text": "a white dry seedpod on shrub",
+   "source": "decoy"
+  },
+  {
+   "text": "a pale mushroom in shaded spot",
+   "source": "decoy"
+  },
+  {
+   "text": "a green dry seedpod hanging low",
+   "source": "decoy"
+  },
+  {
+   "text": "an orange autumn flower blooming",
+   "source": "decoy"
+  },
+  {
+   "text": "a mound of dirt in garden bed",
+   "source": "decoy"
+  },
+  {
+   "text": "a small black pebble",
+   "source": "decoy"
+  },
+  {
+   "text": "a dark blue plastic container",
+   "source": "decoy"
+  },
+  {
+   "text": "a white plastic trash bag",
+   "source": "decoy"
+  },
+  {
+   "text": "a rusty iron bracket",
+   "source": "decoy"
+  },
+  {
+   "text": "a chipped terracotta pot",
+   "source": "decoy"
+  },
+  {
+   "text": "a purple fallen flower",
+   "source": "decoy"
+  },
+  {
+   "text": "a jagged twig",
+   "source": "decoy"
+  },
+  {
+   "text": "a square drainage grate",
+   "source": "decoy"
+  },
+  {
+   "text": "a yellow plastic bucket",
+   "source": "decoy"
+  },
+  {
+   "text": "a green painted fence section",
+   "source": "decoy"
+  },
+  {
+   "text": "a pale yellow autumn gourd",
+   "source": "decoy"
+  },
+  {
+   "text": "a metal chain link",
+   "source": "decoy"
+  },
+  {
+   "text": "a dark gray patch of asphalt",
+   "source": "decoy"
+  },
+  {
+   "text": "a piece of cardboard",
+   "source": "decoy"
+  },
+  {
+   "text": "an orange pumpkin",
+   "source": "decoy"
+  },
+  {
+   "text": "a brown piece of dried leaf",
+   "source": "decoy"
+  },
+  {
+   "text": "a yellow plastic bottle",
+   "source": "decoy"
+  },
+  {
+   "text": "a black drain grate",
+   "source": "decoy"
+  },
+  {
+   "text": "a white piece of mortar",
+   "source": "decoy"
+  },
+  {
+   "text": "a green patch of lichen",
+   "source": "decoy"
+  },
+  {
+   "text": "a dark gray pine cone",
+   "source": "decoy"
+  },
+  {
+   "text": "a dark brown seedpod",
+   "source": "decoy"
+  },
+  {
+   "text": "a small gray curbstone",
+   "source": "decoy"
+  },
+  {
+   "text": "a brittle brown stem",
+   "source": "decoy"
+  },
+  {
+   "text": "a green plastic bottle",
+   "source": "decoy"
+  },
+  {
+   "text": "a pale yellow shelf",
+   "source": "decoy"
+  },
+  {
+   "text": "a small gray post",
+   "source": "decoy"
+  },
+  {
+   "text": "a small white shell on a twig",
+   "source": "decoy"
+  },
+  {
+   "text": "a small pebble on gray pavement",
+   "source": "decoy"
+  },
+  {
+   "text": "a patch of bright moss on dirt",
+   "source": "decoy"
+  },
+  {
+   "text": "a few brown leaves on soil",
+   "source": "decoy"
+  },
+  {
+   "text": "a cluster of dried dirt on gravel",
+   "source": "decoy"
+  },
+  {
+   "text": "a pale rock near a gravel pile",
+   "source": "decoy"
+  },
+  {
+   "text": "a tiny flower on a stem",
+   "source": "decoy"
+  },
+  {
+   "text": "a short piece of bark on a tree",
+   "source": "decoy"
+  },
+  {
+   "text": "a short green vine along a curb",
+   "source": "decoy"
+  },
+  {
+   "text": "a patch of yellow lichen on bark",
+   "source": "decoy"
+  },
+  {
+   "text": "a piece of wood on the ground",
+   "source": "decoy"
+  },
+  {
+   "text": "a handful of dirt near a path",
+   "source": "decoy"
+  },
+  {
+   "text": "a small patch of grass in the street",
+   "source": "decoy"
+  },
+  {
+   "text": "a curled twig on the pavement",
+   "source": "decoy"
+  },
+  {
+   "text": "a low cluster of pebbles on dirt",
+   "source": "decoy"
+  },
+  {
+   "text": "a dark piece of bark on a log",
+   "source": "decoy"
+  },
+  {
+   "text": "a small gray stone in dark dirt",
+   "source": "decoy"
+  },
+  {
+   "text": "a handful of pebbles on pavement",
+   "source": "decoy"
+  },
+  {
+   "text": "a bright orange leaf on dirt",
+   "source": "decoy"
+  },
+  {
+   "text": "a small patch of green grass on dirt",
+   "source": "decoy"
+  },
+  {
+   "text": "a growing red vine on a wall",
+   "source": "decoy"
+  },
+  {
+   "text": "a light patch of lichen on a stone",
+   "source": "decoy"
+  },
+  {
+   "text": "a curved piece of bark on the ground",
+   "source": "decoy"
+  },
+  {
+   "text": "a small pebble on the grass",
+   "source": "decoy"
+  },
+  {
+   "text": "a pine branch lying on the ground",
+   "source": "decoy"
+  },
+  {
+   "text": "some light brown pebbles near a path",
+   "source": "decoy"
+  },
+  {
+   "text": "some light brown needles on dirt",
+   "source": "decoy"
+  },
+  {
+   "text": "a smooth gray leaf",
+   "source": "decoy"
+  },
+  {
+   "text": "a patch of white seeds",
+   "source": "decoy"
+  },
+  {
+   "text": "a small orange decoration",
+   "source": "decoy"
+  },
+  {
+   "text": "a dark gray stone",
+   "source": "decoy"
+  },
+  {
+   "text": "a rough wooden fence",
+   "source": "decoy"
+  },
+  {
+   "text": "a dark wet earth spot",
+   "source": "decoy"
+  },
+  {
+   "text": "a rough bark patch",
+   "source": "decoy"
+  },
+  {
+   "text": "a gray bark texture",
+   "source": "decoy"
+  },
+  {
+   "text": "a yellow maple leaf on gray concrete",
+   "source": "decoy"
+  },
+  {
+   "text": "a light gray pebble near a path",
+   "source": "decoy"
+  },
+  {
+   "text": "a weathered wooden log piece",
+   "source": "decoy"
+  },
+  {
+   "text": "a tiny white lichen on a branch",
+   "source": "decoy"
+  },
+  {
+   "text": "a patch of bright yellow flowers",
+   "source": "decoy"
+  },
+  {
+   "text": "a round brown berry cluster on a bush",
+   "source": "decoy"
+  },
+  {
+   "text": "a thick brown branch lying on ground",
+   "source": "decoy"
+  },
+  {
+   "text": "a hollow wooden post near the yard",
+   "source": "decoy"
+  },
+  {
+   "text": "a patch of dark wet earth near a curb",
+   "source": "decoy"
+  },
+  {
+   "text": "a piece of weathered red brick",
+   "source": "decoy"
+  },
+  {
+   "text": "a fallen brown leaf on wet ground",
+   "source": "decoy"
+  },
+  {
+   "text": "a thick woody vine trailing along a wall",
+   "source": "decoy"
+  },
+  {
+   "text": "a dark brown root poking through cracked pavement",
+   "source": "decoy"
+  },
+  {
+   "text": "a patch of dark green moss on a wall",
+   "source": "decoy"
+  },
+  {
+   "text": "a piece of dry wooden planking",
+   "source": "decoy"
+  },
+  {
+   "text": "a thick brown stem with leaves",
+   "source": "decoy"
+  },
+  {
+   "text": "a small ripe berry on a bush",
+   "source": "decoy"
+  },
+  {
+   "text": "a small, smooth stone by a garden edge",
+   "source": "decoy"
+  },
+  {
+   "text": "a piece of thin gray wire near a fence",
+   "source": "decoy"
+  },
+  {
+   "text": "a fallen leaf on the dirt path",
+   "source": "decoy"
+  },
+  {
+   "text": "a patch of short green grass in the yard",
+   "source": "decoy"
+  },
+  {
+   "text": "a wooden post near a garden bed",
+   "source": "decoy"
+  },
+  {
+   "text": "a cluster of small light brown seeds on dry weeds",
+   "source": "decoy"
+  },
+  {
+   "text": "a small brown stem in dirt",
+   "source": "decoy"
+  },
+  {
+   "text": "some light pollen on pavement",
+   "source": "decoy"
+  },
+  {
+   "text": "a tiny mushroom on dirt",
+   "source": "decoy"
+  },
+  {
+   "text": "a curved tree branch on path",
+   "source": "decoy"
+  },
+  {
+   "text": "a patch of organic ground litter",
+   "source": "decoy"
+  },
+  {
+   "text": "a yellow maple leaf on grass",
+   "source": "decoy"
+  },
+  {
+   "text": "a thin winding vine on fence",
+   "source": "decoy"
+  },
+  {
+   "text": "a bright orange flower petal",
+   "source": "decoy"
+  },
+  {
+   "text": "a clump of dark berries on bush",
+   "source": "decoy"
+  },
+  {
+   "text": "a tangled soil root near path",
+   "source": "decoy"
+  },
+  {
+   "text": "a cluster of small floral blooms",
+   "source": "decoy"
+  },
+  {
+   "text": "a rusty metal gate on fence",
+   "source": "decoy"
+  },
+  {
+   "text": "a wooden signpost in park",
+   "source": "decoy"
+  },
+  {
+   "text": "a metal ladder leaning on wall",
+   "source": "decoy"
+  },
+  {
+   "text": "a concrete retaining wall near path",
+   "source": "decoy"
+  },
+  {
+   "text": "a metal decorative fixture on fence",
+   "source": "decoy"
+  },
+  {
+   "text": "a simple path structure in park",
+   "source": "decoy"
+  },
+  {
+   "text": "a metal trim along walkway",
+   "source": "decoy"
+  },
+  {
+   "text": "a concrete barrier near road",
+   "source": "decoy"
+  },
+  {
+   "text": "a patch of wild tall grass",
+   "source": "decoy"
+  },
+  {
+   "text": "a bright purple flower bloom",
+   "source": "decoy"
+  },
+  {
+   "text": "a dried seed on loose earth",
+   "source": "decoy"
+  },
+  {
+   "text": "a small moss cushion on rock",
+   "source": "decoy"
+  },
+  {
+   "text": "a fallen flower head in field",
+   "source": "decoy"
+  },
+  {
+   "text": "a patch of dry brown weeds",
+   "source": "decoy"
+  },
+  {
+   "text": "some light dirt patch",
+   "source": "decoy"
+  },
+  {
+   "text": "a red plastic bottle piece",
+   "source": "decoy"
+  },
+  {
+   "text": "a pale fallen stem",
+   "source": "decoy"
+  },
+  {
+   "text": "a small brown nut",
+   "source": "decoy"
+  },
+  {
+   "text": "a small rock",
+   "source": "decoy"
+  },
+  {
+   "text": "a gray piece of pavement",
+   "source": "decoy"
+  },
+  {
+   "text": "a dried clump of grass",
+   "source": "decoy"
+  },
+  {
+   "text": "a thin piece of wood",
+   "source": "decoy"
+  },
+  {
+   "text": "a gray twig",
+   "source": "decoy"
+  },
+  {
+   "text": "a fallen branch piece",
+   "source": "decoy"
+  },
+  {
+   "text": "some dark plastic chunk",
+   "source": "decoy"
+  },
+  {
+   "text": "a clump of weeds",
+   "source": "decoy"
+  },
+  {
+   "text": "a light leaf",
+   "source": "decoy"
+  },
+  {
+   "text": "a piece of plastic debris",
+   "source": "decoy"
+  },
+  {
+   "text": "a piece of dirt",
+   "source": "decoy"
+  },
+  {
+   "text": "a white flower bloom in damp soil",
+   "source": "decoy"
+  },
+  {
+   "text": "a yellow twig on dark earth",
+   "source": "decoy"
+  },
+  {
+   "text": "a red wire coiled on asphalt",
+   "source": "decoy"
+  },
+  {
+   "text": "a pale mud puddle near the curb",
+   "source": "decoy"
+  },
+  {
+   "text": "a gray small fallen limb on dirt",
+   "source": "decoy"
+  },
+  {
+   "text": "a tan cloth scrap under a tree",
+   "source": "decoy"
+  },
+  {
+   "text": "a blue painted fence section",
+   "source": "decoy"
+  },
+  {
+   "text": "a black patch of tar on pavement",
+   "source": "decoy"
+  },
+  {
+   "text": "a red plastic watering can nearby",
+   "source": "decoy"
+  },
+  {
+   "text": "a yellow metal sign on a pole",
+   "source": "decoy"
+  },
+  {
+   "text": "a smooth gray rock under a bush",
+   "source": "decoy"
+  },
+  {
+   "text": "a green painted bucket by a path",
+   "source": "decoy"
+  },
+  {
+   "text": "a brown soil mound in the park",
+   "source": "decoy"
+  },
+  {
+   "text": "a white dried seed pod on the grass",
+   "source": "decoy"
+  },
+  {
+   "text": "a black patch of mildew on stone",
+   "source": "decoy"
+  },
+  {
+   "text": "a blue drainage grate on the sidewalk",
+   "source": "decoy"
+  },
+  {
+   "text": "an orange terracotta pot near the path",
+   "source": "decoy"
+  },
+  {
+   "text": "a pale green vine wrapped on a pole",
+   "source": "decoy"
+  },
+  {
+   "text": "a black rubber tire chunk near the road",
+   "source": "decoy"
+  },
+  {
+   "text": "a yellow traffic cone on grass",
+   "source": "decoy"
+  },
+  {
+   "text": "a white plastic bag blown by wind",
+   "source": "decoy"
+  },
+  {
+   "text": "a blue paint spill on concrete",
+   "source": "decoy"
+  },
+  {
+   "text": "an orange plastic bin by the path",
+   "source": "decoy"
+  },
+  {
+   "text": "a brown discarded wrapper on ground",
+   "source": "decoy"
+  },
+  {
+   "text": "a green painted mailbox near the walk",
+   "source": "decoy"
+  },
+  {
+   "text": "a red hose coiled on the ground",
+   "source": "decoy"
+  },
+  {
+   "text": "a pale yellow street lamp base",
+   "source": "decoy"
+  },
+  {
+   "text": "a green smooth pebble on soil",
+   "source": "decoy"
+  },
+  {
+   "text": "a brown folded paper under a tree",
+   "source": "decoy"
+  },
+  {
+   "text": "a white dried flower on the ground",
+   "source": "decoy"
+  },
+  {
+   "text": "a dark soil clod near a tree",
+   "source": "decoy"
+  },
+  {
+   "text": "a blue painted marker on concrete",
+   "source": "decoy"
+  },
+  {
+   "text": "a pale green fern frond on path",
+   "source": "decoy"
+  },
+  {
+   "text": "an orange bottle cap by the curb",
+   "source": "decoy"
+  },
+  {
+   "text": "a thin metal nail in the dirt",
+   "source": "decoy"
+  },
+  {
+   "text": "a yellow leaf pile under a tree",
+   "source": "decoy"
+  },
+  {
+   "text": "a brown stem cluster in the grass",
+   "source": "decoy"
+  },
+  {
+   "text": "some white scattered plastic pieces",
+   "source": "decoy"
+  },
+  {
+   "text": "a red clay streak on dirt",
+   "source": "decoy"
+  },
+  {
+   "text": "a blue painted barrier near the street",
+   "source": "decoy"
+  },
+  {
+   "text": "a dark soil smear on concrete",
+   "source": "decoy"
+  },
+  {
+   "text": "a pale gray stone near a fence",
+   "source": "decoy"
+  },
+  {
+   "text": "a light brown husk lying on the path",
+   "source": "decoy"
+  },
+  {
+   "text": "a gray wooden fence post in the neighborhood",
+   "source": "decoy"
+  },
+  {
+   "text": "a black seed",
+   "source": "decoy"
+  },
+  {
+   "text": "a gray root",
+   "source": "decoy"
+  },
+  {
+   "text": "some brown dirt clump",
+   "source": "decoy"
+  },
+  {
+   "text": "a brown husk",
+   "source": "decoy"
+  },
+  {
+   "text": "a white fungus",
+   "source": "decoy"
+  },
+  {
+   "text": "a red rock",
+   "source": "decoy"
+  },
+  {
+   "text": "some brown bark",
+   "source": "decoy"
+  },
+  {
+   "text": "a red bloom",
+   "source": "decoy"
+  },
+  {
+   "text": "a white seed head",
+   "source": "decoy"
+  },
+  {
+   "text": "some brown root",
+   "source": "decoy"
+  },
+  {
+   "text": "a round brown cone on grass",
+   "source": "decoy"
+  },
+  {
+   "text": "a brown woody pod hanging from branch",
+   "source": "decoy"
+  },
+  {
+   "text": "a green weed pushing through asphalt",
+   "source": "decoy"
+  },
+  {
+   "text": "a patch of dark soil under bush",
+   "source": "decoy"
+  },
+  {
+   "text": "a gray brick",
+   "source": "decoy"
+  },
+  {
+   "text": "a weathered stump",
+   "source": "decoy"
+  },
+  {
+   "text": "a red berry",
+   "source": "decoy"
+  },
+  {
+   "text": "a yellow mushroom",
+   "source": "decoy"
+  },
+  {
+   "text": "a seedhead on a weed",
+   "source": "decoy"
+  },
+  {
+   "text": "a single mushroom",
+   "source": "decoy"
+  },
+  {
+   "text": "some pine needles",
+   "source": "decoy"
+  },
+  {
+   "text": "a small twig bundle",
+   "source": "decoy"
+  },
+  {
+   "text": "a weathered post",
+   "source": "decoy"
+  },
+  {
+   "text": "a large smooth stone",
+   "source": "decoy"
+  },
+  {
+   "text": "a parked car",
+   "source": "top-up"
+  },
+  {
+   "text": "a pickup truck",
+   "source": "top-up"
+  },
+  {
+   "text": "a bicycle",
+   "source": "top-up"
+  },
+  {
+   "text": "a motorcycle",
+   "source": "top-up"
+  },
+  {
+   "text": "a school bus",
+   "source": "top-up"
+  },
+  {
+   "text": "a house with a front door",
+   "source": "top-up"
+  },
+  {
+   "text": "a brick wall",
+   "source": "top-up"
+  },
+  {
+   "text": "a chain-link fence",
+   "source": "top-up"
+  },
+  {
+   "text": "a white picket fence",
+   "source": "top-up"
+  },
+  {
+   "text": "a garage door",
+   "source": "top-up"
+  },
+  {
+   "text": "a street lamp",
+   "source": "top-up"
+  },
+  {
+   "text": "a traffic light",
+   "source": "top-up"
+  },
+  {
+   "text": "a crosswalk",
+   "source": "top-up"
+  },
+  {
+   "text": "a speed limit sign",
+   "source": "top-up"
+  },
+  {
+   "text": "a street name sign",
+   "source": "top-up"
+  },
+  {
+   "text": "a parking meter",
+   "source": "top-up"
+  },
+  {
+   "text": "an utility pole with wires",
+   "source": "top-up"
+  },
+  {
+   "text": "a manhole cover",
+   "source": "top-up"
+  },
+  {
+   "text": "a curb",
+   "source": "top-up"
+  },
+  {
+   "text": "an asphalt road",
+   "source": "top-up"
+  },
+  {
+   "text": "a concrete sidewalk",
+   "source": "top-up"
+  },
+  {
+   "text": "a gravel path",
+   "source": "top-up"
+  },
+  {
+   "text": "a dirt trail",
+   "source": "top-up"
+  },
+  {
+   "text": "a wooden boardwalk",
+   "source": "top-up"
+  },
+  {
+   "text": "a bridge over a creek",
+   "source": "top-up"
+  },
+  {
+   "text": "a staircase outdoors",
+   "source": "top-up"
+  },
+  {
+   "text": "a handrail",
+   "source": "top-up"
+  },
+  {
+   "text": "a brick chimney",
+   "source": "top-up"
+  },
+  {
+   "text": "a roof with shingles",
+   "source": "top-up"
+  },
+  {
+   "text": "a window with shutters",
+   "source": "top-up"
+  },
+  {
+   "text": "a porch light",
+   "source": "top-up"
+  },
+  {
+   "text": "a recycling bin",
+   "source": "top-up"
+  },
+  {
+   "text": "a picnic table",
+   "source": "top-up"
+  },
+  {
+   "text": "a playground slide",
+   "source": "top-up"
+  },
+  {
+   "text": "a swing set",
+   "source": "top-up"
+  },
+  {
+   "text": "a basketball hoop",
+   "source": "top-up"
+  },
+  {
+   "text": "a soccer goal",
+   "source": "top-up"
+  },
+  {
+   "text": "a water fountain",
+   "source": "top-up"
+  },
+  {
+   "text": "a flag on a pole",
+   "source": "top-up"
+  },
+  {
+   "text": "a bird feeder",
+   "source": "top-up"
+  },
+  {
+   "text": "a garden hose",
+   "source": "top-up"
+  },
+  {
+   "text": "a lawn mower",
+   "source": "top-up"
+  },
+  {
+   "text": "a wheelbarrow",
+   "source": "top-up"
+  },
+  {
+   "text": "a shovel",
+   "source": "top-up"
+  },
+  {
+   "text": "a rake",
+   "source": "top-up"
+  },
+  {
+   "text": "a flower pot",
+   "source": "top-up"
+  },
+  {
+   "text": "a tall tree",
+   "source": "top-up"
+  },
+  {
+   "text": "a pine tree",
+   "source": "top-up"
+  },
+  {
+   "text": "an oak tree",
+   "source": "top-up"
+  },
+  {
+   "text": "a palm tree",
+   "source": "top-up"
+  },
+  {
+   "text": "a bush with red berries",
+   "source": "top-up"
+  },
+  {
+   "text": "a hedge",
+   "source": "top-up"
+  },
+  {
+   "text": "a sunflower",
+   "source": "top-up"
+  },
+  {
+   "text": "a rose",
+   "source": "top-up"
+  },
+  {
+   "text": "ivy climbing a wall",
+   "source": "top-up"
+  },
+  {
+   "text": "a cactus",
+   "source": "top-up"
+  },
+  {
+   "text": "a fern",
+   "source": "top-up"
+  },
+  {
+   "text": "a log",
+   "source": "top-up"
+  },
+  {
+   "text": "a large boulder",
+   "source": "top-up"
+  },
+  {
+   "text": "a pile of rocks",
+   "source": "top-up"
+  },
+  {
+   "text": "sand",
+   "source": "top-up"
+  },
+  {
+   "text": "mud",
+   "source": "top-up"
+  },
+  {
+   "text": "a creek",
+   "source": "top-up"
+  },
+  {
+   "text": "a pond",
+   "source": "top-up"
+  },
+  {
+   "text": "a lake",
+   "source": "top-up"
+  },
+  {
+   "text": "a waterfall",
+   "source": "top-up"
+  },
+  {
+   "text": "snow",
+   "source": "top-up"
+  },
+  {
+   "text": "ice",
+   "source": "top-up"
+  },
+  {
+   "text": "a blue sky",
+   "source": "top-up"
+  },
+  {
+   "text": "white clouds",
+   "source": "top-up"
+  },
+  {
+   "text": "a sunset",
+   "source": "top-up"
+  },
+  {
+   "text": "the moon",
+   "source": "top-up"
+  },
+  {
+   "text": "a shadow on the ground",
+   "source": "top-up"
+  },
+  {
+   "text": "a rainbow",
+   "source": "top-up"
+  },
+  {
+   "text": "a hill",
+   "source": "top-up"
+  },
+  {
+   "text": "a field of grass",
+   "source": "top-up"
+  },
+  {
+   "text": "a dog",
+   "source": "top-up"
+  },
+  {
+   "text": "a cat",
+   "source": "top-up"
+  },
+  {
+   "text": "a squirrel",
+   "source": "top-up"
+  },
+  {
+   "text": "a bird on a branch",
+   "source": "top-up"
+  },
+  {
+   "text": "a duck",
+   "source": "top-up"
+  },
+  {
+   "text": "a butterfly",
+   "source": "top-up"
+  },
+  {
+   "text": "a bee on a flower",
+   "source": "top-up"
+  },
+  {
+   "text": "an ant",
+   "source": "top-up"
+  },
+  {
+   "text": "a spider web",
+   "source": "top-up"
+  },
+  {
+   "text": "a snail",
+   "source": "top-up"
+  },
+  {
+   "text": "a feather",
+   "source": "top-up"
+  },
+  {
+   "text": "a bird nest",
+   "source": "top-up"
+  },
+  {
+   "text": "a sneaker",
+   "source": "top-up"
+  },
+  {
+   "text": "a ball",
+   "source": "top-up"
+  },
+  {
+   "text": "a kite",
+   "source": "top-up"
+  },
+  {
+   "text": "graffiti on a wall",
+   "source": "top-up"
+  },
+  {
+   "text": "a mural",
+   "source": "top-up"
+  },
+  {
+   "text": "a painted door",
+   "source": "top-up"
+  },
+  {
+   "text": "a bench in the sun",
+   "source": "top-up"
+  },
+  {
+   "text": "a gazebo",
+   "source": "top-up"
+  },
+  {
+   "text": "a statue",
+   "source": "top-up"
+  },
+  {
+   "text": "a church steeple",
+   "source": "top-up"
+  },
+  {
+   "text": "a store front",
+   "source": "top-up"
+  },
+  {
+   "text": "a parking lot",
+   "source": "top-up"
+  },
+  {
+   "text": "a gas station",
+   "source": "top-up"
+  },
+  {
+   "text": "a construction cone",
+   "source": "top-up"
+  }
+ ]
+}

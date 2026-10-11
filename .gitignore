@@ -1,0 +1,34 @@
+node_modules/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+dist/
+*.litertlm
+*.tflite
+*.task
+*.safetensors
+web/.models/
+test-results/
+playwright-report/
+.env
+web/public/litertlm-wasm/
+web/report.log
+web/dead.log
+
+# Planning notes, dev logs and dev data (kept local)
+PLAN.md
+LOG.md
+TWINS.md
+PIVOT.md
+docs/devto-post.md
+data/eval/
+web/.eval-photos/
+
+# Dev-only spike and cross-check pages
+web/spike.html
+web/src/spike.ts
+web/crosscheck.html
+web/src/crosscheck.ts
+web/scripts/spike-run.mjs
+web/scripts/edge-run.sh

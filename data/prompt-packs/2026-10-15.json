@@ -1,0 +1,92 @@
+{
+  "date": "2026-10-15",
+  "model": "gemma-4-e4b",
+  "region": "Charlotte, NC, autumn",
+  "prompts": [
+    {
+      "id": "2026-10-15-1",
+      "text": "some white shelf fungus on damp wood",
+      "hint": "Under large dead logs, look for pale growth.",
+      "decoys": [
+        "a gray slice of bark on trunk",
+        "a dark root poking through soil",
+        "a green patch of moss on stone",
+        "a yellow leaf on wet ground",
+        "a brown acorn near dirt",
+        "a thin brown twig on earth",
+        "some small red berries on bush",
+        "a smooth gray stone beside path",
+        "a small brown stem in dirt",
+        "some light pollen on pavement"
+      ]
+    },
+    {
+      "id": "2026-10-15-2",
+      "text": "a brown hickory nut on dirt",
+      "hint": "Look near old oak trees or wooded areas.",
+      "decoys": [
+        "a dark seed pod on ground",
+        "a large pinecone on grass",
+        "a mottled stone near curb",
+        "a tiny mushroom on dirt",
+        "a curved tree branch on path",
+        "some textured brown bark on tree",
+        "an orange leaf on sidewalk",
+        "a bright purple berry on bush",
+        "a tangled root in the ground",
+        "a patch of organic ground litter"
+      ]
+    },
+    {
+      "id": "2026-10-15-3",
+      "text": "a curled brown fern frond on path",
+      "hint": "Usually found under shady growth or in forested areas.",
+      "decoys": [
+        "a yellow maple leaf on grass",
+        "a thin winding vine on fence",
+        "a stiff brown stem in ground",
+        "a sharp small twig on ground",
+        "a piece of pale tree bark",
+        "a patch of short green grass",
+        "a bright orange flower petal",
+        "a clump of dark berries on bush",
+        "a tangled soil root near path",
+        "a cluster of small floral blooms"
+      ]
+    },
+    {
+      "id": "2026-10-15-4",
+      "text": "a faded green painted railing",
+      "hint": "Along park paths or bridge overlooks.",
+      "decoys": [
+        "a rusty metal gate on fence",
+        "a wooden signpost in park",
+        "a weathered wooden bench in park",
+        "a metal ladder leaning on wall",
+        "a concrete retaining wall near path",
+        "a wooden fence post next to path",
+        "a metal decorative fixture on fence",
+        "a simple path structure in park",
+        "a metal trim along walkway",
+        "a concrete barrier near road"
+      ]
+    },
+    {
+      "id": "2026-10-15-5",
+      "text": "some yellow thistle bloom in dry ground",
+      "hint": "In open grassy areas or along field edges.",
+      "decoys": [
+        "a patch of wild tall grass",
+        "a bright purple flower bloom",
+        "a dried seed on loose earth",
+        "a thick root tangled in dirt",
+        "a bright orange flower petal",
+        "a small moss cushion on rock",
+        "a thin plant stalk in dirt",
+        "a patch of yellow dandelion blooms",
+        "a fallen flower head in field",
+        "a patch of dry brown weeds"
+      ]
+    }
+  ]
+}

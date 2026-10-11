@@ -1,0 +1,92 @@
+{
+  "date": "2026-10-20",
+  "model": "gemma-4-e4b",
+  "region": "Charlotte, NC, autumn",
+  "prompts": [
+    {
+      "id": "2026-10-20-1",
+      "text": "a deep red maple leaf on concrete",
+      "hint": "Under large trees, near walkways.",
+      "decoys": [
+        "a small brown root poking through dirt",
+        "a red fire hydrant near a sidewalk",
+        "a patch of green moss on a stone",
+        "a round brown cone on grass",
+        "a thin brown twig on the ground",
+        "a pale gray patch on pavement",
+        "a dark red stalk on dry ground",
+        "a small wooden fence post",
+        "a patch of yellow grass in the lawn",
+        "a brown woody pod hanging from branch"
+      ]
+    },
+    {
+      "id": "2026-10-20-2",
+      "text": "a light gray patch of bark on a tree",
+      "hint": "On older trees, in shady areas.",
+      "decoys": [
+        "a yellow maple leaf on soil",
+        "a small white mushroom in dirt",
+        "a light gray pebble on path",
+        "a green weed pushing through asphalt",
+        "a brown stem on dry ground",
+        "a pine cone on the ground",
+        "a patch of green moss on ground",
+        "a brown curled fern frond",
+        "a patch of yellow grass in lawn",
+        "a dark brown root in dirt"
+      ]
+    },
+    {
+      "id": "2026-10-20-3",
+      "text": "a white clustered mushroom growing in dirt",
+      "hint": "Damp spots under shady foliage.",
+      "decoys": [
+        "a dark red maple leaf on dirt",
+        "a light gray patch of bark on tree",
+        "a red fire hydrant near path",
+        "a patch of green moss on rock",
+        "a dark brown root in dirt",
+        "a brown pine cone on ground",
+        "a brown twig on sidewalk",
+        "a patch of yellow grass in lawn",
+        "a light gray pebble on gravel",
+        "a dark brown stem in grass"
+      ]
+    },
+    {
+      "id": "2026-10-20-4",
+      "text": "a dark black seed on dry pavement",
+      "hint": "Along paths, where asphalt meets grass.",
+      "decoys": [
+        "a brown curved fern frond on path",
+        "a smooth gray river stone near a curb",
+        "a thin brown twig on ground",
+        "a patchy yellow grass in lawn",
+        "a dark brown root in dirt",
+        "a small pine cone on dirt",
+        "a patch of green moss on stone",
+        "a small wooden fence post",
+        "a light gray patch of bark on tree",
+        "a patch of dark soil under bush"
+      ]
+    },
+    {
+      "id": "2026-10-20-5",
+      "text": "a rounded gray stone on gravel",
+      "hint": "Near paths, by scattered rocks.",
+      "decoys": [
+        "a deep red maple leaf on pavement",
+        "a light gray patch of bark on tree",
+        "a white clustered mushroom in dirt",
+        "a dark brown root poking through dirt",
+        "a patch of green moss on wood",
+        "a brown woody pod on branch",
+        "a patch of yellow grass in lawn",
+        "a brown pine cone on ground",
+        "a thin brown twig on ground",
+        "a patch of dark dirt under foliage"
+      ]
+    }
+  ]
+}

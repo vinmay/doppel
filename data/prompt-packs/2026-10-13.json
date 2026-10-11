@@ -1,0 +1,92 @@
+{
+  "date": "2026-10-13",
+  "model": "gemma-4-e4b",
+  "region": "Charlotte, NC, autumn",
+  "prompts": [
+    {
+      "id": "2026-10-13-1",
+      "text": "a pale yellow chrysanthemum bloom",
+      "hint": "Border gardens, late season color splash.",
+      "decoys": [
+        "a red fire hydrant",
+        "a brown seedpod hanging",
+        "a small orange pumpkin",
+        "some mossy green stone",
+        "a gray bark patch",
+        "some brittle brown stem",
+        "a smooth gray leaf",
+        "a dark wet patch of dirt",
+        "a purple berry cluster",
+        "a weathered wooden bench"
+      ]
+    },
+    {
+      "id": "2026-10-13-2",
+      "text": "some slender brown twig on the ground",
+      "hint": "Fallen from trees, sheltered under a bench.",
+      "decoys": [
+        "a pale mushroom growing",
+        "an orange leaf on pavement",
+        "a red fire hydrant",
+        "a brown acorn on grass",
+        "a light gray stone",
+        "a patch of white seeds",
+        "a rough wooden post",
+        "a brown seedpod",
+        "a small orange decoration",
+        "a gray curb edge"
+      ]
+    },
+    {
+      "id": "2026-10-13-3",
+      "text": "a patch of yellow grass in the lawn",
+      "hint": "Areas where the turf has started to brown.",
+      "decoys": [
+        "an orange leaf on concrete",
+        "a red fire hydrant",
+        "a small pinecone on soil",
+        "some purple berries on bush",
+        "a dark gray stone",
+        "a pale yellow flower",
+        "a brown acorn",
+        "a rough wooden fence",
+        "a gray lichen patch",
+        "a dark wet earth spot"
+      ]
+    },
+    {
+      "id": "2026-10-13-4",
+      "text": "a large brown pinecone on the path",
+      "hint": "Often found near conifers or forest edge.",
+      "decoys": [
+        "a red fire hydrant",
+        "a pale mushroom growing",
+        "a yellow maple leaf",
+        "a brown seedpod",
+        "a rough bark patch",
+        "a weathered wooden bench",
+        "a light gray stone",
+        "a small purple berry",
+        "a slender brown twig",
+        "a gray wooden post"
+      ]
+    },
+    {
+      "id": "2026-10-13-5",
+      "text": "a light gray curb next to the street",
+      "hint": "Edging the sidewalk where it meets the road.",
+      "decoys": [
+        "a red fire hydrant",
+        "a pale mushroom in grass",
+        "a gray bark texture",
+        "a small pumpkin on grass",
+        "a brown acorn on dirt",
+        "a dark wet earth patch",
+        "a small yellow chrysanthemum",
+        "a purple berry on shrub",
+        "a slender brown twig",
+        "a pale yellow leaf"
+      ]
+    }
+  ]
+}

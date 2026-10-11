@@ -1,0 +1,92 @@
+{
+  "date": "2026-10-18",
+  "model": "gemma-4-e4b",
+  "region": "Charlotte, NC, autumn",
+  "prompts": [
+    {
+      "id": "2026-10-18-1",
+      "text": "a bright red toadstool on damp soil",
+      "hint": "Areas with heavy shade and wet ground.",
+      "decoys": [
+        "a pale gray stone near a fence",
+        "a rough brown bark patch on a trunk",
+        "some brittle yellow grass in a patch",
+        "a dark brown acorn on dirt",
+        "a yellow chrysanthemum bloom in a bed",
+        "a light brown husk lying on the path",
+        "a gray rectangular paving stone near a curb",
+        "some white seeds scattered on asphalt",
+        "a smooth gray pebble by the roadside",
+        "a weathered gray wooden post in the yard"
+      ]
+    },
+    {
+      "id": "2026-10-18-2",
+      "text": "a green and red autumn leaf on grass",
+      "hint": "Where late change starts before full fall colors.",
+      "decoys": [
+        "a wooden park bench near a path",
+        "a small yellow thistle bloom in dry ground",
+        "a dark purple stalk on the ground",
+        "a brown pinecone resting on the path",
+        "a mossy green patch on concrete",
+        "a brown hickory nut on dirt",
+        "a thick gray branch fragment on grass",
+        "a light gray lichen on a tree trunk",
+        "a weathered gray wooden fence section",
+        "a light brown pod lying on pavement"
+      ]
+    },
+    {
+      "id": "2026-10-18-3",
+      "text": "a rotting gray stump in a garden bed",
+      "hint": "Old growth areas where trees used to stand.",
+      "decoys": [
+        "a red fire hydrant near a sidewalk",
+        "a smooth gray stone next to a curb",
+        "a small orange pumpkin resting on grass",
+        "some brown reed stalks in wet ground",
+        "a gray circular utility cover on asphalt",
+        "a pine cone on grass",
+        "a light gray curb next to the street",
+        "some red berries on green foliage",
+        "a weathered brick near a sidewalk",
+        "a pale yellow chrysanthemum bloom"
+      ]
+    },
+    {
+      "id": "2026-10-18-4",
+      "text": "a rusted metal grate near a storm drain",
+      "hint": "Sidewalks near streets, where water collects.",
+      "decoys": [
+        "a light gray lichen on a tree trunk",
+        "a deep red maple leaf on concrete",
+        "a pale mushroom growing in damp grass",
+        "a dark red fruit hanging from a branch",
+        "a pine cone on pavement",
+        "a thin brown tendril winding around a branch",
+        "a small brown acorn on dry soil",
+        "some pale green moss growing on concrete",
+        "a gray wooden fence post in the neighborhood",
+        "a dark brown seed pod on the ground"
+      ]
+    },
+    {
+      "id": "2026-10-18-5",
+      "text": "a dry orange seed head on dark soil",
+      "hint": "Field edges, where wildflowers are dying back.",
+      "decoys": [
+        "a light gray curb next to the street",
+        "a weathered gray wooden bench in the park",
+        "a yellow thistle bloom in dry ground",
+        "a smooth gray stone near the path",
+        "a pine cone on the path",
+        "a dark red berry clump on a bush",
+        "a pale mushroom growing in grass",
+        "a wooden log resting on the ground",
+        "a light brown husk on the path",
+        "a rough brown patch of tree bark"
+      ]
+    }
+  ]
+}
