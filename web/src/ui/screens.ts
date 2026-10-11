@@ -25,6 +25,8 @@ const hud = (pair: number, right = "") => `
     <span class="hud-right" data-testid="hud-right">${right}</span>
   </div>`;
 
+const demoLink = `<p class="sub"><a href="${href.demo()}" data-testid="demo-link">Try a demo round</a> (no camera needed)</p>`;
+
 const themeReadout = (theme?: string) => (theme ? `<span data-testid="theme">Today: ${esc(theme)}</span>` : "");
 const walkedReadout = (meters: number) => `<span data-testid="walked">${meters} M WALKED</span>`;
 /** Walk: the timer while GPS isn't usable, otherwise metres walked on this walk. */
@@ -108,6 +110,7 @@ export function firstView(pair: number, ideas: string[], firstRun: boolean, prac
         <summary>Need an idea?</summary>
         <ul data-testid="ideas">${ideas.map((i) => `<li>${esc(i)}</li>`).join("")}</ul>
       </details>
+      ${demoLink}
       ${dock(shootButton("Photograph something"))}
     </section>`;
   }
@@ -125,6 +128,7 @@ export function firstView(pair: number, ideas: string[], firstRun: boolean, prac
         <summary>Need an idea?</summary>
         <ul data-testid="ideas">${ideas.map((i) => `<li>${esc(i)}</li>`).join("")}</ul>
       </details>
+      ${demoLink}
       ${dock(shootButton("Photograph something"))}
     </section>`;
 }
@@ -182,6 +186,7 @@ export function twinView(pair: number, label: string, looks: string[] = [], alt?
 }
 
 export interface RevealExtras {
+  demo?: boolean;
   canRetry: boolean;
   tries: number;
   secondKept: boolean; // after two tries: was the second twin the better one?
@@ -191,7 +196,7 @@ export function revealView(pair: number, p: Required<Pick<PairState, "first" | "
   const r = p.result;
   return `
     <section class="screen reveal" aria-label="Reveal" data-band="${r.band}">
-      ${hud(pair, walkedReadout(meters))}
+      ${x.demo ? demoHud() : hud(pair, walkedReadout(meters))}
       <div class="pair together" id="pair">
         ${slot("a", stack("a", p.first.label, true), "", r.band)}
         ${slot("b", stack("b", p.twin.label, true), "", r.band)}
@@ -203,12 +208,46 @@ export function revealView(pair: number, p: Required<Pick<PairState, "first" | "
       <p class="voice verdict" data-testid="verdict">${esc(r.verdict)}</p>
       <p class="shared" data-testid="shared"><span class="label">What they share</span> ${r.shared.length ? `Both: ${r.shared.map(esc).join(" · ")}` : NOTHING_SHARED}</p>
       ${x.tries >= 2 ? `<p class="best-of" data-testid="best-of"><span class="label">Best of 2</span> ${x.secondKept ? "Your second twin scored higher." : "Your first twin scored higher, so it stays."}</p>` : ""}
-      <div class="dock">
+      ${x.demo ? `<div class="dock">
+        <button class="btn btn-shoot" id="demo-again" type="button">Another demo pair</button>
+        <a class="link" href="${href.today()}">Back to today</a>
+      </div>` : `<div class="dock">
         <button class="btn btn-shoot" id="next" type="button">${last ? "See today" : "Next pair"}</button>
         ${x.canRetry ? `<button class="link" id="retry" type="button">Try another twin (one more walk)</button>` : ""}
+      </div>`}
+    </section>`;
+}
+
+/** Demo round (for judges, no camera): the same HUD row, labelled as a demo. */
+export const demoHud = () => `
+  <div class="hud" aria-label="Progress">
+    <span data-testid="demo-hud">DEMO ROUND</span>
+    <span class="hud-right">NOT SAVED</span>
+  </div>`;
+
+/** Demo, step 1: the first photo, what Doppel sees, and the skipped walk. */
+export function demoFirstView(state: { label?: string; alt?: string; looks?: string[]; tries?: string[] }): string {
+  return `
+    <section class="screen demo" aria-label="Demo round">
+      ${demoHud()}
+      <div class="pair">
+        ${slot("a", `<canvas id="photo-a" aria-label="Demo first photo"></canvas>`, "", "neutral")}
+        ${slot("b", `<span class="slot-word">its twin?</span>`)}
+      </div>
+      <p class="sees">${state.label ? sees(state.label, state.alt) : "Doppel is looking…"}</p>
+      <p class="demo-note" data-testid="demo-note"><span class="label">Demo</span> walk skipped. In the real game you walk about 50 m first.</p>
+      <h1 class="voice">A demo round, with our photos.</h1>
+      ${state.label ? `<p class="sub">${esc(notButLike(state.label))}</p>` : ""}
+      ${lookFor(state.looks ?? [])}
+      ${tryThese(state.tries ?? [])}
+      <div class="dock">
+        <div id="model-status"></div>
+        <button class="btn btn-shoot" id="demo-twin" type="button" ${state.label ? "" : `aria-disabled="true" disabled`}>Show its twin</button>
+        <p id="status" class="status" role="status" aria-live="polite"></p>
       </div>
     </section>`;
 }
+
 
 export interface DonePair {
   first: string;
@@ -272,6 +311,7 @@ export function howView(): string {
   return `
     <section class="screen how" aria-label="How to play">
       <h1 class="voice">How to play</h1>
+      <p class="sub"><a href="${href.demo()}" data-testid="demo-link">Try a demo round</a>: one full round with our photos, no camera needed, nothing saved.</p>
       <ol class="steps">
         <li><b>Photograph anything outside.</b> Doppel says what it sees.</li>
         <li><b>Walk.</b> About 50 m, measured by GPS. Without location, or with weak GPS, a 45-second timer instead.</li>

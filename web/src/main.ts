@@ -18,7 +18,7 @@ import { band, checkShot, checkTwin, judgePair, PROBLEM_TEXT, readPhoto, suggest
 import { mountDebug } from "./ui/debug";
 import { esc, render } from "./ui/dom";
 import { loadModelWithStatus } from "./ui/model-status";
-import { doneView, firstView, historyView, howView, revealView, twinView, walkHud, walkPct, walkReadout, walkView, type DonePair } from "./ui/screens";
+import { demoFirstView, doneView, firstView, historyView, howView, revealView, twinView, walkHud, walkPct, walkReadout, walkView, type DonePair } from "./ui/screens";
 import { loadVocab } from "./vocab";
 import { addFix, denyGps } from "./walk";
 
@@ -326,6 +326,55 @@ async function takePhoto(file: File, which: "first" | "twin", onStatus: (s: stri
   return true;
 }
 
+// ---------- Demo round (for judges): bundled CC0 pairs, no camera, real model, nothing saved
+const DEMO_PAIRS: [string, string][] = [
+  ["05-pinecone.jpg", "05-artichoke.jpg"],
+  ["03-tree-bark.jpg", "03-elephant-skin.jpg"],
+  ["06-brick-wall.jpg", "06-chocolate-bar.jpg"],
+];
+let demoIndex = 0;
+
+async function demoShot(file: string) {
+  const blob = await (await fetch(`${import.meta.env.BASE_URL}demo/${file}`)).blob();
+  const [{ embedBlob }, vocab] = await Promise.all([prepareImage(blob), loadVocab()]);
+  const embedder = getEmbedder();
+  await embedder.ready();
+  let vector = await embedder.embedImage(embedBlob);
+  if (isFakeEmbedder()) vector = fakePhotoVector(file, vocab) ?? vector;
+  return { blob, vector, reading: readPhoto(vector, vocab), vocab };
+}
+
+async function showDemo(seq: number) {
+  const [fa, fb] = DEMO_PAIRS[demoIndex++ % DEMO_PAIRS.length];
+  render(app, demoFirstView({}));
+  try {
+    await Promise.all([loadModelWithStatus(app.querySelector("#model-status")!), loadVocab()]); // shows download progress first
+  } catch {
+    return; // the model status explains (e.g. no WebGPU)
+  }
+  if (seq !== routeSeq) return;
+  app.querySelector("#status")!.textContent = "Reading the first photo on your device…";
+  const A = await demoShot(fa);
+  if (seq !== routeSeq) return;
+  render(app, demoFirstView({ label: A.reading.label, alt: A.reading.alt, looks: topAttributes(A.reading.attrZ), tries: suggestTwins(A.vector, A.reading, A.vocab) }));
+  await drawPhoto(app.querySelector<HTMLCanvasElement>("#photo-a")!, A.blob);
+  const btn = app.querySelector<HTMLButtonElement>("#demo-twin")!;
+  btn.addEventListener("click", async () => {
+    btn.disabled = true;
+    btn.setAttribute("aria-disabled", "true");
+    app.querySelector("#status")!.textContent = "Reading the twin…";
+    const B = await demoShot(fb);
+    if (seq !== routeSeq) return;
+    const result = judgePair(A, B, `demo#${fa}`, undefined, A.vocab);
+    const ref = (id: string, label: string) => ({ id, ts: 0, label });
+    render(app, revealView(1, { first: ref("demo-a", A.reading.label), twin: ref("demo-b", B.reading.label), result }, false, { demo: true, canRetry: false, tries: 1, secondKept: false }));
+    await Promise.all([fillStack(app.querySelector('[data-stack="a"]'), A.blob, result.band), fillStack(app.querySelector('[data-stack="b"]'), B.blob, result.band)]);
+    if (seq !== routeSeq) return;
+    develop(app.querySelector("#pair"), app.querySelector<HTMLElement>("[data-testid=score]"));
+    app.querySelector("#demo-again")?.addEventListener("click", () => route());
+  });
+}
+
 // ---------- History
 async function showHistory(seq: number) {
   const days = await listDays();
@@ -358,6 +407,10 @@ function route() {
   if (r.name === "history") {
     document.body.dataset.phase = "history";
     return void showHistory(seq);
+  }
+  if (r.name === "demo") {
+    document.body.dataset.phase = "demo";
+    return void showDemo(seq);
   }
   if (r.name === "how") {
     document.body.dataset.phase = "how";
