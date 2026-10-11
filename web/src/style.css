@@ -53,6 +53,7 @@ a { color: var(--fg); text-underline-offset: 3px; }
 .steps { margin: 4px 0 0; padding-left: 1.4em; }
 .steps li { margin: 6px 0; }
 main { max-width: 520px; margin: 0 auto; padding: 0 var(--gutter); outline: none; }
+main:focus, main:focus-visible { outline: none; } /* focused after each render for screen readers; not a control */
 .test-banner { margin: 0; padding: 4px var(--gutter); background: var(--temp-4); color: var(--bg); text-align: center; }
 
 /* ---------- type */
@@ -168,6 +169,10 @@ body[data-phase="walking"] .topbar { opacity: .72; }
 .shoot:focus-within .btn { outline: 2px solid var(--fg); outline-offset: 2px; }
 .btn[aria-disabled="true"], .btn[disabled] { opacity: .5; pointer-events: none; }
 .btn.is-busy::before { animation: pulse 1s ease-in-out infinite; }
+.btn-secondary { width: 100%; min-height: 48px; margin-top: 8px; }
+.dock a.btn-shoot { width: 100%; }
+.demo-line a { text-decoration: underline; text-underline-offset: 3px; }
+.small-link { margin-top: 12px; }
 .btn-quiet { color: var(--accent); border-color: var(--accent); }
 .status { min-height: 1.5em; margin: 8px 0 0; }
 .refusal { margin: 0 0 10px; padding: 10px 12px; border: 1px solid var(--accent); }

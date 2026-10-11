@@ -25,7 +25,19 @@ const hud = (pair: number, right = "") => `
     <span class="hud-right" data-testid="hud-right">${right}</span>
   </div>`;
 
-const demoLink = `<p class="sub"><a href="${href.demo()}" data-testid="demo-link">Try a demo round</a> (no camera needed)</p>`;
+/**
+ * How the demo round is offered on Today:
+ *   "line"    phones: a line under the headline, "Photograph something" stays primary
+ *   "primary" desktop without touch, or no camera: the demo is the coral button
+ *   "small"   after the player's first real pair: a small link at the bottom
+ */
+export type DemoEmphasis = "line" | "primary" | "small";
+const demoLine = `<p class="sub demo-line"><a href="${href.demo()}" data-testid="demo-link">No time to go outside? Try a 30-second&nbsp;demo&nbsp;→</a></p>`;
+const demoSmall = `<p class="sub small-link"><a href="${href.demo()}" data-testid="demo-link">Try a demo round</a></p>`;
+const firstDock = (demo: DemoEmphasis) =>
+  demo === "primary"
+    ? dock(`<a class="btn btn-shoot" href="${href.demo()}" data-testid="demo-primary">Try a demo round</a>${shootButton("Photograph something", true)}`)
+    : dock(shootButton("Photograph something"));
 
 const themeReadout = (theme?: string) => (theme ? `<span data-testid="theme">Today: ${esc(theme)}</span>` : "");
 const walkedReadout = (meters: number) => `<span data-testid="walked">${meters} M WALKED</span>`;
@@ -59,10 +71,10 @@ export const stack = (key: string, label: string, flash = false) =>
 
 const sees = (label: string, alt?: string) => `Doppel sees: <b data-testid="sees">${esc(label)}${alt ? ` / ${esc(alt)}` : ""}</b>`;
 
-const shootButton = (text: string) => `
-  <label class="shoot">
+const shootButton = (text: string, secondary = false) => `
+  <label class="shoot${secondary ? " secondary" : ""}">
     <input id="photo" type="file" accept="image/*" capture="environment" class="sr" aria-label="${esc(text)}">
-    <span class="btn btn-shoot" aria-hidden="true">${esc(text)}</span>
+    <span class="btn ${secondary ? "btn-secondary" : "btn-shoot"}" aria-hidden="true">${esc(text)}</span>
   </label>`;
 
 const dock = (button: string, extra = "") => `
@@ -98,20 +110,21 @@ export function practiceView(p: Practice): string {
 }
 
 
-export function firstView(pair: number, ideas: string[], firstRun: boolean, practice?: Practice, theme?: string): string {
+export function firstView(pair: number, ideas: string[], firstRun: boolean, practice?: Practice, theme?: string, demo: DemoEmphasis = "line"): string {
   if (firstRun && practice) {
     return `
     <section class="screen first" aria-label="First photo">
       ${hud(pair, themeReadout(theme))}
       ${practiceView(practice)}
       <h1 class="voice lede">Find two different things that look the same. Outside.</h1>
+      ${demo === "line" ? demoLine : ""}
       <p class="sub privacy">Photos never leave your phone. Point it at things, not people.</p>
       <details class="ideas">
         <summary>Need an idea?</summary>
         <ul data-testid="ideas">${ideas.map((i) => `<li>${esc(i)}</li>`).join("")}</ul>
       </details>
-      ${demoLink}
-      ${dock(shootButton("Photograph something"))}
+      ${demo === "small" ? demoSmall : ""}
+      ${firstDock(demo)}
     </section>`;
   }
   return `
@@ -123,13 +136,14 @@ export function firstView(pair: number, ideas: string[], firstRun: boolean, prac
       </div>
       <h1 class="voice">${pair === 1 ? "Find two different things that look the same." : "Again. Start with anything outside."}</h1>
       <p class="sub">${pair === 1 ? "Photograph anything outside. Then walk, and find its twin." : "Then walk, and find its twin."}</p>
+      ${demo === "line" ? demoLine : ""}
       ${firstRun ? `<p class="sub privacy">Photos never leave your phone. Point it at things, not people.</p>` : ""}
       <details class="ideas">
         <summary>Need an idea?</summary>
         <ul data-testid="ideas">${ideas.map((i) => `<li>${esc(i)}</li>`).join("")}</ul>
       </details>
-      ${demoLink}
-      ${dock(shootButton("Photograph something"))}
+      ${demo === "small" ? demoSmall : ""}
+      ${firstDock(demo)}
     </section>`;
 }
 

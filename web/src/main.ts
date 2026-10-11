@@ -18,7 +18,7 @@ import { band, checkShot, checkTwin, judgePair, PROBLEM_TEXT, readPhoto, suggest
 import { mountDebug } from "./ui/debug";
 import { esc, render } from "./ui/dom";
 import { loadModelWithStatus } from "./ui/model-status";
-import { demoFirstView, doneView, firstView, historyView, howView, revealView, twinView, walkHud, walkPct, walkReadout, walkView, type DonePair } from "./ui/screens";
+import { demoFirstView, doneView, firstView, historyView, howView, revealView, twinView, walkHud, walkPct, walkReadout, walkView, type DemoEmphasis, type DonePair } from "./ui/screens";
 import { loadVocab } from "./vocab";
 import { addFix, denyGps } from "./walk";
 
@@ -144,6 +144,26 @@ async function playPractice(seq: number) {
   develop(app.querySelector("#practice-pair"), app.querySelector<HTMLElement>(".practice .score"));
 }
 
+// ---------- How to offer the demo round on Today
+/** Desktop without touch, or no camera at all: the demo is the better first step. Checked once. */
+let wantsDemo: Promise<boolean> | undefined;
+function deviceWantsDemo(): Promise<boolean> {
+  return (wantsDemo ??= (async () => {
+    if (matchMedia("(pointer: fine)").matches && (navigator.maxTouchPoints ?? 0) === 0) return true;
+    try {
+      const devices = await navigator.mediaDevices?.enumerateDevices?.();
+      if (devices && !devices.some((d) => d.kind === "videoinput")) return true; // no camera found
+    } catch {
+      // can't tell: keep the camera first
+    }
+    return false;
+  })());
+}
+async function demoEmphasis(d: DayState): Promise<DemoEmphasis> {
+  if ((await getMeta<boolean>("realPair")) || donePairs(d).length > 0) return "small";
+  return (await deviceWantsDemo()) ? "primary" : "line";
+}
+
 // ---------- Today
 async function loadToday() {
   place ??= await getMeta<Place>("place");
@@ -183,9 +203,9 @@ async function showToday(seq: number, force = false) {
   const pr = current();
 
   if (p.kind === "first") {
-    const firstRun = !(await getMeta<boolean>("played"));
+    const [firstRun, demo] = [!(await getMeta<boolean>("played")), await demoEmphasis(day)];
     if (seq !== routeSeq) return;
-    render(app, firstView(p.pair, ideasFor(day.day), firstRun, firstRun ? practice : undefined, themeFor(day.day).name));
+    render(app, firstView(p.pair, ideasFor(day.day), firstRun, firstRun ? practice : undefined, themeFor(day.day).name, demo));
     wireShoot(seq, "first");
     if (firstRun) {
       void playPractice(seq);
@@ -319,6 +339,7 @@ async function takePhoto(file: File, which: "first" | "twin", onStatus: (s: stri
     await putShot({ id, day: day!.day, ts: now, vector, reading, thumbBlob });
     const result = judgePair({ vector: first.vector, reading: first.reading }, { vector, reading }, `${day!.day}#${day!.pairs.length}#${retrying(pr) ? 2 : 1}`, undefined, vocab);
     day = acceptTwin(day!, { id, ts: now, label: reading.label }, result, now);
+    await setMeta("realPair", true); // demo rounds never get here
     stopGps();
   }
   onStatus("");

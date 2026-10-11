@@ -6,7 +6,8 @@ import { defineConfig, devices } from "@playwright/test";
 // The real model can't run in WSL's Chromium (SwiftShader WebGPU, minutes per
 // embedding), so `npm run test:model` drives Windows Edge instead (scripts/model-eval.mjs).
 const live = process.env.PW_BASE_URL;
-const pixel7 = { ...devices["Pixel 7"], viewport: { width: 390, height: 844 } };
+// Phones have a camera; headless Chromium reports none unless given its fake device.
+const pixel7 = { ...devices["Pixel 7"], viewport: { width: 390, height: 844 }, launchOptions: { args: ["--use-fake-device-for-media-stream"] } };
 
 export default defineConfig({
   testDir: "tests/e2e",

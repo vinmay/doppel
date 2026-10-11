@@ -7,7 +7,7 @@ test.use({ viewport: { width: 1280, height: 800 }, isMobile: false, hasTouch: fa
 
 test("demo round on desktop: no camera, walk skipped, real reveal, nothing saved", async ({ page }) => {
   await page.goto("/?embedder=fake#/");
-  await page.getByTestId("demo-link").click();
+  await page.getByTestId("demo-primary").click(); // desktop without touch: the demo is the primary button
   await expect(page.getByRole("region", { name: "Demo round" })).toBeVisible();
   await expect(page.getByTestId("demo-note")).toContainText("walk skipped");
   await expect(page.getByTestId("sees")).toHaveText(/^pinecone/);
