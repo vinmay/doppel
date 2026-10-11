@@ -52,6 +52,8 @@ a { color: var(--fg); text-underline-offset: 3px; }
 .how h2.label { margin: 18px 0 2px; font-size: var(--t-s); font-weight: 400; }
 .steps { margin: 4px 0 0; padding-left: 1.4em; }
 .steps li { margin: 6px 0; }
+.credits { margin: 4px 0 0; padding-left: 1.2em; }
+.credits li { margin: 4px 0; }
 main { max-width: 520px; margin: 0 auto; padding: 0 var(--gutter); outline: none; }
 main:focus, main:focus-visible { outline: none; } /* focused after each render for screen readers; not a control */
 .test-banner { margin: 0; padding: 4px var(--gutter); background: var(--temp-4); color: var(--bg); text-align: center; }

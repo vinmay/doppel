@@ -102,6 +102,10 @@ for (const size of [{ width: 390, height: 844 }, { width: 375, height: 667 }]) {
     await page.getByRole("link", { name: "How to play" }).click();
     await expect(page.getByRole("heading", { level: 1, name: "How to play" })).toBeVisible();
     await expect(page.getByText(/About 50 m, measured by GPS\. Without location, or with weak GPS, a 45-second timer instead\./)).toBeVisible();
+    await expect(page.getByTestId("github")).toHaveAttribute("href", "https://github.com/vinmay/doppel");
+    await expect(page.getByTestId("dev-post")).toBeVisible();
+    await expect(page.getByText(/EmbeddingGemma 2/)).toBeVisible();
+    for (const c of ["practice/CREDITS.md", "demo/CREDITS.md"]) expect((await page.request.get(`/${c}`)).status(), c).toBe(200);
     await check("how", { hud: false });
 
     expect(new Set(headerY).size).toBe(1);

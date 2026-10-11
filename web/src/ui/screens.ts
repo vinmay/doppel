@@ -6,6 +6,7 @@ import { band, BANDS, BAND_NAMES, NOTHING_SHARED, STRETCH_LINE, type Band } from
 import type { PairState } from "../day";
 import { PAIRS_PER_DAY } from "../day";
 import type { WalkStatus } from "../walk";
+import { DEV_POST_URL, GITHUB_URL } from "../links";
 import { href } from "../router";
 import { notButLike } from "../grammar";
 import { esc } from "./dom";
@@ -340,6 +341,16 @@ export function howView(): string {
       <p class="sub">Screens, rooms, documents and people (take it outside), photos Doppel can't read, the same photo twice, or the same kind of thing. Refused shots never use up a turn.</p>
       <h2 class="label">Your phone</h2>
       <p class="sub">Needs WebGPU (Chrome on Android, or a recent desktop browser). The AI model downloads once (388 MB, Wi-Fi is best), then Doppel works offline. Photos never leave your phone. Location is only used to measure the walk.</p>
+      <h2 class="label">About</h2>
+      <p class="sub"><a href="${GITHUB_URL}" data-testid="github" rel="noopener">Open source on GitHub</a> (Apache-2.0).
+        ${DEV_POST_URL ? `<a href="${DEV_POST_URL}" data-testid="dev-post" rel="noopener">How it was built, on DEV</a>.` : `<span data-testid="dev-post">How it was built, on DEV: link coming soon.</span>`}</p>
+      <h2 class="label">Credits</h2>
+      <ul class="credits">
+        <li><b>EmbeddingGemma 2</b> (Google) runs on your phone through <b>LiteRT-LM</b> (Google AI Edge); <b>Gemma 4</b> wrote the idea hints.</li>
+        <li>Colors from <b>Sanzo Wada</b>, <i>A Dictionary of Color Combinations</i> (1933), via the <a href="https://github.com/mattdesl/dictionary-of-colour-combinations" rel="noopener">mattdesl dataset</a>.</li>
+        <li>Practice and demo photos: CC0 / public domain, from Wikimedia Commons, Flickr (via Openverse) and rawpixel. <a href="practice/CREDITS.md">Practice credits</a> · <a href="demo/CREDITS.md">Demo credits</a>.</li>
+        <li>Fonts: IBM Plex Mono and Instrument Serif (OFL).</li>
+      </ul>
       <p class="sub"><a href="${href.today()}">Back to today</a></p>
     </section>`;
 }
