@@ -30,7 +30,7 @@ export const bandMarks = (b: Band) => {
 const slot = (side: "a" | "b", inner: string, caption = "") => `
   <figure class="slot ${side}">
     <div class="frame">${inner}</div>
-    <figcaption>${caption}</figcaption>
+    ${caption ? `<figcaption>${caption}</figcaption>` : ""}
   </figure>`;
 
 /** A print over its original photo. Press and hold (or hold Space/Enter) shows the photo. */
@@ -126,9 +126,10 @@ export function walkView(pair: number, label: string, w: WalkStatus, looks: stri
     <section class="screen walk" aria-label="Walk">
       ${hud(pair, `${w.meters} M WALKED`)}
       <div class="pair">
-        ${slot("a", `<canvas id="photo-a" aria-label="Your first photo"></canvas>`, sees(label, alt))}
-        ${slot("b", `<div class="countdown">${walkReadout(w)}</div>`, "its twin")}
+        ${slot("a", `<canvas id="photo-a" aria-label="Your first photo"></canvas>`)}
+        ${slot("b", `<div class="countdown">${walkReadout(w)}</div>`)}
       </div>
+      <p class="sees">${sees(label, alt)}</p>
       <h1 class="voice">${again ? "Find another twin. Walk." : "Find its twin. Walk."}</h1>
       <p class="sub">${esc(notButLike(label))} Phone in your pocket until then.</p>
       ${lookFor(looks)}
@@ -153,9 +154,10 @@ export function twinView(pair: number, label: string, looks: string[] = [], alt?
     <section class="screen twin" aria-label="Twin photo">
       ${hud(pair)}
       <div class="pair">
-        ${slot("a", `<canvas id="photo-a" aria-label="Your first photo"></canvas>`, sees(label, alt))}
-        ${slot("b", `<span class="slot-word">?</span>`, "its twin")}
+        ${slot("a", `<canvas id="photo-a" aria-label="Your first photo"></canvas>`)}
+        ${slot("b", `<span class="slot-word">its twin?</span>`)}
       </div>
+      <p class="sees">${sees(label, alt)}</p>
       <h1 class="voice">${again ? "Now another twin." : "Now its twin."}</h1>
       <p class="sub">${esc(notButLike(label))}</p>
       ${lookFor(looks)}

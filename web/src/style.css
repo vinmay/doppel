@@ -67,6 +67,7 @@ main { max-width: 520px; margin: 0 auto; padding: 0 var(--gutter); outline: none
 .slot-word { line-height: 1.5; letter-spacing: .14em; text-transform: uppercase; }
 .pair.empty .frame, .slot.b .frame:not(:has(canvas)) { border-style: dashed; }
 .pair.empty .slot.a .frame { border-style: solid; }
+.sees { margin: 8px 0 0; overflow-wrap: anywhere; }
 .countdown { display: flex; flex-direction: column; align-items: center; gap: 4px; line-height: 1.1; text-align: center; padding: 8px; }
 .countdown .big { font-size: var(--t-l); font-weight: 600; font-variant-numeric: tabular-nums; }
 
