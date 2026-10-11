@@ -46,7 +46,7 @@ export class LiteRtEmbedder implements Embedder {
 
   private async load() {
     if (!("gpu" in navigator)) {
-      throw new UnsupportedError("This browser doesn't support WebGPU, which Warmr needs to run the model on your device. Try Chrome on Android or a recent desktop browser.");
+      throw new UnsupportedError("This browser doesn't support WebGPU, which Doppel needs to run the model on your device. Try Chrome on Android or a recent desktop browser.");
     }
     const adapter = await navigator.gpu.requestAdapter({ powerPreference: "high-performance" });
     if (!adapter) throw new UnsupportedError("WebGPU is available but no GPU adapter was found on this device.");

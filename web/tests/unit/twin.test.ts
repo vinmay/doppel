@@ -205,3 +205,12 @@ describe("judgePair", () => {
     expect(VERDICTS.strangers).toContain(r.verdict);
   });
 });
+
+describe("topAttributes", () => {
+  it("lists a photo's strongest attributes above the threshold", async () => {
+    const { topAttributes } = await import("../../src/twin");
+    const lab = { attr: { labels: ["round", "dark", "striped", "shiny"], mu: [0, 0, 0, 0], sd: [1, 1, 1, 1] }, attrZ: 1 };
+    expect(topAttributes([2, 3, 0.5, 1.5], lab)).toEqual(["dark", "round", "shiny"]);
+    expect(topAttributes([0, 0, 0, NaN], lab)).toEqual([]);
+  });
+});

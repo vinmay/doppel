@@ -34,3 +34,15 @@ describe("fixtureLabel", () => {
     expect(fixtureLabel("IMG_2041.HEIC")).toBeUndefined();
   });
 });
+
+describe("fixture names match vocab labels (so the fake embedder reads them)", () => {
+  it("every fixture's label is a non-attribute vocab row", async () => {
+    const vocab = (await import("../../../data/vocab.json")).default;
+    const labels = new Set(vocab.items.filter((i) => i.kind !== "attr").map((i) => i.label));
+    for (const set of Object.keys(sets)) {
+      for (const f of readdirSync(join(ROOT, set)).filter((x) => x.endsWith(".jpg"))) {
+        expect(labels.has(fixtureLabel(f)!), `${set}/${f} -> ${fixtureLabel(f)}`).toBe(true);
+      }
+    }
+  });
+});

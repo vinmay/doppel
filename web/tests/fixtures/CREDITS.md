@@ -8,7 +8,7 @@ Every image is CC0 or public domain (Public Domain Mark or a PD tag on Wikimedia
 | `twins/01-cotton.jpg` | Mature Cotton Boll | Alabama Extension | CC0 1.0 | https://www.flickr.com/photos/184594136@N08/51565972685 |  |
 | `twins/02-tire.jpg` | Dirty car tires stacked in front of mechanic | PheobeLongneck | CC0 1.0 | https://commons.wikimedia.org/w/index.php?curid=170813252 |  |
 | `twins/02-donut.jpg` | File:Glazed-Donut.jpg | Evan-Amos | Public domain | https://commons.wikimedia.org/wiki/File:Glazed-Donut.jpg |  |
-| `twins/03-bark.jpg` | File:Bark of Sapota tree.jpg | Saral Shots | CC0 | https://commons.wikimedia.org/wiki/File:Bark_of_Sapota_tree.jpg |  |
+| `twins/03-tree-bark.jpg` | File:Bark of Sapota tree.jpg | Saral Shots | CC0 | https://commons.wikimedia.org/wiki/File:Bark_of_Sapota_tree.jpg |  |
 | `twins/03-elephant-skin.jpg` | elephant skin | lisafree54 | CC0 1.0 | https://www.flickr.com/photos/136594255@N06/23462896942 |  |
 | `twins/04-moss.jpg` | Green Moss on Rocks in Forest | Image Catalog | CC0 1.0 | https://www.flickr.com/photos/132795455@N08/19129426146 |  |
 | `twins/04-broccoli.jpg` | File:Broccoli Flower.jpg | စာကလေး SarKaLay | CC0 | https://commons.wikimedia.org/wiki/File:Broccoli_Flower.jpg |  |
@@ -47,4 +47,4 @@ Every image is CC0 or public domain (Public Domain Mark or a PD tag on Wikimedia
 | `reject/phone-screen.jpg` | Twitch app logo on smartphone screen in closeup | wuesti | CC0 1.0 | https://www.flickr.com/photos/202782168@N05/54566613411 |  |
 | `reject/indoor-room.jpg` | Free minimalist living room interior | rawpixel | CC0 1.0 | https://www.rawpixel.com/image/5927318/photo-image-public-domain-minimalist-house |  |
 | `reject/document.jpg` | Illustrations of four burgraves of the Holy Roman Empire (from left: Burggraf von Nürnberg, Burggraf von Magdeburg, Ritt | Provenance Online Project | CC0 1.0 | https://www.flickr.com/photos/58558794@N07/5954923370 |  |
-| `reject/blurry-dark.jpg` | derived from same-kind/03-bench-a | this repo | same as source (CC0) | - | Gaussian blur 18 px, brightness x0.18 |
+| `reject/dark-blurry-photo.jpg` | derived from same-kind/03-bench-a | this repo | same as source (CC0) | - | Gaussian blur 18 px, brightness x0.18 |

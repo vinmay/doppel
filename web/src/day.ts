@@ -13,6 +13,7 @@ export interface ShotRef {
   id: string;
   ts: number;
   label: string;
+  looks?: string[]; // its strongest attributes, the hint for finding a twin
 }
 
 export interface PairState {

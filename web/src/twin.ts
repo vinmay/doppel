@@ -177,6 +177,16 @@ export function sharedAttributes(zA: number[], zB: number[], cfg: Pick<TwinConfi
     .map((x) => x.label);
 }
 
+/** What a single photo is most strongly (for "Look for something round, dark."). */
+export function topAttributes(z: number[], cfg: Pick<TwinConfig, "attr" | "attrZ"> = TWIN, k = 3): string[] {
+  return cfg.attr.labels
+    .map((label, i) => ({ label, z: z[i] }))
+    .filter((x) => Number.isFinite(x.z) && x.z >= cfg.attrZ)
+    .sort((a, b) => b.z - a.z)
+    .slice(0, k)
+    .map((x) => x.label);
+}
+
 export const NOTHING_SHARED = "Not much, honestly.";
 
 /** Verdict lines (game master): short, dry, never "fail". One per pair, picked deterministically. */

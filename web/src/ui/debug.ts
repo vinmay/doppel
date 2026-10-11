@@ -1,10 +1,9 @@
 // Hidden ?debug=1 panel: model load time, per-image embed time, backend.
-// "Self-test" scores a synthetic image against today's secret without
-// saving anything; ?debug=1&autotest=1 runs it on load and POSTs the result
+// "Self-test" embeds a synthetic image and reads its label without saving
+// anything; ?debug=1&autotest=1 runs it on load and POSTs the result
 // to /__report (dev server) so headless runs can be checked.
 import { getEmbedder } from "../embed";
-import type { Secret } from "../game";
-import { scoreShot } from "../score";
+import { readPhoto } from "../twin";
 import { loadVocab } from "../vocab";
 import { esc } from "./dom";
 
@@ -39,19 +38,16 @@ async function syntheticImage(): Promise<Blob> {
   return new Promise((r) => c.toBlob((b) => r(b!), "image/jpeg", 0.9));
 }
 
-export async function runSelfTest(secret: Secret | undefined): Promise<string> {
-  if (!secret) return "SELFTEST_FAIL no secret";
+export async function runSelfTest(): Promise<string> {
   const e = getEmbedder();
   const t0 = performance.now();
   const [vocab] = await Promise.all([loadVocab(), e.ready()]);
-  // One text embedding (checks the text path), then the image on its own.
-  await e.embedText(secret.text);
   const photo = await e.embedImage(await syntheticImage());
-  const r = scoreShot(photo, vocab.vectors, secret.vocabIndex);
-  return `SELFTEST_PASS backend=${e.info.backend} adapter=${e.info.adapter ?? "-"} loadMs=${Math.round(e.info.loadMs ?? -1)} imageMs=${Math.round(e.info.lastImageMs ?? -1)} totalMs=${Math.round(performance.now() - t0)} online=${navigator.onLine} sw=${!!navigator.serviceWorker?.controller} temp=${r.temperature} rank=${r.rank}`;
+  const r = readPhoto(photo, vocab);
+  return `SELFTEST_PASS backend=${e.info.backend} adapter=${e.info.adapter ?? "-"} loadMs=${Math.round(e.info.loadMs ?? -1)} imageMs=${Math.round(e.info.lastImageMs ?? -1)} totalMs=${Math.round(performance.now() - t0)} online=${navigator.onLine} sw=${!!navigator.serviceWorker?.controller} label=${r.label.replace(/ /g, "_")} margin=${r.margin.toFixed(4)}`;
 }
 
-export function mountDebug(root: HTMLElement, secret: Secret | undefined) {
+export function mountDebug(root: HTMLElement) {
   const params = new URLSearchParams(location.search);
   if (!params.has("debug")) return;
   root.insertAdjacentHTML("beforeend", debugPanelHtml());
@@ -59,7 +55,7 @@ export function mountDebug(root: HTMLElement, secret: Secret | undefined) {
   const go = async () => {
     let line: string;
     try {
-      line = await runSelfTest(secret);
+      line = await runSelfTest();
     } catch (err) {
       line = `SELFTEST_FAIL ${(err as Error).message}`;
     }

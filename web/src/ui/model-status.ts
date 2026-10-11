@@ -18,7 +18,7 @@ export async function loadModelWithStatus(el: HTMLElement): Promise<void> {
         <div class="notice">
           <p>Downloading the AI model, one time only: <strong>${mb(p.loaded)} / ${mb(p.total)} MB</strong></p>
           <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pct.toFixed(0)}"><div style="width:${pct}%"></div></div>
-          <p class="muted">Use Wi-Fi if you can. After this, Warmr works offline.</p>
+          <p class="muted">Use Wi-Fi if you can. After this, Doppel works offline.</p>
         </div>`);
     } else if (p.loaded < p.total) {
       show(`<div class="notice"><p>Starting the model on your device…</p></div>`);

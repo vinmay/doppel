@@ -3,40 +3,104 @@ import "@fontsource/ibm-plex-mono/latin-600.css";
 import "@fontsource/instrument-serif/latin-400.css";
 import "./wada.css";
 import "./style.css";
-import { isFakeEmbedder } from "./embed";
-import { buildExportZip, downloadBlob } from "./export";
-import { clock, COOLDOWN_MS, dayKey, gameNumber, phase, secretFor, type GameState, type Phase, type Secret } from "./game";
-import { PACKS } from "./packs";
-import { giveUpGame, loadGame } from "./play";
+import { prepareImage } from "./capture";
+import { acceptFirst, acceptTwin, bestPair, closeReveal, donePairs, metersWalked, newDay, phase, updateWalk, type DayState, type Phase } from "./day";
+import { clearAll, getDay, getMeta, getShot, listDays, newId, putDay, putShot, setMeta, type StoredShot } from "./db";
+import { getEmbedder, isFakeEmbedder } from "./embed";
+import { fakePhotoVector } from "./embed/fake";
+import { ideasFor } from "./ideas";
+import { drawPrint, type Tone } from "./print";
 import { registerPwa } from "./pwa";
 import { parseHash } from "./router";
-import { shareResult, shareText } from "./share";
-import { takeShot } from "./shoot";
-import { clearAll, listGames, listShots, type Shot } from "./store";
-import { drawThermal } from "./thermal";
+import { dayKey, nextDayStart, type Place } from "./sun";
+import { checkShot, checkTwin, judgePair, PROBLEM_TEXT, readPhoto, topAttributes } from "./twin";
 import { mountDebug } from "./ui/debug";
 import { esc, render } from "./ui/dom";
 import { loadModelWithStatus } from "./ui/model-status";
-import { endedView, historyView, pocketView, readyView, resultView, type HistoryDay } from "./ui/play";
-import { loadVocab, VOCAB_TEXTS } from "./vocab";
+import { doneView, firstView, historyView, revealView, twinView, walkPct, walkReadout, walkView, type DonePair } from "./ui/screens";
+import { loadVocab } from "./vocab";
+import { addFix, denyGps } from "./walk";
 
 const app = document.getElementById("app")!;
 const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 let routeSeq = 0;
 let tick: number | undefined;
-let game: GameState | undefined;
-let secret: Secret | undefined;
-let shown: Phase["kind"] | undefined;
+let day: DayState | undefined;
+let place: Place | undefined;
+let shown: string | undefined; // phase kind + pair currently rendered
+let busy = false;
 
-/** Count the numeral up from 0 over ~600 ms. */
+const shownKey = (p: Phase) => ("pair" in p ? `${p.kind}:${p.pair}` : p.kind);
+const current = () => day!.pairs[day!.pairs.length - 1];
+
+async function save() {
+  if (day) await putDay(day);
+}
+
+// ---------- GPS: asked for at the first accepted shot, never on launch
+let watchId: number | undefined;
+let lastSaved = 0;
+function startGps() {
+  if (watchId !== undefined || !day) return;
+  const w = current().walk;
+  if (!w || w.gpsDenied) return;
+  if (!("geolocation" in navigator)) {
+    day = updateWalk(day, denyGps);
+    void save();
+    return;
+  }
+  watchId = navigator.geolocation.watchPosition(
+    (pos) => {
+      if (!day) return;
+      // receive time, not pos.timestamp: a cached fix can be old, and the walk's clock is Date.now()
+      const fix = { lat: pos.coords.latitude, lng: pos.coords.longitude, accuracy: pos.coords.accuracy, ts: Date.now() };
+      day = updateWalk(day, (w) => addFix(w, fix));
+      if (!place && fix.accuracy <= 1000) {
+        place = { lat: +fix.lat.toFixed(2), lng: +fix.lng.toFixed(2) }; // rough place, for sunrise only
+        void setMeta("place", place);
+      }
+      if (Date.now() - lastSaved > 2000) {
+        lastSaved = Date.now();
+        void save();
+      }
+    },
+    (err) => {
+      if (!day) return;
+      if (err.code === err.PERMISSION_DENIED) {
+        day = updateWalk(day, denyGps);
+        stopGps();
+        void save();
+      }
+    },
+    { enableHighAccuracy: true, maximumAge: 5000, timeout: 20_000 },
+  );
+}
+function stopGps() {
+  if (watchId !== undefined) navigator.geolocation.clearWatch(watchId);
+  watchId = undefined;
+}
+
+// ---------- prints
+const blobs = new Map<string, Promise<StoredShot | undefined>>();
+const shotById = (id: string) => {
+  if (!blobs.has(id)) blobs.set(id, getShot(id));
+  return blobs.get(id)!;
+};
+async function printInto(canvas: HTMLCanvasElement | null, id: string | undefined, tone: Tone, side = 480) {
+  if (!canvas || !id) return;
+  const s = await shotById(id);
+  if (s) await drawPrint(canvas, s.thumbBlob, tone, side);
+}
+
+/** Count the score up from 0 over ~700 ms. */
 function countUp(el: HTMLElement | null) {
   if (!el || reducedMotion) return;
   const to = Number(el.dataset.value);
   const num = el.querySelector(".n")!;
   const t0 = performance.now();
   const step = (t: number) => {
-    const k = Math.min(1, (t - t0) / 600);
+    const k = Math.min(1, (t - t0) / 700);
     num.textContent = String(Math.round(to * (1 - (1 - k) ** 3)));
     if (k < 1) requestAnimationFrame(step);
   };
@@ -44,146 +108,179 @@ function countUp(el: HTMLElement | null) {
   requestAnimationFrame(step);
 }
 
-/** Time until the next America/New_York midnight (bisection on dayKey, DST-safe). */
-function msToNextDay(now: number): number {
-  const today = dayKey(now);
-  let lo = now, hi = now + 26 * 3600_000;
-  while (hi - lo > 500) {
-    const mid = (lo + hi) / 2;
-    if (dayKey(mid) === today) lo = mid;
-    else hi = mid;
-  }
-  return hi - now;
+const timeOfDay = (t: number) => new Date(t).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+
+// ---------- Today
+async function loadToday() {
+  place ??= await getMeta<Place>("place");
+  const key = dayKey(Date.now(), place);
+  if (day?.day === key) return;
+  // Keep playing a pair that straddles sunrise; switch once it's between pairs.
+  if (day && !["first", "done"].includes(phase(day, Date.now()).kind)) return;
+  day = (await getDay(key)) ?? newDay(key);
+  shown = undefined;
 }
 
-const hms = (ms: number) => {
-  const s = Math.max(0, Math.ceil(ms / 1000));
-  const p = (n: number) => String(n).padStart(2, "0");
-  return `${p(Math.floor(s / 3600))}:${p(Math.floor((s % 3600) / 60))}:${p(s % 60)}`;
-};
-
-/** Render today's game for its current phase. Timers only refresh the view. */
 async function showToday(seq: number, force = false) {
+  await loadToday();
+  if (seq !== routeSeq || !day) return;
   const now = Date.now();
-  if (!game || !secret || game.day !== dayKey(now)) {
-    const day = dayKey(now);
-    secret = secretFor(day, PACKS, VOCAB_TEXTS);
-    game = await loadGame(day);
-    if (seq !== routeSeq) return;
-    force = true;
-  }
-  const p = phase(game, now);
-  if (!force && p.kind === shown) {
-    const t = app.querySelector<HTMLElement>("[data-timer]");
-    if (t) t.textContent = "leftMs" in p ? clock(p.leftMs) : hms(msToNextDay(now));
+  const p = phase(day, now);
+  if (!force && shownKey(p) === shown) {
+    if (p.kind === "walking") {
+      const c = app.querySelector(".countdown");
+      if (c) c.innerHTML = walkReadout(p.walk);
+      const bar = app.querySelector<HTMLElement>(".walkbar");
+      bar?.setAttribute("aria-valuenow", String(walkPct(p.walk)));
+      bar?.firstElementChild?.setAttribute("style", `width:${walkPct(p.walk)}%`);
+    }
     return;
   }
-  shown = p.kind;
+  if (busy && !force) return;
+  shown = shownKey(p);
   document.body.dataset.phase = p.kind;
-  const g = game, s = secret;
+  const pr = current();
 
-  if (p.kind === "ready") {
-    render(app, readyView(g, s));
-    wireReady(seq);
-    return mountDebug(app, s);
+  if (p.kind === "first") {
+    const firstRun = !(await getMeta<boolean>("played"));
+    if (seq !== routeSeq) return;
+    render(app, firstView(p.pair, ideasFor(day.day), firstRun));
+    wireShoot(seq, "first");
+    return mountDebug(app);
   }
-  if (p.kind === "cooldown") return render(app, pocketView(g, p.leftMs));
-
-  const shots = await listShots(g.day);
-  if (seq !== routeSeq) return;
-  if (p.kind === "result") {
-    const rec = shots.at(-1)!;
-    render(app, resultView(g, s, rec, p.leftMs));
-    void drawThermal(app.querySelector("#thermal")!, rec.thumbBlob, rec.won ? 5 : rec.band);
-    countUp(app.querySelector<HTMLElement>("[data-testid=temperature]"));
-    app.querySelector("#pocket")?.addEventListener("click", () => {
-      shown = "cooldown"; // the cooldown still counts from the shot itself
-      document.body.dataset.phase = "cooldown";
-      render(app, pocketView(g, COOLDOWN_MS - (Date.now() - rec.ts)));
+  if (p.kind === "walking") {
+    render(app, walkView(p.pair, pr.first!.label, p.walk, pr.first!.looks ?? []));
+    startGps();
+    return void printInto(app.querySelector("#print-a"), pr.first!.id, "neutral");
+  }
+  if (p.kind === "twin") {
+    render(app, twinView(p.pair, pr.first!.label, pr.first!.looks ?? []));
+    startGps(); // keep counting metres until the twin is in
+    void printInto(app.querySelector("#print-a"), pr.first!.id, "neutral");
+    return wireShoot(seq, "twin");
+  }
+  if (p.kind === "reveal") {
+    const done = pr as Required<typeof pr>;
+    render(app, revealView(p.pair, done, p.pair >= 3));
+    const tone = done.result.band;
+    await Promise.all([printInto(app.querySelector("#print-a"), done.first.id, tone), printInto(app.querySelector("#print-b"), done.twin.id, tone)]);
+    if (seq !== routeSeq) return;
+    app.querySelector("#pair")?.classList.add("met");
+    window.setTimeout(() => countUp(app.querySelector<HTMLElement>("[data-testid=score]")), reducedMotion ? 0 : 450);
+    if (tone === "uncanny") navigator.vibrate?.(30);
+    app.querySelector("#next")!.addEventListener("click", async () => {
+      day = closeReveal(day!, Date.now());
+      await save();
+      void showToday(seq, true);
     });
     return;
   }
-  const text = shareText(s.number, g, location.origin + location.pathname);
-  render(app, endedView(g, s, text, msToNextDay(now)));
-  void drawPrints(app.querySelector("#prints")!, shots);
-  app.querySelector("#share")!.addEventListener("click", async () => {
-    const out = await shareResult(text);
-    const msg = { shared: "Shared.", copied: "Copied to the clipboard.", cancelled: "", failed: "Couldn't share. Copy the text above." }[out];
-    app.querySelector("#share-status")!.textContent = msg;
-  });
+  // done
+  const pairs = donePairs(day);
+  const rows: DonePair[] = pairs.map((x) => ({ first: x.first.label, twin: x.twin.label, score: x.result.score, band: x.result.band }));
+  const best = bestPair(day) ?? 0;
+  render(app, doneView(rows, best, metersWalked(day), timeOfDay(nextDayStart(now, place)), !!place));
+  for (const c of app.querySelectorAll<HTMLCanvasElement>("canvas[data-print]")) {
+    const [i, side] = c.dataset.print!.split("-");
+    const x = pairs[Number(i)];
+    void printInto(c, side === "a" ? x.first.id : x.twin.id, x.result.band, c.closest(".best") ? 480 : 160);
+  }
 }
 
-function wireReady(seq: number) {
+function wireShoot(seq: number, which: "first" | "twin") {
   const input = app.querySelector<HTMLInputElement>("#photo")!;
   const button = input.nextElementSibling as HTMLElement;
   const status = app.querySelector<HTMLElement>("#status")!;
-  const setBusy = (busy: boolean) => {
-    input.disabled = busy;
-    button.toggleAttribute("aria-disabled", busy);
+  const refusal = app.querySelector<HTMLElement>("#refusal")!;
+  const setBusy = (b: boolean) => {
+    busy = b;
+    input.disabled = b;
+    button.toggleAttribute("aria-disabled", b);
+    button.classList.toggle("is-busy", b);
   };
   setBusy(true);
   Promise.all([loadModelWithStatus(app.querySelector("#model-status")!), loadVocab()])
     .then(() => seq === routeSeq && setBusy(false))
     .catch((e) => (status.textContent = (e as Error).message));
+
   input.addEventListener("change", async () => {
     const file = input.files?.[0];
-    if (!file || !game || !secret) return;
+    input.value = "";
+    if (!file || !day) return;
     setBusy(true);
+    refusal.hidden = true;
     try {
-      game = (await takeShot(game, secret, file, (m) => (status.textContent = m))).game;
-      if (seq === routeSeq) await showToday(seq, true);
+      const accepted = await takePhoto(file, which, (m) => (status.textContent = m), (problem) => {
+        refusal.textContent = `Not counted. ${problem}`;
+        refusal.hidden = false;
+      });
+      if (accepted && seq === routeSeq) {
+        busy = false;
+        await showToday(seq, true);
+      }
     } catch (e) {
       status.textContent = `Couldn't read that photo: ${(e as Error).message}`;
-      setBusy(false);
+    } finally {
+      if (seq === routeSeq && app.contains(input)) setBusy(false);
     }
   });
-  app.querySelector("#give-up")?.addEventListener("click", async () => {
-    if (!game || !confirm("Give up and reveal today's secret?")) return;
-    game = await giveUpGame(game);
-    await showToday(seq, true);
-  });
 }
 
-async function drawPrints(root: HTMLElement, shots: Shot[]) {
-  for (const s of shots) {
-    const c = document.createElement("canvas");
-    c.dataset.shot = s.id;
-    root.append(c);
-    await drawThermal(c, s.thumbBlob, s.won ? 5 : s.band, 240);
+/** photo -> on-device embedding -> rules -> accepted (saved) or refused (not spent). */
+async function takePhoto(file: File, which: "first" | "twin", onStatus: (s: string) => void, onRefused: (s: string) => void): Promise<boolean> {
+  onStatus("Developing… 1/3");
+  const [{ embedBlob, thumbBlob }, vocab] = await Promise.all([prepareImage(file), loadVocab()]);
+  onStatus("Reading the photo on your phone… 2/3");
+  const embedder = getEmbedder();
+  await embedder.ready();
+  let vector = await embedder.embedImage(embedBlob);
+  if (isFakeEmbedder()) vector = fakePhotoVector(file.name, vocab) ?? vector;
+  onStatus("Comparing… 3/3");
+  const reading = readPhoto(vector, vocab);
+  const now = Date.now();
+  const pr = current();
+
+  if (which === "first") {
+    const problem = checkShot(reading);
+    if (problem) return (onStatus(""), onRefused(PROBLEM_TEXT[problem]), false);
+    const id = newId();
+    await putShot({ id, day: day!.day, ts: now, vector, reading, thumbBlob });
+    day = acceptFirst(day!, { id, ts: now, label: reading.label, looks: topAttributes(reading.attrZ) }, now);
+    await setMeta("played", true);
+  } else {
+    const first = (await shotById(pr.first!.id))!;
+    const problem = checkTwin({ vector: first.vector, reading: first.reading }, { vector, reading }, vocab);
+    if (problem) return (onStatus(""), onRefused(PROBLEM_TEXT[problem]), false);
+    const id = newId();
+    await putShot({ id, day: day!.day, ts: now, vector, reading, thumbBlob });
+    const result = judgePair({ vector: first.vector, reading: first.reading }, { vector, reading }, `${day!.day}#${day!.pairs.length}`);
+    day = acceptTwin(day!, { id, ts: now, label: reading.label }, result, now);
+    stopGps();
   }
+  onStatus("");
+  await save();
+  return true;
 }
 
+// ---------- History
 async function showHistory(seq: number) {
-  const [shots, games] = await Promise.all([listShots(), listGames()]);
+  const days = await listDays();
   if (seq !== routeSeq) return;
-  const status = new Map(games.map((g) => [g.day, g.status]));
-  const today = dayKey(Date.now());
-  const days = [...new Set(shots.map((s) => s.day))].sort().reverse();
-  const rows: HistoryDay[] = days.map((day) => {
-    const st = status.get(day) ?? "playing";
-    // A past day is over even if it was never finished, so its secret may show.
-    const over = st !== "playing" || day < today;
-    return {
-      day,
-      number: gameNumber(day),
-      status: st,
-      secret: over ? secretFor(day, PACKS, VOCAB_TEXTS).text : undefined,
-      shots: shots.filter((s) => s.day === day).map(({ id, temperature, band, won }) => ({ id, temperature, band, won })),
-    };
-  });
-  render(app, historyView(rows));
-  const byId = new Map(shots.map((s) => [s.id, s]));
-  for (const c of app.querySelectorAll<HTMLCanvasElement>("canvas[data-shot]")) {
-    const s = byId.get(c.dataset.shot!);
-    if (s) void drawThermal(c, s.thumbBlob, Number(c.dataset.band), 200);
+  const rows = days
+    .map((d) => ({ d, i: bestPair(d) }))
+    .filter((x) => x.i !== undefined)
+    .map(({ d, i }) => ({ d, p: donePairs(d)[i!] }));
+  render(app, historyView(rows.map(({ d, p }) => ({ day: d.day, first: p.first.label, twin: p.twin.label, score: p.result.score, band: p.result.band }))));
+  for (const c of app.querySelectorAll<HTMLCanvasElement>("canvas[data-print]")) {
+    const [i, side] = c.dataset.print!.split("-");
+    const { p } = rows[Number(i)];
+    void printInto(c, side === "a" ? p.first.id : p.twin.id, p.result.band, 160);
   }
-  app.querySelector("#export")?.addEventListener("click", async () => {
-    downloadBlob(await buildExportZip(await listShots(), await listGames()), `warmr-shots-${today}.zip`);
-  });
   app.querySelector("#delete-all")?.addEventListener("click", async () => {
-    if (!confirm(`Delete all ${shots.length} shots from this device? This can't be undone.`)) return;
+    if (!confirm("Delete all photos and scores from this device? This can't be undone.")) return;
     await clearAll();
-    game = undefined;
+    day = undefined;
+    blobs.clear();
     route();
   });
 }
@@ -203,7 +300,7 @@ function route() {
 }
 
 if (isFakeEmbedder()) {
-  document.querySelector(".topbar")?.insertAdjacentHTML("afterend", `<p class="test-banner">${esc("Test mode: fake embedder, temperatures are not real")}</p>`);
+  document.querySelector(".topbar")?.insertAdjacentHTML("afterend", `<p class="test-banner">${esc("Test mode: fake embedder, scores are not real")}</p>`);
 }
 registerPwa();
 window.addEventListener("hashchange", route);

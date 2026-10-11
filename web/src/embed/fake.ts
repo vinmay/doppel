@@ -45,3 +45,19 @@ export function fixtureLabel(fileName: string): string | undefined {
   const m = fileName.match(/^(?:\d+-)?([a-z-]+?)(?:-[ab])?\.(?:jpe?g|png)$/);
   return m?.[1].replace(/-/g, " ");
 }
+
+/**
+ * Test mode only: a photo vector for a fixture, built from the vocab row of
+ * the label in its file name plus file-specific noise. So `02-tire.jpg` reads
+ * as "tire", two different rock photos are the same kind (but not the same
+ * photo), and the same file twice is a duplicate. Undefined for other names.
+ */
+export function fakePhotoVector(fileName: string, vocab: { items: { label: string; kind: string }[]; vectors: Float32Array; dim: number }): Float32Array | undefined {
+  const label = fixtureLabel(fileName);
+  const i = vocab.items.findIndex((it) => it.kind !== "attr" && it.label === label);
+  if (i < 0) return undefined;
+  const noise = hashVector(new TextEncoder().encode(fileName), vocab.dim);
+  const v = new Float32Array(vocab.dim);
+  for (let k = 0; k < vocab.dim; k++) v[k] = vocab.vectors[i * vocab.dim + k] + 0.3 * noise[k];
+  return l2normalize(v);
+}
