@@ -1,11 +1,11 @@
-// Serves a deployed Warmr (or Sense Hunt) site byte-for-byte on localhost, plus POST
+// Serves a deployed Doppel site byte-for-byte on localhost, plus POST
 // /__report -> report.log, so headless Edge can self-test the *live build*
 // (and the real Hugging Face model download) and report back.
-// Usage: node scripts/live-proxy.mjs https://sense-hunt.onrender.com [port]
+// Usage: node scripts/live-proxy.mjs https://doppel-ws59.onrender.com [port]
 import { appendFileSync } from "node:fs";
 import { createServer } from "node:http";
 
-const [origin = "https://sense-hunt.onrender.com", port = "4174"] = process.argv.slice(2);
+const [origin = "https://doppel-ws59.onrender.com", port = "4174"] = process.argv.slice(2);
 createServer(async (req, res) => {
   if (req.method === "POST" && req.url === "/__report") {
     let body = "";
@@ -24,4 +24,4 @@ createServer(async (req, res) => {
   } catch (e) {
     res.writeHead(502).end(String(e));
   }
-}).listen(Number(port), () => console.log(`proxying ${origin} on http://localhost:${port}`));
+}).listen(Number(port), "127.0.0.1", () => console.log(`proxying ${origin} on http://localhost:${port}`));

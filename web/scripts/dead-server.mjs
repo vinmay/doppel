@@ -17,4 +17,4 @@ createServer((req, res) => {
   }
   console.log("503", req.method, req.url);
   res.writeHead(503).end("offline");
-}).listen(port, () => console.log(`dead server on ${port}`));
+}).listen(port, "127.0.0.1", () => console.log(`dead server on ${port}`));

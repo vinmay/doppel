@@ -209,13 +209,14 @@ function wireShoot(seq: number, which: "first" | "twin") {
   const setBusy = (b: boolean) => {
     busy = b;
     input.disabled = b;
-    button.toggleAttribute("aria-disabled", b);
+    button.setAttribute("aria-disabled", String(b)); // CSS dims [aria-disabled="true"]
     button.classList.toggle("is-busy", b);
   };
   setBusy(true);
   Promise.all([loadModelWithStatus(app.querySelector("#model-status")!), loadVocab()])
     .then(() => seq === routeSeq && setBusy(false))
-    .catch((e) => (status.textContent = (e as Error).message));
+    // model errors are already explained in #model-status; only say other failures here
+    .catch((e) => (app.querySelector("#model-status")?.textContent?.trim() ? undefined : (status.textContent = (e as Error).message)));
 
   input.addEventListener("change", async () => {
     const file = input.files?.[0];

@@ -30,7 +30,7 @@ export async function loadModelWithStatus(el: HTMLElement): Promise<void> {
     show("");
   } catch (e) {
     const msg = e instanceof UnsupportedError
-      ? e.message
+      ? `This device can't run Doppel's model. ${e.message.includes("Try ") ? e.message : `${e.message} Try Chrome on Android, or a recent desktop browser.`}`
       : isQuotaError(e)
         ? `There isn't enough free storage on this device to save the ${MODEL_SIZE_LABEL} model. Free up some space (or leave private browsing) and try again.`
         : `The model couldn't load: ${(e as Error).message}`;

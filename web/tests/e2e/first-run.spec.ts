@@ -16,6 +16,8 @@ test("practice reveal and privacy line render before the model is ready @small",
   await expect(page.getByText("Photos never leave your phone.")).toBeVisible();
   // the model isn't ready: shooting is disabled and the status says why
   await expect(page.locator("#photo")).toBeDisabled();
+  await expect(page.locator(".btn-shoot")).toHaveAttribute("aria-disabled", "true"); // and it looks disabled
+  await expect(page.locator(".btn-shoot")).toHaveCSS("opacity", "0.5");
   await expect(page.locator("#model-status")).not.toBeEmpty();
   await expect(page.locator(".test-banner")).toHaveCount(0);
   await expectAccessible(page, "first-run");

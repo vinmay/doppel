@@ -14,7 +14,7 @@ Three pairs a day, about 10 to 15 minutes, then "Done for today". You can't lose
 
 Built Oct 10 to 11, 2026 for DEV Hacktoberfest Week 1 ("Touch Grass").
 
-- **Live:** {{V: live URL}}
+- **Live:** https://doppel-ws59.onrender.com
 - **Write-up:** {{V: DEV post URL}}
 
 ## How to play

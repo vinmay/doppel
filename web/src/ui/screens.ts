@@ -61,7 +61,7 @@ export function practiceView(p: Practice): string {
   const b = band(p.score);
   return `
     <div class="practice" aria-label="Practice reveal" data-testid="practice">
-      <p class="label">A practice pair, while Doppel downloads</p>
+      <p class="label">A practice pair</p>
       <div class="pair together" id="practice-pair">
         ${slot("a", `<canvas id="practice-a" aria-label="${esc(p.first.label)}, printed"></canvas>`)}
         ${slot("b", `<canvas id="practice-b" aria-label="${esc(p.twin.label)}, printed"></canvas>`)}
