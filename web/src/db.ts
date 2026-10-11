@@ -35,9 +35,15 @@ function done(tx: IDBTransaction): Promise<void> {
   });
 }
 
+export type DbIssue = "blocked" | "versionchange";
+let issueListener: (i: DbIssue) => void = () => {};
+/** Called when another tab blocks the upgrade, or a newer Doppel in another tab needs the DB. */
+export const onDbIssue = (f: (i: DbIssue) => void) => void (issueListener = f);
+
 export function openDb(): Promise<IDBDatabase> {
-  return (dbp ??= new Promise((resolve, reject) => {
+  return (dbp ??= new Promise<IDBDatabase>((resolve, reject) => {
     const r = indexedDB.open(DB_NAME, DB_VERSION);
+    r.onblocked = () => issueListener("blocked"); // an older Doppel tab still holds the old version
     r.onupgradeneeded = () => {
       const db = r.result;
       for (const name of [...db.objectStoreNames]) db.deleteObjectStore(name);
@@ -45,8 +51,20 @@ export function openDb(): Promise<IDBDatabase> {
       db.createObjectStore("days", { keyPath: "day" });
       db.createObjectStore("shots", { keyPath: "id" }).createIndex("day", "day");
     };
-    r.onsuccess = () => resolve(r.result);
+    r.onsuccess = () => {
+      const db = r.result;
+      // A newer Doppel (another tab) wants to upgrade: let it, and ask this tab to reload.
+      db.onversionchange = () => {
+        db.close();
+        dbp = undefined;
+        issueListener("versionchange");
+      };
+      resolve(db);
+    };
     r.onerror = () => reject(r.error);
+  }).catch((e) => {
+    dbp = undefined; // allow a retry
+    throw e;
   }));
 }
 

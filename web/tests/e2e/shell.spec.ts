@@ -21,7 +21,7 @@ for (const size of [{ width: 390, height: 844 }, { width: 375, height: 667 }]) {
     let n = 0;
 
     const check = async (phase: string, opts: { hud?: boolean; frame?: boolean } = {}) => {
-      await page.evaluate(() => window.scrollTo(0, 0));
+      await page.evaluate(() => document.querySelectorAll("main, .scroll").forEach((el) => (el.scrollTop = 0)));
       const header = page.locator(".topbar");
       await expect(header).toBeVisible();
       await expect(header.getByRole("link", { name: "DOPPEL" })).toBeVisible();
@@ -53,10 +53,13 @@ for (const size of [{ width: 390, height: 844 }, { width: 375, height: 667 }]) {
     await expect(page.locator("#practice-pair")).toHaveClass(/developed/);
     await page.clock.runFor(1500);
     await expect(page.locator(".practice .score .n")).toHaveText("85");
-    // the first-run headline is fully above the dock, even on a short phone
+    // first visit: the headline and subline come before the practice pair, and are fully above the dock
     const h1 = (await page.getByRole("heading", { level: 1 }).boundingBox())!, dock = (await page.locator(".dock").boundingBox())!;
-    expect(h1.y + h1.height).toBeLessThanOrEqual(dock.y);
-    await check("first-run", { frame: true });
+    const pairBox = (await page.locator("#practice-pair").boundingBox())!, sub = (await page.getByTestId("subline").boundingBox())!;
+    expect(h1.y + h1.height).toBeLessThanOrEqual(sub.y + 1);
+    expect(sub.y + sub.height).toBeLessThanOrEqual(pairBox.y); // (the phone demo line may sit between them)
+    expect(sub.y + sub.height).toBeLessThanOrEqual(dock.y);
+    await check("first-run"); // first visit: headline above the practice pair (V), so its frames sit lower by design
     await expect(page.locator(".practice").getByRole("link", { name: "How to play" })).toBeVisible();
     await shoot(page, "twins/02-tire.jpg");
     await expect(page.getByRole("region", { name: "Walk" })).toBeVisible();

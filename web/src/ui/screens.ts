@@ -46,6 +46,9 @@ const walkedReadout = (meters: number) => `<span data-testid="walked">${meters >
 /** Walk: the timer while GPS isn't usable, otherwise metres walked on this walk. */
 export const walkHud = (w: WalkStatus) => (w.mode === "gps" ? `${w.meters} M WALKED` : `${clock(w.msLeft)} LEFT`);
 
+/** The band meter on list rows (Done, History): same marks as the reveal, with the band name. */
+const rowBand = (b: Band) => `<span class="row-band">${bandMarks(b)}${BAND_NAMES[b].toUpperCase()}</span>`;
+
 /** A 4-step meter filled left to right: Strangers ■□□□ … Uncanny ■■■■. Always next to the band name, so it never rests on color alone. */
 export const bandMarks = (b: Band) => {
   const n = BANDS.indexOf(b);
@@ -117,9 +120,10 @@ export function firstView(pair: number, ideas: string[], firstRun: boolean, prac
     return `
     <section class="screen first" aria-label="First photo">
       ${hud(pair, themeReadout(theme))}
-      ${practiceView(practice)}
       <h1 class="voice lede">Find two different things that look the same. Outside.</h1>
+      <p class="sub" data-testid="subline">Photograph anything outside, walk, then find its twin. Here's a practice pair:</p>
       ${demo === "line" ? demoLine : ""}
+      ${practiceView(practice)}
       <p class="sub privacy">Photos never leave your phone. Point it at things, not people.</p>
       <details class="ideas">
         <summary>Need an idea?</summary>
@@ -289,7 +293,7 @@ export function doneView(pairs: DonePair[], best: number, meters: number, nextDa
         ${pairs.map((p, i) => `
           <li${i === best ? ` class="is-best"` : ""}>
             <span class="thumbs mat" ${matStyle(p.band)}>${stack(`${i}-a`, p.first)}${stack(`${i}-b`, p.twin)}</span>
-            <span>${esc(p.first)} ↔ ${esc(p.twin)}</span><b>${p.score}</b>
+            <span>${esc(p.first)} ↔ ${esc(p.twin)}${rowBand(p.band)}</span><b>${p.score}</b>
           </li>`).join("")}
       </ol>
       <p class="sub">${meters > 0 ? `You walked ${meters} m between photos.` : "You walked the timer out."} New day ${atSunrise ? "at sunrise, " : "at "}<span data-testid="next-day">${esc(nextDay)}</span>.</p>
@@ -316,7 +320,7 @@ export function historyView(rows: HistoryRow[]): string {
         ? `<p class="sub">Nothing yet. <a href="${href.today()}">Today</a> is waiting.</p>`
         : `<ol class="pairs">${rows.map((r, i) => `
             <li><span class="thumbs mat" ${matStyle(r.band)}>${stack(`${i}-a`, r.first)}${stack(`${i}-b`, r.twin)}</span>
-              <span>${esc(dayLabel(r.day))}: ${esc(r.first)} ↔ ${esc(r.twin)}</span><b>${r.score}</b></li>`).join("")}</ol>
+              <span>${esc(dayLabel(r.day))}: ${esc(r.first)} ↔ ${esc(r.twin)}${rowBand(r.band)}</span><b>${r.score}</b></li>`).join("")}</ol>
           <p class="sub">Photos and scores are stored only on this device.</p>
           <p><button class="btn btn-quiet" id="delete-all" type="button">Delete everything</button></p>`}
     </section>`;
@@ -353,5 +357,30 @@ export function howView(): string {
         <li>Fonts: IBM Plex Mono and Instrument Serif (OFL).</li>
       </ul>
       <p class="sub"><a href="${href.today()}">Back to today</a></p>
+    </section>`;
+}
+
+/** Today's frame while the day loads from storage (never a blank page). */
+export function loadingView(): string {
+  return `
+    <section class="screen first" aria-label="Loading today" aria-busy="true">
+      ${hud(1)}
+      <div class="pair empty">
+        ${slot("a", `<span class="slot-word">this</span>`)}
+        ${slot("b", `<span class="slot-word">its twin</span>`)}
+      </div>
+      <h1 class="voice">Find two different things that look the same.</h1>
+      <p class="sub" role="status">Getting today ready…</p>
+    </section>`;
+}
+
+/** Storage didn't answer in 5 s: say why and offer a retry. */
+export function storageView(): string {
+  return `
+    <section class="screen first" aria-label="Storage problem">
+      ${hud(1)}
+      <h1 class="voice">Doppel can't open its storage.</h1>
+      <p class="sub" role="alert" data-testid="storage-retry">Another Doppel tab may be holding it. Close other Doppel tabs, then try again.</p>
+      <p><button class="btn btn-shoot" type="button" onclick="location.reload()">Try again</button></p>
     </section>`;
 }

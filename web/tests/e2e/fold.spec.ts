@@ -16,7 +16,7 @@ for (const size of [{ width: 390, height: 844 }, { width: 375, height: 667 }]) {
     await page.screenshot({ path: path.join(MEDIA, `f3-first-run-${size.width}.png`) });
     await expectAccessible(page, `first-run ${size.width}`);
     // scrolled to the end, the last line sits above the dock, not under it
-    await page.mouse.wheel(0, 5000);
+    await page.locator(".scroll").evaluate((el) => (el.scrollTop = el.scrollHeight)); // content scrolls in its own area above the dock
     const last = page.locator(".ideas summary");
     const [lb, db] = [await last.boundingBox(), await page.locator(".dock").boundingBox()];
     expect(lb!.y + lb!.height).toBeLessThanOrEqual(db!.y + 1);

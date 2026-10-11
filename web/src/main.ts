@@ -5,7 +5,7 @@ import "./wada.css";
 import "./style.css";
 import { prepareImage } from "./capture";
 import { acceptFirst, acceptTwin, activeWalk, bestPair, canRetry, closeReveal, retakeFirst, retrying, startRetry, donePairs, metersWalked, newDay, phase, updateWalk, type DayState, type Phase } from "./day";
-import { clearAll, getDay, getMeta, getShot, listDays, newId, putDay, putShot, setMeta, type StoredShot } from "./db";
+import { clearAll, getDay, getMeta, getShot, listDays, newId, onDbIssue, putDay, putShot, setMeta, type StoredShot } from "./db";
 import { getEmbedder, isFakeEmbedder, onModelProgress } from "./embed";
 import { fakePhotoVector } from "./embed/fake";
 import { ideasFor, themeFor } from "./ideas";
@@ -18,7 +18,7 @@ import { band, checkShot, checkTwin, judgePair, PROBLEM_TEXT, readPhoto, suggest
 import { mountDebug } from "./ui/debug";
 import { esc, render } from "./ui/dom";
 import { loadModelWithStatus } from "./ui/model-status";
-import { demoFirstView, doneView, firstView, historyView, howView, revealView, twinView, walkHud, walkPct, walkReadout, walkView, type DemoEmphasis, type DonePair } from "./ui/screens";
+import { demoFirstView, doneView, firstView, historyView, howView, loadingView, storageView, revealView, twinView, walkHud, walkPct, walkReadout, walkView, type DemoEmphasis, type DonePair } from "./ui/screens";
 import { loadVocab } from "./vocab";
 import { addFix, denyGps } from "./walk";
 
@@ -110,10 +110,32 @@ async function photoInto(canvas: HTMLCanvasElement | null, id: string | undefine
  */
 function develop(pair: Element | null, score: HTMLElement | null) {
   pair?.classList.add("met");
+  // The end state is set explicitly, never left to transitions or animation frames:
+  // a tab backgrounded mid-reveal pauses requestAnimationFrame and may skip transitionend.
+  const finish = () => {
+    if (!pair?.isConnected) return;
+    pair.classList.add("met", "developed", "done");
+    pair.querySelectorAll<HTMLElement>(".slot").forEach((sl) => {
+      sl.style.transition = "none";
+      sl.style.transform = "none";
+      sl.style.opacity = "1";
+    });
+    pair.querySelectorAll<HTMLElement>(".print").forEach((p) => {
+      p.style.transition = "none";
+      p.style.opacity = "0";
+      p.style.visibility = "hidden";
+    });
+    const n = score?.querySelector(".n");
+    if (score && n) n.textContent = score.dataset.value ?? n.textContent;
+    document.removeEventListener("visibilitychange", onVisible);
+  };
+  const onVisible = () => document.visibilityState === "visible" && finish();
+  document.addEventListener("visibilitychange", onVisible);
   window.setTimeout(() => {
     pair?.classList.add("developed");
     countUp(score);
   }, reducedMotion ? 0 : 400);
+  window.setTimeout(finish, reducedMotion ? 0 : 400 + 350 + 700 + 100); // flash + fade + count-up, then final
 }
 
 /** Count the score up from 0 over ~700 ms. */
@@ -175,7 +197,37 @@ async function loadToday() {
   shown = undefined;
 }
 
+/** A small message under the header (DB blocked, updated elsewhere), with a Reload button. */
+function notice(msg: string) {
+  let el = document.querySelector<HTMLElement>(".app-notice");
+  if (!el) {
+    el = document.createElement("div");
+    el.className = "app-notice";
+    el.setAttribute("role", "alert");
+    (document.querySelector(".test-banner") ?? document.querySelector(".topbar"))!.after(el);
+  }
+  el.innerHTML = `<span>${esc(msg)}</span> <button class="link" type="button">Reload</button>`;
+  el.querySelector("button")!.addEventListener("click", () => location.reload());
+}
+onDbIssue((i) => notice(i === "blocked" ? "Close other Doppel tabs, then reload." : "Doppel was updated. Reload to continue."));
+
+// The first load of the day waits on IndexedDB: show Today's frame at once, and a
+// way out if storage doesn't answer in 5 s (never a blank page).
+let dayLoading: Promise<void> | undefined;
+async function firstLoad(seq: number): Promise<boolean> {
+  if (dayLoading) return false; // already in flight; it re-renders when done
+  render(app, loadingView());
+  dayLoading = loadToday().finally(() => (dayLoading = undefined));
+  const ok = await Promise.race([dayLoading.then(() => true, () => false), new Promise<false>((r) => setTimeout(() => r(false), 5000))]);
+  if (!ok && seq === routeSeq) {
+    render(app, storageView());
+    dayLoading?.then(() => seq === routeSeq && void showToday(seq, true)).catch(() => {});
+  }
+  return ok;
+}
+
 async function showToday(seq: number, force = false) {
+  if (!day && !(await firstLoad(seq))) return;
   await loadToday();
   if (seq !== routeSeq || !day) return;
   const now = Date.now();
