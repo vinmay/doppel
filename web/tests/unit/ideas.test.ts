@@ -41,3 +41,20 @@ describe("ideasFor diversity", () => {
     }
   });
 });
+
+describe("daily theme (G5)", () => {
+  it("is stable per date and uses all six themes over a few weeks", async () => {
+    const { themeFor, THEMES } = await import("../../src/ideas");
+    expect(themeFor("2026-10-11")).toBe(themeFor("2026-10-11"));
+    const seen = new Set(Array.from({ length: 40 }, (_, d) => themeFor(`2026-11-${String((d % 28) + 1).padStart(2, "0")}-${d}`).name));
+    expect(seen.size).toBe(THEMES.length);
+  });
+  it("biases Need an idea? toward the theme: every theme has ideas, and at least one pick fits", async () => {
+    const { themeFor, fitsTheme, THEMES } = await import("../../src/ideas");
+    for (const t of THEMES) expect(IDEAS.filter((i) => fitsTheme(i, t)).length, t.name).toBeGreaterThanOrEqual(4);
+    for (let d = 1; d <= 28; d++) {
+      const day = `2026-11-${String(d).padStart(2, "0")}`;
+      expect(ideasFor(day).some((i) => fitsTheme(i, themeFor(day))), day).toBe(true);
+    }
+  });
+});

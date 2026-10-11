@@ -8,7 +8,7 @@ import { acceptFirst, acceptTwin, activeWalk, bestPair, canRetry, closeReveal, r
 import { clearAll, getDay, getMeta, getShot, listDays, newId, putDay, putShot, setMeta, type StoredShot } from "./db";
 import { getEmbedder, isFakeEmbedder, onModelProgress } from "./embed";
 import { fakePhotoVector } from "./embed/fake";
-import { ideasFor } from "./ideas";
+import { ideasFor, themeFor } from "./ideas";
 import { drawPhoto, drawPrint, type Tone } from "./print";
 import { registerPwa } from "./pwa";
 import { parseHash } from "./router";
@@ -180,7 +180,7 @@ async function showToday(seq: number, force = false) {
   if (p.kind === "first") {
     const firstRun = !(await getMeta<boolean>("played"));
     if (seq !== routeSeq) return;
-    render(app, firstView(p.pair, ideasFor(day.day), firstRun, firstRun ? practice : undefined));
+    render(app, firstView(p.pair, ideasFor(day.day), firstRun, firstRun ? practice : undefined, themeFor(day.day).name));
     wireShoot(seq, "first");
     if (firstRun) {
       void playPractice(seq);

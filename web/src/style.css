@@ -120,6 +120,9 @@ body[data-phase="walking"] .topbar, body[data-phase="walking"] .test-banner { di
 
 .tries .label { margin-right: 6px; }
 
+.theme { margin: 6px 0 0; }
+.theme .label { margin-right: 6px; }
+
 /* ---------- ideas */
 .ideas { margin: 6px 0 0; }
 .ideas summary {

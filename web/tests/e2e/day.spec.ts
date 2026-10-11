@@ -181,8 +181,12 @@ test("walking 50 m with GPS unlocks the twin and counts the distance", async ({ 
   await expect(page.getByRole("region", { name: "Twin photo" })).toBeVisible();
 });
 
-test("Need an idea? shows 3 hints, the same all day, different the next day", async ({ page }) => {
+test("Need an idea? shows 3 hints, the same all day, different the next day; the daily theme shows", async ({ page }) => {
   await open(page);
+  await expect(page.getByTestId("theme")).toHaveText(/^Today (Textures|Round things|Stripes and lines|Soft things|Rough things|Shiny things)$/);
+  const theme = await page.getByTestId("theme").textContent();
+  await page.reload();
+  await expect(page.getByTestId("theme")).toHaveText(theme!);
   await page.getByText("Need an idea?").click();
   const today = await page.getByTestId("ideas").locator("li").allTextContents();
   expect(today).toHaveLength(3);

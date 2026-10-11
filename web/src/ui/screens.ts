@@ -77,13 +77,16 @@ export function practiceView(p: Practice): string {
     </div>`;
 }
 
-export function firstView(pair: number, ideas: string[], firstRun: boolean, practice?: Practice): string {
+const themeLine = (theme?: string) => (theme ? `<p class="theme" data-testid="theme"><span class="label">Today</span> ${esc(theme)}</p>` : "");
+
+export function firstView(pair: number, ideas: string[], firstRun: boolean, practice?: Practice, theme?: string): string {
   if (firstRun && practice) {
     return `
     <section class="screen first" aria-label="First photo">
       ${hud(pair)}
       <h1 class="voice lede">Find two different things that look the same. Outside.</h1>
       ${practiceView(practice)}
+      ${themeLine(theme)}
       <p class="sub privacy">Photos never leave your phone. Point it at things, not people.</p>
       <details class="ideas">
         <summary>Need an idea?</summary>
@@ -101,6 +104,7 @@ export function firstView(pair: number, ideas: string[], firstRun: boolean, prac
       </div>
       <h1 class="voice">${pair === 1 ? "Find two different things that look the same." : "Again. Start with anything outside."}</h1>
       <p class="sub">${pair === 1 ? "Photograph anything outside. Then walk, and find its twin." : "Then walk, and find its twin."}</p>
+      ${themeLine(theme)}
       ${firstRun ? `<p class="sub privacy">Photos never leave your phone. Point it at things, not people.</p>` : ""}
       <details class="ideas">
         <summary>Need an idea?</summary>
