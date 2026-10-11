@@ -372,7 +372,11 @@ async function showDemo(seq: number) {
     if (seq !== routeSeq) return;
     develop(app.querySelector("#pair"), app.querySelector<HTMLElement>("[data-testid=score]"));
     app.querySelector("#demo-again")?.addEventListener("click", () => route());
+    if (autotest) void fetch("/__report", { method: "POST", body: `DEMO_RESULT ${A.reading.label} <-> ${B.reading.label} score=${result.score} band=${result.band} shared=${result.shared.join(",")} backend=${getEmbedder().info.backend}` }).catch(() => {});
   });
+  // ?autotest=1 (headless checks of a live build through scripts/live-proxy.mjs): click through by itself
+  const autotest = new URLSearchParams(location.search).has("autotest");
+  if (autotest) btn.click();
 }
 
 // ---------- History
