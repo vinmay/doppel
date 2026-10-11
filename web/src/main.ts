@@ -4,7 +4,7 @@ import "@fontsource/instrument-serif/latin-400.css";
 import "./wada.css";
 import "./style.css";
 import { prepareImage } from "./capture";
-import { acceptFirst, acceptTwin, activeWalk, bestPair, canRetry, closeReveal, retrying, startRetry, donePairs, metersWalked, newDay, phase, updateWalk, type DayState, type Phase } from "./day";
+import { acceptFirst, acceptTwin, activeWalk, bestPair, canRetry, closeReveal, retakeFirst, retrying, startRetry, donePairs, metersWalked, newDay, phase, updateWalk, type DayState, type Phase } from "./day";
 import { clearAll, getDay, getMeta, getShot, listDays, newId, putDay, putShot, setMeta, type StoredShot } from "./db";
 import { getEmbedder, isFakeEmbedder, onModelProgress } from "./embed";
 import { fakePhotoVector } from "./embed/fake";
@@ -156,7 +156,14 @@ async function showToday(seq: number, force = false) {
   const now = Date.now();
   const p = phase(day, now);
   if (!force && shownKey(p) === shown) {
-    if (p.kind === "walking") {
+    const wireRetake = () =>
+    app.querySelector("#retake")?.addEventListener("click", async () => {
+      stopGps();
+      day = retakeFirst(day!, Date.now());
+      await save();
+      void showToday(seq, true);
+    });
+  if (p.kind === "walking") {
       const c = app.querySelector(".countdown");
       if (c) c.innerHTML = walkReadout(p.walk);
       const bar = app.querySelector<HTMLElement>(".walkbar");
@@ -186,15 +193,24 @@ async function showToday(seq: number, force = false) {
     }
     return mountDebug(app);
   }
+  const wireRetake = () =>
+    app.querySelector("#retake")?.addEventListener("click", async () => {
+      stopGps();
+      day = retakeFirst(day!, Date.now());
+      await save();
+      void showToday(seq, true);
+    });
   if (p.kind === "walking") {
     render(app, walkView(p.pair, pr.first!.label, p.walk, pr.first!.looks ?? [], pr.first!.alt, pr.first!.tries ?? [], retrying(pr)));
     startGps();
+    wireRetake();
     return void photoInto(app.querySelector("#photo-a"), pr.first!.id);
   }
   if (p.kind === "twin") {
     render(app, twinView(p.pair, pr.first!.label, pr.first!.looks ?? [], pr.first!.alt, pr.first!.tries ?? [], retrying(pr)));
     startGps(); // keep counting metres until the twin is in
     void photoInto(app.querySelector("#photo-a"), pr.first!.id);
+    wireRetake();
     return wireShoot(seq, "twin");
   }
   if (p.kind === "reveal") {

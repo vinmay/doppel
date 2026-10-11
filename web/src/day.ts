@@ -97,6 +97,14 @@ export function acceptTwin(d: DayState, shot: ShotRef, result: PairResult, now: 
   return withCurrent(d, { ...p, tries: 2, lastTry: { twin: shot, result }, ...(better ? { twin: shot, result } : {}) });
 }
 
+/** "Retake first photo" (G4): back to the first shot, nothing spent. Only before any twin is taken. */
+export const canRetake = (p: PairState) => !!p.first && !p.twin;
+export function retakeFirst(d: DayState, now: number): DayState {
+  expect(d, now, ["walking", "twin"]);
+  if (!canRetake(current(d))) throw new Error("the twin is already taken");
+  return withCurrent(d, {});
+}
+
 /** "Try another twin" (G3): once per pair, after its reveal; needs another walk. */
 export function startRetry(d: DayState, now: number): DayState {
   expect(d, now, ["reveal"]);

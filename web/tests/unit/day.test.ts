@@ -237,3 +237,23 @@ describe("two tries per twin (G3)", () => {
     expect(metersWalked(d)).toBe(60);
   });
 });
+
+describe("retake the first photo (G4)", () => {
+  it("returns to the first shot from the walk or the twin step, spending nothing", async () => {
+    const { retakeFirst } = await import("../../src/day");
+    let d = acceptFirst(newDay("2026-10-11"), shot("a", T0), T0);
+    d = retakeFirst(d, T0 + 5000);
+    expect(phase(d, T0 + 5000)).toEqual({ kind: "first", pair: 1 });
+    expect(d.pairs).toHaveLength(1);
+    d = acceptFirst(d, shot("a2", T0 + 6000), T0 + 6000);
+    expect(phase(d, T0 + 52_000).kind).toBe("twin");
+    d = retakeFirst(d, T0 + 52_000);
+    expect(phase(d, T0 + 52_000).kind).toBe("first");
+  });
+  it("is not possible once a twin is taken", async () => {
+    const { retakeFirst } = await import("../../src/day");
+    let d = acceptFirst(newDay("2026-10-11"), shot("a", T0), T0);
+    d = acceptTwin(d, shot("b", T0 + 50_000), result(60), T0 + 50_000);
+    expect(() => retakeFirst(d, T0 + 51_000)).toThrow();
+  });
+});

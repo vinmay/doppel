@@ -129,6 +129,7 @@ export function walkView(pair: number, label: string, w: WalkStatus, looks: stri
       <p class="sub">${esc(notButLike(label))} Phone in your pocket until then.</p>
       ${lookFor(looks)}
       ${tryThese(tries)}
+      ${again ? "" : `<p><button class="link" id="retake" type="button">Retake first photo</button></p>`}
       <div class="walkbar" role="progressbar" aria-label="Walk" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${walkPct(w)}"><div style="width:${walkPct(w)}%"></div></div>
     </section>`;
 }
@@ -155,7 +156,7 @@ export function twinView(pair: number, label: string, looks: string[] = [], alt?
       <p class="sub">${esc(notButLike(label))}</p>
       ${lookFor(looks)}
       ${tryThese(tries)}
-      ${dock(shootButton("Photograph its twin"))}
+      ${dock(shootButton("Photograph its twin"), again ? "" : `<button class="link" id="retake" type="button">Retake first photo</button>`)}
     </section>`;
 }
 
