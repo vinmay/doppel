@@ -74,6 +74,8 @@ export default defineConfig({
   optimizeDeps: { exclude: ["@litert-lm/core"] },
   server: { port: 5173, strictPort: true, fs: { allow: [".."] } },
   build: {
+    // Test builds (VITE_ALLOW_FAKE=1) go to their own folder so they can never be deployed.
+    outDir: process.env.VITE_ALLOW_FAKE === "1" ? "dist-e2e" : "dist",
     rollupOptions: {
       input: { main: "index.html", sw: "src/sw.ts" },
       output: { entryFileNames: (c) => (c.name === "sw" ? "sw.js" : "assets/[name]-[hash].js") },

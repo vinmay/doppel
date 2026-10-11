@@ -8,11 +8,14 @@
     "build": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.sw.json && vite build",
     "preview": "vite preview",
     "test": "vitest run",
-    "e2e": "playwright test",
     "postinstall": "node scripts/copy-wasm.mjs",
     "predev": "node scripts/copy-wasm.mjs",
     "prebuild": "node scripts/copy-wasm.mjs",
-    "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.sw.json"
+    "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.sw.json",
+    "test:e2e": "playwright test --project=pixel7 --project=small",
+    "test:model": "node scripts/model-eval.mjs",
+    "test:live": "playwright test --project=live",
+    "test:bundle": "npm run build && node scripts/check-bundle.mjs dist"
   },
   "dependencies": {
     "@fontsource/ibm-plex-mono": "^5.3.0",
@@ -21,6 +24,7 @@
     "fflate": "^0.8.3"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
     "@playwright/test": "^1.64.0",
     "@types/node": "^26.6.4",
     "@webgpu/types": "^0.1.74",

@@ -19,12 +19,16 @@ export function onModelProgress(fn: Listener): () => void {
 let instance: Embedder | undefined;
 
 /**
- * The app-wide embedder. `?embedder=fake` swaps in a deterministic fake so
- * end-to-end tests can run on machines without a usable GPU.
+ * Test builds only (VITE_ALLOW_FAKE=1): `?embedder=fake` swaps in a
+ * deterministic fake so gameplay tests don't need the 388 MB model. In a
+ * production build ALLOW_FAKE is the literal `false`, so the fake is
+ * tree-shaken out (checked by scripts/check-bundle.mjs).
  */
+export const ALLOW_FAKE = import.meta.env.VITE_ALLOW_FAKE === "1";
+
 export function getEmbedder(): Embedder {
   if (!instance) {
-    const fake = new URLSearchParams(location.search).get("embedder") === "fake";
+    const fake = ALLOW_FAKE && new URLSearchParams(location.search).get("embedder") === "fake";
     instance = fake
       ? new FakeEmbedder()
       : new LiteRtEmbedder({
@@ -37,4 +41,4 @@ export function getEmbedder(): Embedder {
   return instance;
 }
 
-export const isFakeEmbedder = () => getEmbedder() instanceof FakeEmbedder;
+export const isFakeEmbedder = () => ALLOW_FAKE && getEmbedder() instanceof FakeEmbedder;

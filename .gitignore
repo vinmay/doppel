@@ -25,10 +25,4 @@ docs/devto-post.md
 data/eval/
 web/.eval-photos/
 
-# Dev-only spike and cross-check pages
-web/spike.html
-web/src/spike.ts
-web/crosscheck.html
-web/src/crosscheck.ts
-web/scripts/spike-run.mjs
-web/scripts/edge-run.sh
+dist-e2e/
