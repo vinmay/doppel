@@ -1,4 +1,4 @@
-/* Doppel: two photos printed side by side in Sanzo Wada's inks.
+/* Doppel: two real photos side by side, matted in Sanzo Wada's inks.
  * Colors only via tokens from wada.css (combination no. 166 + the ramp).
  * Three type sizes: --t-s (readouts, body, buttons), --t-m (voice), --t-l (headline/numerals). */
 :root {
@@ -71,18 +71,17 @@ main { max-width: 520px; margin: 0 auto; padding: 0 var(--gutter); outline: none
 .countdown { display: flex; flex-direction: column; align-items: center; gap: 4px; line-height: 1.1; text-align: center; padding: 8px; }
 .countdown .big { font-size: var(--t-l); font-weight: 600; font-variant-numeric: tabular-nums; }
 
-/* print over photo: the reveal turns photos into prints; press and hold shows the photo again */
-.stack { position: relative; display: block; width: 100%; height: 100%; touch-action: none; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+/* photos: always the real photo; the Wada ink is in the mat around it (F6).
+ * At a reveal a two-ink print flashes on top (~400 ms) and fades away. */
+.frame.mat { border: 0; padding: 4px; background: var(--mat, var(--fg)); }
+.stack { position: relative; display: block; width: 100%; height: 100%; }
 .stack canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .stack .print { opacity: 1; }
-.reveal .pair:not(.printed) .stack .print { opacity: 0; }
-.reveal .pair.printed .stack .print { transition: opacity .7s ease-in-out; }
-.stack.peek .print, .reveal .pair.printed .stack.peek .print { opacity: 0; transition: none; }
-.stack:focus-visible { outline-offset: -2px; }
+.pair.developed .stack .print { opacity: 0; transition: opacity .35s ease-out; }
 
 /* reveal: the prints slide together until they touch, then the score counts up */
 .pair.together { gap: 0; }
-.pair.together .slot.a .frame { border-right-width: 0; }
+.pair.together .slot.a .frame:not(.mat) { border-right-width: 0; }
 .pair.together .slot.a { transform: translateX(-18%); opacity: 0; }
 .pair.together .slot.b { transform: translateX(18%); opacity: 0; }
 .pair.together.met .slot, .pair.together.best .slot { transform: none; opacity: 1; }
@@ -173,7 +172,8 @@ body[data-phase="walking"] .topbar, body[data-phase="walking"] .test-banner { di
   padding: 6px 0; border-top: var(--rule);
 }
 .pairs li:last-child { border-bottom: var(--rule); }
-.pairs .stack { width: 48px; height: 48px; }
+.pairs .thumbs { display: flex; padding: 3px; background: var(--mat, var(--fg)); grid-column: span 2; }
+.pairs .stack { width: 45px; height: 45px; }
 .pairs span { padding: 0 10px; overflow-wrap: anywhere; }
 .pairs b { font-variant-numeric: tabular-nums; }
 .pairs li.is-best b { color: var(--accent); }
@@ -189,7 +189,7 @@ body[data-phase="walking"] .topbar, body[data-phase="walking"] .test-banner { di
 @keyframes pulse { 50% { opacity: .3; } }
 @media (prefers-reduced-motion: reduce) {
   .pair.together .slot { transform: none !important; opacity: 1 !important; transition: none !important; }
-  .reveal .pair .stack .print { transition: none !important; }
+  .stack .print { display: none; } /* straight to the originals */
   .progress > div, .walkbar > div { transition: none; }
   .btn.is-busy::before { animation: none; }
 }

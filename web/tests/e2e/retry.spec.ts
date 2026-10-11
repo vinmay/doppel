@@ -35,7 +35,7 @@ test("Try another twin: one more walk, keeps the higher score, once per pair, su
   await expect(page.getByRole("button", { name: /Try another twin/ })).toHaveCount(0); // used up
   await expectAccessible(page, "reveal best of 2");
   await expect(page.getByTestId("score").locator(".n")).toHaveText(String(kept));
-  await expect.poll(() => page.locator('[data-stack="a"] .print').evaluate((el) => getComputedStyle(el).opacity)).toBe("1");
+  await expect.poll(() => page.locator('[data-stack="a"] .print').evaluate((el) => getComputedStyle(el).opacity)).toBe("0");
   await page.screenshot({ path: path.join(MEDIA, "g3-best-of-2.png") });
   await page.reload();
   await expect(page.getByTestId("best-of")).toContainText("Best of 2");

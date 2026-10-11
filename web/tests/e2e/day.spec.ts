@@ -63,7 +63,7 @@ test("full day: 3 pairs, reveal, best pair, done for today", async ({ page }) =>
   await open(page);
   await page.clock.runFor(1500);
   await expect(page.locator(".practice .score .n")).toHaveText("85");
-  await snap(page, "0-first-run", true);
+  await snap(page, "0-first-run-fake", false);
   // after the first accepted shot the practice reveal is gone for good
   await page.evaluate(() => new Promise<void>((r) => { const q = indexedDB.open("doppel"); q.onsuccess = () => { const tx = q.result.transaction("meta", "readwrite"); tx.objectStore("meta").put(true, "played"); tx.oncomplete = () => r(); }; }));
   await page.reload();
@@ -92,7 +92,7 @@ test("full day: 3 pairs, reveal, best pair, done for today", async ({ page }) =>
   await expect(page.getByTestId("band")).toHaveText(/UNCANNY|COUSINS|DISTANT|STRANGERS/);
   await expect(page.getByTestId("verdict")).not.toBeEmpty();
   await expect(page.getByTestId("shared")).toContainText(/Both: |Not much, honestly\./);
-  await snap(page, "5-reveal", true);
+  await snap(page, "5-reveal-fullday", false);
   const s1 = Number(await page.getByTestId("score").getAttribute("data-value"));
   await page.getByRole("button", { name: "Next pair" }).click();
 
@@ -112,7 +112,7 @@ test("full day: 3 pairs, reveal, best pair, done for today", async ({ page }) =>
 
   await page.goto("/?embedder=fake#/history");
   await expect(page.locator(".pairs li")).toHaveCount(1);
-  await snap(page, "7-history", true);
+  await snap(page, "7-history-fullday", false);
 });
 
 test("each refusal shows its message and doesn't spend the shot", async ({ page }) => {

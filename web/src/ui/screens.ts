@@ -27,15 +27,24 @@ export const bandMarks = (b: Band) => {
   return `<span class="marks" aria-hidden="true">${BANDS.map((_, i) => `<i${i === n ? ` class="on"` : ""}></i>`).join("")}</span>`;
 };
 
-const slot = (side: "a" | "b", inner: string, caption = "") => `
+/** The Wada identity lives in the mat around a photo, never on the photo itself (F6). */
+export type Mat = Band | "neutral";
+const MAT: Record<Mat, string> = { strangers: "var(--temp-1)", distant: "var(--temp-2)", cousins: "var(--temp-3)", uncanny: "var(--temp-4)", neutral: "var(--fg)" };
+export const matStyle = (m: Mat) => `style="--mat: ${MAT[m]}"`;
+
+const slot = (side: "a" | "b", inner: string, caption = "", mat?: Mat) => `
   <figure class="slot ${side}">
-    <div class="frame">${inner}</div>
+    <div class="frame${mat ? " mat" : ""}"${mat ? ` ${matStyle(mat)}` : ""}>${inner}</div>
     ${caption ? `<figcaption>${caption}</figcaption>` : ""}
   </figure>`;
 
-/** A print over its original photo. Press and hold (or hold Space/Enter) shows the photo. */
-export const stack = (key: string, label: string) =>
-  `<span class="stack" data-stack="${esc(key)}" tabindex="0" role="img" aria-label="${esc(label)}, printed. Press and hold to see the photo."><canvas class="photo"></canvas><canvas class="print"></canvas></span>`;
+/**
+ * A real photo. With `flash`, a two-ink print sits on top for the ~400 ms
+ * "developing" moment of a reveal and then fades away; the photo's own pixels
+ * are never changed (F6).
+ */
+export const stack = (key: string, label: string, flash = false) =>
+  `<span class="stack" data-stack="${esc(key)}" role="img" aria-label="${esc(label)}"><canvas class="photo"></canvas>${flash ? `<canvas class="print" aria-hidden="true"></canvas>` : ""}</span>`;
 
 const sees = (label: string, alt?: string) => `Doppel sees: <b data-testid="sees">${esc(label)}${alt ? ` / ${esc(alt)}` : ""}</b>`;
 
@@ -68,8 +77,8 @@ export function practiceView(p: Practice): string {
     <div class="practice" aria-label="Practice reveal" data-testid="practice">
       <p class="label" id="practice-label">A practice pair</p>
       <div class="pair together" id="practice-pair">
-        ${slot("a", `<canvas id="practice-a" aria-label="${esc(p.first.label)}, printed"></canvas>`)}
-        ${slot("b", `<canvas id="practice-b" aria-label="${esc(p.twin.label)}, printed"></canvas>`)}
+        ${slot("a", stack("practice-a", p.first.label, true), "", b)}
+        ${slot("b", stack("practice-b", p.twin.label, true), "", b)}
       </div>
       <p class="labels">${esc(p.first.label)} <span aria-label="and">↔</span> ${esc(p.twin.label)}</p>
       <p class="score compact" data-value="${p.score}"><span class="n">${p.score}</span><span class="of">/100</span> <span class="band-inline">${bandMarks(b)} ${BAND_NAMES[b].toUpperCase()}</span></p>
@@ -126,7 +135,7 @@ export function walkView(pair: number, label: string, w: WalkStatus, looks: stri
     <section class="screen walk" aria-label="Walk">
       ${hud(pair, `${w.meters} M WALKED`)}
       <div class="pair">
-        ${slot("a", `<canvas id="photo-a" aria-label="Your first photo"></canvas>`)}
+        ${slot("a", `<canvas id="photo-a" aria-label="Your first photo"></canvas>`, "", "neutral")}
         ${slot("b", `<div class="countdown">${walkReadout(w)}</div>`)}
       </div>
       <p class="sees">${sees(label, alt)}</p>
@@ -154,7 +163,7 @@ export function twinView(pair: number, label: string, looks: string[] = [], alt?
     <section class="screen twin" aria-label="Twin photo">
       ${hud(pair)}
       <div class="pair">
-        ${slot("a", `<canvas id="photo-a" aria-label="Your first photo"></canvas>`)}
+        ${slot("a", `<canvas id="photo-a" aria-label="Your first photo"></canvas>`, "", "neutral")}
         ${slot("b", `<span class="slot-word">its twin?</span>`)}
       </div>
       <p class="sees">${sees(label, alt)}</p>
@@ -178,8 +187,8 @@ export function revealView(pair: number, p: Required<Pick<PairState, "first" | "
     <section class="screen reveal" aria-label="Reveal" data-band="${r.band}">
       ${hud(pair)}
       <div class="pair together" id="pair">
-        ${slot("a", stack("a", p.first.label))}
-        ${slot("b", stack("b", p.twin.label))}
+        ${slot("a", stack("a", p.first.label, true), "", r.band)}
+        ${slot("b", stack("b", p.twin.label, true), "", r.band)}
       </div>
       <p class="labels" data-testid="labels">${esc(p.first.label)} <span aria-label="and">↔</span> ${esc(p.twin.label)}</p>
       <p class="score" data-testid="score" data-value="${r.score}"><span class="n">${r.score}</span><span class="of">/100</span></p>
@@ -209,8 +218,8 @@ export function doneView(pairs: DonePair[], best: number, meters: number, nextDa
       <div class="hud"><span>DONE FOR TODAY</span><span data-testid="walked">${meters} M WALKED</span></div>
       <p class="label">TODAY'S DOPPEL</p>
       <div class="pair together best">
-        ${slot("a", stack(`best-a`, b.first))}
-        ${slot("b", stack(`best-b`, b.twin))}
+        ${slot("a", stack(`best-a`, b.first), "", b.band)}
+        ${slot("b", stack(`best-b`, b.twin), "", b.band)}
       </div>
       <p class="labels" data-testid="best">${esc(b.first)} ↔ ${esc(b.twin)}</p>
       <p class="band"><b>${b.score}</b>/100 · ${bandMarks(b.band)} ${BAND_NAMES[b.band].toUpperCase()}</p>
@@ -218,7 +227,7 @@ export function doneView(pairs: DonePair[], best: number, meters: number, nextDa
       <ol class="pairs" aria-label="Today's pairs">
         ${pairs.map((p, i) => `
           <li${i === best ? ` class="is-best"` : ""}>
-            ${stack(`${i}-a`, p.first)}${stack(`${i}-b`, p.twin)}
+            <span class="thumbs mat" ${matStyle(p.band)}>${stack(`${i}-a`, p.first)}${stack(`${i}-b`, p.twin)}</span>
             <span>${esc(p.first)} ↔ ${esc(p.twin)}</span><b>${p.score}</b>
           </li>`).join("")}
       </ol>
@@ -245,7 +254,7 @@ export function historyView(rows: HistoryRow[]): string {
       ${rows.length === 0
         ? `<p class="sub">Nothing yet. <a href="${href.today()}">Today</a> is waiting.</p>`
         : `<ol class="pairs">${rows.map((r, i) => `
-            <li>${stack(`${i}-a`, r.first)}${stack(`${i}-b`, r.twin)}
+            <li><span class="thumbs mat" ${matStyle(r.band)}>${stack(`${i}-a`, r.first)}${stack(`${i}-b`, r.twin)}</span>
               <span>${esc(dayLabel(r.day))}: ${esc(r.first)} ↔ ${esc(r.twin)}</span><b>${r.score}</b></li>`).join("")}</ol>
           <p class="sub">Photos and scores are stored only on this device.</p>
           <p><button class="btn btn-quiet" id="delete-all" type="button">Delete everything</button></p>`}

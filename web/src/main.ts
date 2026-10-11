@@ -89,12 +89,13 @@ const shotById = (id: string) => {
   return blobs.get(id)!;
 };
 
-/** Fill a print-over-photo stack. The print starts hidden unless `printed`. */
-async function fillStack(el: Element | null, id: string | undefined, tone: Tone, side = 480) {
-  if (!el || !id) return;
-  const s = await shotById(id);
-  if (!s) return;
-  await Promise.all([drawPhoto(el.querySelector<HTMLCanvasElement>(".photo")!, s.thumbBlob, side), drawPrint(el.querySelector<HTMLCanvasElement>(".print")!, s.thumbBlob, tone, side)]);
+/** Draw a real photo into a stack, plus the two-ink print for the reveal's flash if the stack has one. */
+async function fillStack(el: Element | null, src: string | Blob | undefined, tone: Tone, side = 480) {
+  if (!el || !src) return;
+  const blob = typeof src === "string" ? (await shotById(src))?.thumbBlob : src;
+  if (!blob) return;
+  const print = el.querySelector<HTMLCanvasElement>(".print");
+  await Promise.all([drawPhoto(el.querySelector<HTMLCanvasElement>(".photo")!, blob, side), print ? drawPrint(print, blob, tone, side) : undefined]);
 }
 async function photoInto(canvas: HTMLCanvasElement | null, id: string | undefined, side = 480) {
   if (!canvas || !id) return;
@@ -102,13 +103,18 @@ async function photoInto(canvas: HTMLCanvasElement | null, id: string | undefine
   if (s) await drawPhoto(canvas, s.thumbBlob, side);
 }
 
-// Press and hold a print to see the original photo (pointer, or Space/Enter when focused).
-const peek = (t: EventTarget | null, on: boolean) => (t as Element | null)?.closest?.(".stack")?.classList.toggle("peek", on);
-app.addEventListener("pointerdown", (e) => peek(e.target, true));
-for (const ev of ["pointerup", "pointercancel", "pointerleave", "pointerout"]) app.addEventListener(ev, (e) => peek(e.target, false));
-app.addEventListener("contextmenu", (e) => (e.target as Element).closest?.(".stack") && e.preventDefault());
-app.addEventListener("keydown", (e) => (e.key === " " || e.key === "Enter") && (e.target as Element).classList?.contains("stack") && (e.preventDefault(), peek(e.target, true)));
-app.addEventListener("keyup", (e) => (e.key === " " || e.key === "Enter") && peek(e.target, false));
+/**
+ * The reveal (and the practice reveal): the photos slide together as a brief
+ * two-ink "developing" flash, then resolve to the real photos while the score
+ * counts up. Ends on the originals; reduced motion shows them at once (F6).
+ */
+function develop(pair: Element | null, score: HTMLElement | null) {
+  pair?.classList.add("met");
+  window.setTimeout(() => {
+    pair?.classList.add("developed");
+    countUp(score);
+  }, reducedMotion ? 0 : 400);
+}
 
 /** Count the score up from 0 over ~700 ms. */
 function countUp(el: HTMLElement | null) {
@@ -131,12 +137,11 @@ const timeOfDay = (t: number) => new Date(t).toLocaleTimeString([], { hour: "num
 async function playPractice(seq: number) {
   const [a, b] = await Promise.all([practice.first.src, practice.twin.src].map(async (src) => (await fetch(`${import.meta.env.BASE_URL}${src}`)).blob()));
   if (seq !== routeSeq) return;
-  const ca = app.querySelector<HTMLCanvasElement>("#practice-a"), cb = app.querySelector<HTMLCanvasElement>("#practice-b");
-  if (!ca || !cb) return;
+  const sa = app.querySelector('[data-stack="practice-a"]'), sb = app.querySelector('[data-stack="practice-b"]');
+  if (!sa || !sb) return;
   const tone = band(practice.score);
-  await Promise.all([drawPrint(ca, a, tone, 360), drawPrint(cb, b, tone, 360)]);
-  app.querySelector("#practice-pair")?.classList.add("met");
-  window.setTimeout(() => countUp(app.querySelector<HTMLElement>(".practice .score")), reducedMotion ? 0 : 450);
+  await Promise.all([fillStack(sa, a, tone, 360), fillStack(sb, b, tone, 360)]);
+  develop(app.querySelector("#practice-pair"), app.querySelector<HTMLElement>(".practice .score"));
 }
 
 // ---------- Today
@@ -219,13 +224,7 @@ async function showToday(seq: number, force = false) {
     const tone = done.result.band;
     await Promise.all([fillStack(app.querySelector('[data-stack="a"]'), done.first.id, tone), fillStack(app.querySelector('[data-stack="b"]'), done.twin.id, tone)]);
     if (seq !== routeSeq) return;
-    // The two real photos slide together; then they turn into the print while the score counts up.
-    const pair = app.querySelector("#pair");
-    pair?.classList.add("met");
-    window.setTimeout(() => {
-      pair?.classList.add("printed");
-      countUp(app.querySelector<HTMLElement>("[data-testid=score]"));
-    }, reducedMotion ? 0 : 550);
+    develop(app.querySelector("#pair"), app.querySelector<HTMLElement>("[data-testid=score]"));
     if (tone === "uncanny") navigator.vibrate?.(30);
     app.querySelector("#retry")?.addEventListener("click", async () => {
       day = startRetry(day!, Date.now());
