@@ -21,3 +21,12 @@ test("live: loads, registers the service worker, starts the model download, play
   await expect.poll(async () => modelRequested !== "" || (await unsupported.count()) > 0, { timeout: 20_000 }).toBe(true);
   test.info().annotations.push({ type: "model", description: modelRequested || "WebGPU unavailable in this browser; download not attempted" });
 });
+
+test("live: link preview tags and og image", async ({ request }) => {
+  const html = await (await request.get("/")).text();
+  expect(html).toContain('<meta name="twitter:card" content="summary_large_image">');
+  expect(html).toContain('<meta property="og:image" content="https://doppel-ws59.onrender.com/og.png">');
+  const img = await request.get("/og.png");
+  expect(img.status()).toBe(200);
+  expect(img.headers()["content-type"]).toContain("image/png");
+});
