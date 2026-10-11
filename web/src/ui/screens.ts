@@ -46,10 +46,10 @@ const walkedReadout = (meters: number) => `<span data-testid="walked">${meters >
 /** Walk: the timer while GPS isn't usable, otherwise metres walked on this walk. */
 export const walkHud = (w: WalkStatus) => (w.mode === "gps" ? `${w.meters} M WALKED` : `${clock(w.msLeft)} LEFT`);
 
-/** A 4-step scale, Strangers to Uncanny, with only the current step filled. Always shown next to the band name, so it never rests on color alone. */
+/** A 4-step meter filled left to right: Strangers ■□□□ … Uncanny ■■■■. Always next to the band name, so it never rests on color alone. */
 export const bandMarks = (b: Band) => {
   const n = BANDS.indexOf(b);
-  return `<span class="marks" aria-hidden="true">${BANDS.map((_, i) => `<i${i === n ? ` class="on"` : ""}></i>`).join("")}</span>`;
+  return `<span class="marks" aria-hidden="true">${BANDS.map((_, i) => `<i${i <= n ? ` class="on"` : ""}></i>`).join("")}</span>`;
 };
 
 /** The Wada identity lives in the mat around a photo, never on the photo itself (F6). */

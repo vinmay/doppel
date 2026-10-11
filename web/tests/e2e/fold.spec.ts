@@ -33,7 +33,8 @@ for (const size of [{ width: 390, height: 844 }, { width: 375, height: 667 }]) {
     await page.locator("#photo").setInputFiles(fixture("twins/02-donut.jpg"));
     await expect(page.getByRole("button", { name: "Next pair" })).toBeInViewport({ ratio: 1 });
     await page.clock.runFor(1500);
-    await expect(page.locator(".reveal .marks i.on")).toHaveCount(1);
+    const filled = { STRANGERS: 1, DISTANT: 2, COUSINS: 3, UNCANNY: 4 }[(await page.getByTestId("band").textContent())!]!;
+    await expect(page.locator(".reveal .marks i.on")).toHaveCount(filled); // fills left to right
     await expect(page.locator(".reveal .marks i")).toHaveCount(4);
     await page.screenshot({ path: path.join(MEDIA, `f3-reveal-${size.width}.png`) });
     await expectAccessible(page, `reveal ${size.width}`);

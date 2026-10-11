@@ -13,3 +13,12 @@ describe("reveal: stretch line", () => {
     expect(revealView(1, pair(0), false)).not.toContain("Stretch");
   });
 });
+
+describe("band meter (fills left to right)", () => {
+  it("Strangers ■□□□ through Uncanny ■■■■", async () => {
+    const { bandMarks } = await import("../../src/ui/screens");
+    const on = (h: string) => (h.match(/class="on"/g) ?? []).length;
+    expect([on(bandMarks("strangers")), on(bandMarks("distant")), on(bandMarks("cousins")), on(bandMarks("uncanny"))]).toEqual([1, 2, 3, 4]);
+    expect(bandMarks("distant")).toMatch(/^<span class="marks" aria-hidden="true"><i class="on"><\/i><i class="on"><\/i><i><\/i><i><\/i><\/span>$/);
+  });
+});
