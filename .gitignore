@@ -28,3 +28,9 @@ web/.eval-photos/
 dist-e2e/
 web/report-eval.log
 FIXES.md
+
+# DEV post drafts live outside the repo (~/doppel-post); never commit one
+devto-post.md
+docs/devto-post.md
+*-post.md
+*.draft.md
