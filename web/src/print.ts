@@ -20,15 +20,34 @@ export function inksFor(tone: Tone): Rgb[] {
   return [GROUND, RAMP[start], RAMP[start + 1]];
 }
 
-/** Map RGBA pixels in place. Exported for tests. */
+const luma = (px: Uint8ClampedArray, i: number) => (0.2126 * px[i] + 0.7152 * px[i + 1] + 0.0722 * px[i + 2]) / 255;
+
+/** Luminance at the 2nd and 98th percentiles (auto-level range). Exported for tests. */
+export function levelRange(px: Uint8ClampedArray, lo = 0.02, hi = 0.98): [number, number] {
+  const hist = new Uint32Array(256);
+  for (let i = 0; i < px.length; i += 4) hist[Math.round(luma(px, i) * 255)]++;
+  const n = px.length / 4;
+  const at = (q: number) => {
+    let c = 0;
+    for (let v = 0; v < 256; v++) if ((c += hist[v]) >= q * n) return v / 255;
+    return 1;
+  };
+  return [at(lo), at(hi)];
+}
+
+/** Map RGBA pixels in place: auto-level (2nd-98th percentile), then dither into the inks. Exported for tests. */
 export function printPixels(px: Uint8ClampedArray, width: number, tone: Tone) {
   const inks = inksFor(tone);
   const levels = inks.length - 1;
+  // A pale sky or a dim forest uses a sliver of the range; stretch it so the
+  // print shows the object, not a flat field of one ink.
+  const [lo, hi] = levelRange(px);
+  const span = Math.max(hi - lo, 1 / 255);
   for (let i = 0; i < px.length; i += 4) {
     const p = i / 4;
     const x = p % width;
     const y = (p / width) | 0;
-    const lum = (0.2126 * px[i] + 0.7152 * px[i + 1] + 0.0722 * px[i + 2]) / 255;
+    const lum = Math.min(1, Math.max(0, (luma(px, i) - lo) / span));
     const v = lum * levels;
     const base = Math.min(levels - 1, Math.floor(v));
     const ink = inks[v - base > BAYER[(y & 3) * 4 + (x & 3)] ? base + 1 : base];
