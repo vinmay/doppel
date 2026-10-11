@@ -35,3 +35,16 @@ describe("F1: the practice photos are accepted (real vectors)", () => {
     expect(checkShot({ ...cloud.reading, margin: 0 })).toBeUndefined();
   });
 });
+
+describe("G1 on real vectors", () => {
+  it("suggests 3 mutually different kinds for the practice cloud, none a cloud synonym", async () => {
+    const { suggestTwins, labelSim } = await import("../../src/twin");
+    const c = shot(vecs.cloud);
+    const s = suggestTwins(c.vector, c.reading, vocab);
+    expect(s).toHaveLength(3);
+    const idx = (l: string) => vocab.items.findIndex((i) => i.label === l);
+    for (const x of s) expect(labelSim(vocab, c.reading.index, idx(x))).toBeLessThan(0.85);
+    for (let i = 0; i < 3; i++) for (let j = i + 1; j < 3; j++) expect(labelSim(vocab, idx(s[i]), idx(s[j]))).toBeLessThan(0.85);
+    console.log("cloud suggestions:", s.join(" · "));
+  });
+});

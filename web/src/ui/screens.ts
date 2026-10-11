@@ -114,7 +114,10 @@ export function firstView(pair: number, ideas: string[], firstRun: boolean, prac
 export const lookFor = (looks: string[]) =>
   looks.length ? `<p class="sub" data-testid="look-for">Look for something ${esc(looks.length === 1 ? looks[0] : `${looks.slice(0, -1).join(", ")} or ${looks.at(-1)}`)}.</p>` : "";
 
-export function walkView(pair: number, label: string, w: WalkStatus, looks: string[] = [], alt?: string): string {
+/** "Try: snow · foam · sheep" (G1). */
+export const tryThese = (tries: string[]) => (tries.length ? `<p class="sub tries" data-testid="tries"><span class="label">Try</span> ${tries.map(esc).join(" · ")}</p>` : "");
+
+export function walkView(pair: number, label: string, w: WalkStatus, looks: string[] = [], alt?: string, tries: string[] = []): string {
   return `
     <section class="screen walk" aria-label="Walk">
       ${hud(pair, `${w.meters} M WALKED`)}
@@ -125,6 +128,7 @@ export function walkView(pair: number, label: string, w: WalkStatus, looks: stri
       <h1 class="voice">Find its twin. Walk.</h1>
       <p class="sub">${esc(notButLike(label))} Phone in your pocket until then.</p>
       ${lookFor(looks)}
+      ${tryThese(tries)}
       <div class="walkbar" role="progressbar" aria-label="Walk" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${walkPct(w)}"><div style="width:${walkPct(w)}%"></div></div>
     </section>`;
 }
@@ -139,7 +143,7 @@ export function walkReadout(w: WalkStatus): string {
 }
 
 
-export function twinView(pair: number, label: string, looks: string[] = [], alt?: string): string {
+export function twinView(pair: number, label: string, looks: string[] = [], alt?: string, tries: string[] = []): string {
   return `
     <section class="screen twin" aria-label="Twin photo">
       ${hud(pair)}
@@ -150,6 +154,7 @@ export function twinView(pair: number, label: string, looks: string[] = [], alt?
       <h1 class="voice">Now its twin.</h1>
       <p class="sub">${esc(notButLike(label))}</p>
       ${lookFor(looks)}
+      ${tryThese(tries)}
       ${dock(shootButton("Photograph its twin"))}
     </section>`;
 }

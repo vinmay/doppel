@@ -14,7 +14,7 @@ import { registerPwa } from "./pwa";
 import { parseHash } from "./router";
 import { dayKey, nextDayStart, type Place } from "./sun";
 import practice from "../../data/practice.json";
-import { band, checkShot, checkTwin, judgePair, PROBLEM_TEXT, readPhoto, topAttributes } from "./twin";
+import { band, checkShot, checkTwin, judgePair, PROBLEM_TEXT, readPhoto, suggestTwins, topAttributes } from "./twin";
 import { mountDebug } from "./ui/debug";
 import { esc, render } from "./ui/dom";
 import { loadModelWithStatus } from "./ui/model-status";
@@ -187,12 +187,12 @@ async function showToday(seq: number, force = false) {
     return mountDebug(app);
   }
   if (p.kind === "walking") {
-    render(app, walkView(p.pair, pr.first!.label, p.walk, pr.first!.looks ?? [], pr.first!.alt));
+    render(app, walkView(p.pair, pr.first!.label, p.walk, pr.first!.looks ?? [], pr.first!.alt, pr.first!.tries ?? []));
     startGps();
     return void photoInto(app.querySelector("#photo-a"), pr.first!.id);
   }
   if (p.kind === "twin") {
-    render(app, twinView(p.pair, pr.first!.label, pr.first!.looks ?? [], pr.first!.alt));
+    render(app, twinView(p.pair, pr.first!.label, pr.first!.looks ?? [], pr.first!.alt, pr.first!.tries ?? []));
     startGps(); // keep counting metres until the twin is in
     void photoInto(app.querySelector("#photo-a"), pr.first!.id);
     return wireShoot(seq, "twin");
@@ -289,7 +289,7 @@ async function takePhoto(file: File, which: "first" | "twin", onStatus: (s: stri
     if (problem) return (onStatus(""), onRefused(PROBLEM_TEXT[problem]), false);
     const id = newId();
     await putShot({ id, day: day!.day, ts: now, vector, reading, thumbBlob });
-    day = acceptFirst(day!, { id, ts: now, label: reading.label, ...(reading.alt ? { alt: reading.alt } : {}), looks: topAttributes(reading.attrZ) }, now);
+    day = acceptFirst(day!, { id, ts: now, label: reading.label, ...(reading.alt ? { alt: reading.alt } : {}), looks: topAttributes(reading.attrZ), tries: suggestTwins(vector, reading, vocab) }, now);
     await setMeta("played", true);
   } else {
     const first = (await shotById(pr.first!.id))!;

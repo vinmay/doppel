@@ -113,6 +113,8 @@ body[data-phase="walking"] .topbar, body[data-phase="walking"] .test-banner { di
 .walkbar { height: 8px; border: var(--rule); margin: 14px 0; }
 .walkbar > div { height: 100%; background: var(--fg); transition: width .25s linear; }
 
+.tries .label { margin-right: 6px; }
+
 /* ---------- ideas */
 .ideas { margin: 6px 0 0; }
 .ideas summary {

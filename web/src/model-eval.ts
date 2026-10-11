@@ -4,7 +4,7 @@
 // Dev-only page; run with `npm run test:model` (scripts/model-eval.mjs).
 import { prepareImage } from "./capture";
 import { LiteRtEmbedder } from "./embed/litert";
-import { checkShot, checkTwin, judgePair, readPhoto, topAttributes, type Reading } from "./twin";
+import { checkShot, checkTwin, judgePair, readPhoto, suggestTwins, topAttributes, type Reading } from "./twin";
 import { loadVocab } from "./vocab";
 
 const fixtures = import.meta.glob<string>("../tests/fixtures/*/*.jpg", { query: "?url", import: "default", eager: true });
@@ -44,7 +44,7 @@ async function main() {
       return {
         set, a, b, labelA: A.reading.label, labelB: B.reading.label, marginA: A.reading.margin, marginB: B.reading.margin,
         checkA: checkShot(A.reading) ?? null, checkB: checkShot(B.reading) ?? null, altA: A.reading.alt ?? null, altB: B.reading.alt ?? null, problem: checkTwin(A, B, vocab) ?? null,
-        sim: r.sim, score: r.score, band: r.band, shared: r.shared, looksA: topAttributes(A.reading.attrZ),
+        sim: r.sim, score: r.score, band: r.band, shared: r.shared, looksA: topAttributes(A.reading.attrZ), triesA: suggestTwins(A.vector, A.reading, vocab), triesB: suggestTwins(B.vector, B.reading, vocab),
       };
     }),
   );

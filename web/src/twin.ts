@@ -20,6 +20,8 @@ export interface TwinConfig {
   minTopSim: number; // a photo whose top label is at least this close is never "uncertain"
   attrZ: number; // shared attribute threshold (z-score, both photos)
   attr: { labels: string[]; mu: number[]; sd: number[] };
+  /** Per vocab row: mean/sd of photo->label cosine over the calibration photos (G1 ranking). */
+  labelStats?: { mu: number[]; sd: number[] };
 }
 
 export const TWIN: TwinConfig = scoring;
@@ -199,6 +201,36 @@ export function topAttributes(z: number[], cfg: Pick<TwinConfig, "attr" | "attrZ
     .sort((a, b) => b.z - a.z)
     .slice(0, k)
     .map((x) => x.label);
+}
+
+/**
+ * "Try: snow · foam · sheep": the vocab things most specific to the first photo that
+ * are a different kind from its label and from each other (label text sim <
+ * synonymTextSim), so every suggestion is a valid twin. Deterministic.
+ */
+export function suggestTwins(photo: ArrayLike<number>, first: Reading, vocab: LabelVocab, cfg: Pick<TwinConfig, "synonymTextSim" | "sameKindTextSim" | "labelStats"> = TWIN, k = 3): string[] {
+  const v = unit(photo);
+  // Rank by how unusually close each label is to this photo (z-score), so generic
+  // scene labels that sit near every outdoor photo ("field", "mud") don't crowd out lookalikes.
+  const st = cfg.labelStats?.mu.length === vocab.items.length ? cfg.labelStats : undefined;
+  const score = (i: number) => {
+    const s = dot(v, row(vocab, i));
+    return st ? (s - st.mu[i]) / st.sd[i] : s;
+  };
+  const ranked = vocab.items
+    .map((it, i) => ({ i, it, sim: it.kind === "thing" ? score(i) : -Infinity }))
+    .filter((x) => x.it.kind === "thing")
+    .sort((a, b) => b.sim - a.sim || a.i - b.i);
+  const picked: number[] = [];
+  for (const { i } of ranked) {
+    if (i === first.index) continue;
+    const limit = Math.min(cfg.synonymTextSim, cfg.sameKindTextSim);
+    if (labelSim(vocab, first.index, i) >= limit) continue;
+    if (picked.some((j) => labelSim(vocab, i, j) >= limit)) continue;
+    picked.push(i);
+    if (picked.length === k) break;
+  }
+  return picked.map((i) => vocab.items[i].label);
 }
 
 export const NOTHING_SHARED = "Not much, honestly.";

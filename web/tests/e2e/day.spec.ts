@@ -78,6 +78,7 @@ test("full day: 3 pairs, reveal, best pair, done for today", async ({ page }) =>
   await expect(page.getByTestId("sees")).toHaveText(/^tire( \/ [a-z ]+)?$/);
   await expect(page.getByTestId("walk-left")).toHaveText(/^0:4\d$/); // no GPS permission -> timer
   await expect(page.getByTestId("look-for")).toHaveText(/^Look for something .+\.$/);
+  await expect(page.getByTestId("tries")).toHaveText(/^Try [a-z ]+( · [a-z ]+){2}$/);
   await page.clock.runFor(500);
   await snap(page, "3-walk", true);
   await page.clock.fastForward(46_000);

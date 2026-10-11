@@ -176,6 +176,11 @@ def main():
             "attr": {"labels": [labels[j] for j in att], "mu": [round(float(x), 5) for x in mu], "sd": [round(float(x), 5) for x in sd],
                      "source": f"mean/sd of each attribute's cosine over {len(names)} photos (eval + fixtures)"},
         }
+        # G1: per-label mean/sd of photo->label cosine over all photos, for "Try:" suggestions ranked by
+        # how unusually close a label is to this photo (generic scene labels like "field" sit near everything).
+        LL = P @ V.T
+        out["labelStats"] = {"mu": [round(float(x), 5) for x in LL.mean(0)], "sd": [round(float(x), 5) for x in LL.std(0)],
+                             "source": f"per vocab row, over {len(names)} photos (eval + fixtures)"}
         # Rule thresholds, chosen from the numbers printed above (see LOG.md D1 for the reasoning).
         out["bands"] = {"uncanny": 80, "cousins": 50, "distant": 30}  # cousins 55 -> 50 after the D7 model eval (LOG.md)
         out["duplicateSim"] = 0.97  # photo-photo cosine above this = the same thing twice (max seen between different objects: 0.919)

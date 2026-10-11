@@ -68,6 +68,12 @@ ${same.map(row).join("\n")}
 |---|---|---|---|---|
 ${r.rejects.map((x) => `| ${short(x.name)} | ${x.label} | ${x.kind} | ${x.margin.toFixed(4)} | ${x.problem ?? "**accepted**"} |`).join("\n")}
 
+## Twin suggestions (G1): "Try: …" for each twins/ photo as a first shot
+
+| First photo | Doppel sees | Look for | Try |
+|---|---|---|---|
+${twins.flatMap((p) => [[p.a, p.labelA, p.looksA, p.triesA], [p.b, p.labelB, null, p.triesB]]).map(([n, l, looks, tries]) => `| ${short(n)} | ${l} | ${looks ? looks.join(", ") : "–"} | ${tries.join(" · ")} |`).join("\n")}
+
 ## Timings (same run, not CPU-throttled)
 
 - Model load from the browser cache: ${r.loadMs} ms

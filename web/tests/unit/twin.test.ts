@@ -227,3 +227,16 @@ describe("topAttributes", () => {
     expect(topAttributes([0, 0, 0, NaN], lab)).toEqual([]);
   });
 });
+
+describe("suggestTwins (G1)", () => {
+  it("suggests different kinds of thing, nearest first, never the label or its synonyms", async () => {
+    const { suggestTwins } = await import("../../src/twin");
+    const photo = e(1, 0.3, 0, 0, 0.3, 0); // tire-ish, a bit donut-ish
+    const r = readPhoto(photo, vocab, cfg);
+    const s = suggestTwins(photo, r, vocab, cfg);
+    expect(s).not.toContain(r.label);
+    expect(s).not.toContain(r.label === "tire" ? "wheel" : "tire"); // the synonym
+    expect(s).toEqual(["donut"]); // the only other thing in the toy vocab; rejects/unclear/attrs never suggested
+    expect(suggestTwins(photo, r, vocab, cfg)).toEqual(s); // deterministic
+  });
+});

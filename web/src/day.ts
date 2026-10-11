@@ -15,6 +15,7 @@ export interface ShotRef {
   label: string;
   alt?: string; // near-synonym runner-up ("cloud / sky")
   looks?: string[]; // its strongest attributes, the hint for finding a twin
+  tries?: string[]; // suggested twins: nearest different kinds of thing
 }
 
 export interface PairState {
