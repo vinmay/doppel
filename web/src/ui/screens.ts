@@ -2,7 +2,7 @@
 // the pair frame, two square slots side by side. Empty, it explains the game;
 // then the first print fills the left slot, the walk counts down in the right
 // one, the twin fills it, and at the reveal the two prints slide together.
-import { BANDS, BAND_NAMES, NOTHING_SHARED, type Band } from "../twin";
+import { band, BANDS, BAND_NAMES, NOTHING_SHARED, type Band } from "../twin";
 import type { PairState } from "../day";
 import { PAIRS_PER_DAY } from "../day";
 import type { WalkStatus } from "../walk";
@@ -49,7 +49,44 @@ const dock = (button: string, extra = "") => `
     ${extra}
   </div>`;
 
-export function firstView(pair: number, ideas: string[], firstRun: boolean): string {
+export interface Practice {
+  first: { label: string };
+  twin: { label: string };
+  score: number;
+  shared: string[];
+}
+
+/** First run: a real reveal of two bundled photos, played while the model downloads. */
+export function practiceView(p: Practice): string {
+  const b = band(p.score);
+  return `
+    <div class="practice" aria-label="Practice reveal" data-testid="practice">
+      <p class="label">A practice pair, while Doppel downloads</p>
+      <div class="pair together" id="practice-pair">
+        ${slot("a", `<canvas id="practice-a" aria-label="${esc(p.first.label)}, printed"></canvas>`)}
+        ${slot("b", `<canvas id="practice-b" aria-label="${esc(p.twin.label)}, printed"></canvas>`)}
+      </div>
+      <p class="labels">${esc(p.first.label)} <span aria-label="and">↔</span> ${esc(p.twin.label)}</p>
+      <p class="score compact" data-value="${p.score}"><span class="n">${p.score}</span><span class="of">/100</span> <span class="band-inline">${bandMarks(b)} ${BAND_NAMES[b].toUpperCase()}</span></p>
+      <p class="shared"><span class="label">What they share</span> Both: ${p.shared.map(esc).join(" · ")}</p>
+    </div>`;
+}
+
+export function firstView(pair: number, ideas: string[], firstRun: boolean, practice?: Practice): string {
+  if (firstRun && practice) {
+    return `
+    <section class="screen first" aria-label="First photo">
+      ${hud(pair)}
+      <h1 class="voice lede">Find two different things that look the same. Outside.</h1>
+      ${practiceView(practice)}
+      <p class="sub privacy">Photos never leave your phone. Point it at things, not people.</p>
+      <details class="ideas">
+        <summary>Need an idea?</summary>
+        <ul data-testid="ideas">${ideas.map((i) => `<li>${esc(i)}</li>`).join("")}</ul>
+      </details>
+      ${dock(shootButton("Photograph something"))}
+    </section>`;
+  }
   return `
     <section class="screen first" aria-label="First photo">
       ${hud(pair)}

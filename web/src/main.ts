@@ -13,7 +13,8 @@ import { drawPrint, type Tone } from "./print";
 import { registerPwa } from "./pwa";
 import { parseHash } from "./router";
 import { dayKey, nextDayStart, type Place } from "./sun";
-import { checkShot, checkTwin, judgePair, PROBLEM_TEXT, readPhoto, topAttributes } from "./twin";
+import practice from "../../data/practice.json";
+import { band, checkShot, checkTwin, judgePair, PROBLEM_TEXT, readPhoto, topAttributes } from "./twin";
 import { mountDebug } from "./ui/debug";
 import { esc, render } from "./ui/dom";
 import { loadModelWithStatus } from "./ui/model-status";
@@ -110,6 +111,18 @@ function countUp(el: HTMLElement | null) {
 
 const timeOfDay = (t: number) => new Date(t).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
 
+// ---------- first run: a practice reveal while the model downloads
+async function playPractice(seq: number) {
+  const [a, b] = await Promise.all([practice.first.src, practice.twin.src].map(async (src) => (await fetch(`${import.meta.env.BASE_URL}${src}`)).blob()));
+  if (seq !== routeSeq) return;
+  const ca = app.querySelector<HTMLCanvasElement>("#practice-a"), cb = app.querySelector<HTMLCanvasElement>("#practice-b");
+  if (!ca || !cb) return;
+  const tone = band(practice.score);
+  await Promise.all([drawPrint(ca, a, tone, 360), drawPrint(cb, b, tone, 360)]);
+  app.querySelector("#practice-pair")?.classList.add("met");
+  window.setTimeout(() => countUp(app.querySelector<HTMLElement>(".practice .score")), reducedMotion ? 0 : 450);
+}
+
 // ---------- Today
 async function loadToday() {
   place ??= await getMeta<Place>("place");
@@ -144,8 +157,9 @@ async function showToday(seq: number, force = false) {
   if (p.kind === "first") {
     const firstRun = !(await getMeta<boolean>("played"));
     if (seq !== routeSeq) return;
-    render(app, firstView(p.pair, ideasFor(day.day), firstRun));
+    render(app, firstView(p.pair, ideasFor(day.day), firstRun, firstRun ? practice : undefined));
     wireShoot(seq, "first");
+    if (firstRun) void playPractice(seq);
     return mountDebug(app);
   }
   if (p.kind === "walking") {

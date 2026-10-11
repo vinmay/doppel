@@ -47,7 +47,7 @@ const localModels = (): Plugin => {
 // service worker caches the one WASM variant a browser uses.
 // The vocab vectors (public/vocab-<hash>.bin) are precached too: no shot can be scored without them.
 const VOCAB_FILE = JSON.parse(readFileSync("../data/vocab-vectors.json", "utf8")).file;
-const PUBLIC_PRECACHE = ["index.html", "manifest.webmanifest", "icon.svg", "icon-192.png", "icon-512.png", VOCAB_FILE];
+const PUBLIC_PRECACHE = ["index.html", "manifest.webmanifest", "icon.svg", "icon-192.png", "icon-512.png", VOCAB_FILE, "practice/cloud.jpg", "practice/cotton.jpg"];
 const serviceWorker = (): Plugin => ({
   name: "service-worker",
   apply: "build",

@@ -1,0 +1,18 @@
+{
+ "first": {
+  "src": "practice/cloud.jpg",
+  "label": "cloud"
+ },
+ "twin": {
+  "src": "practice/cotton.jpg",
+  "label": "cotton"
+ },
+ "sim": 0.8075,
+ "score": 85,
+ "shared": [
+  "fluffy",
+  "puffy",
+  "white"
+ ],
+ "source": "precomputed with the browser embedder (Edge WebGPU, D1 run) and data/twin-scoring.json; photos CC0, see web/public/practice/CREDITS.md"
+}

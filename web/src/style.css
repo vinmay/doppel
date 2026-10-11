@@ -88,6 +88,15 @@ main { max-width: 520px; margin: 0 auto; padding: 0 var(--gutter); outline: none
 .shared { text-align: center; margin: 4px 0 0; }
 .shared .label { display: block; }
 
+/* ---------- first run: practice reveal */
+.lede { margin-top: 14px; }
+.practice { border-top: var(--rule); padding-top: 8px; }
+.practice .label { margin: 0 0 8px; }
+.practice .pair { max-width: 300px; margin: 0 auto; }
+.score.compact { font-size: var(--t-m); }
+.score.compact .n { font-size: 1em; }
+.band-inline { font-size: var(--t-s); font-weight: 400; letter-spacing: .14em; margin-left: 8px; vertical-align: middle; }
+
 /* ---------- walk (pocket screen): no chrome, nothing to stare at */
 body[data-phase="walking"] .topbar, body[data-phase="walking"] .test-banner { display: none; }
 .walk { min-height: 100dvh; justify-content: center; }

@@ -51,7 +51,8 @@ test("first run: the first screen explains the game, shows the privacy line and 
     geo.watchPosition = (...a: Parameters<typeof orig>) => ((window as any).__permAsked("geolocation"), orig(...a));
   });
   await open(page);
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Find two different things that look the same.");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Find two different things that look the same. Outside.");
+  await expect(page.getByTestId("practice")).toBeVisible();
   await expect(page.getByText("Photos never leave your phone.")).toBeVisible();
   await expect(page.getByText("Photograph something")).toBeVisible();
   await page.clock.runFor(2000);
@@ -60,6 +61,12 @@ test("first run: the first screen explains the game, shows the privacy line and 
 
 test("full day: 3 pairs, reveal, best pair, done for today", async ({ page }) => {
   await open(page);
+  await page.clock.runFor(1500);
+  await expect(page.locator(".practice .score .n")).toHaveText("85");
+  await snap(page, "0-first-run", true);
+  // after the first accepted shot the practice reveal is gone for good
+  await page.evaluate(() => new Promise<void>((r) => { const q = indexedDB.open("doppel"); q.onsuccess = () => { const tx = q.result.transaction("meta", "readwrite"); tx.objectStore("meta").put(true, "played"); tx.oncomplete = () => r(); }; }));
+  await page.reload();
   await snap(page, "1-first", true);
   await page.getByText("Need an idea?").click();
   await expect(page.getByTestId("ideas").locator("li")).toHaveCount(3);
