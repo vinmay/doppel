@@ -41,7 +41,8 @@ const firstDock = (demo: DemoEmphasis) =>
     : dock(shootButton("Photograph something"));
 
 const themeReadout = (theme?: string) => (theme ? `<span data-testid="theme">Today: ${esc(theme)}</span>` : "");
-const walkedReadout = (meters: number) => `<span data-testid="walked">${meters} M WALKED</span>`;
+/** Twin, reveal and done always follow a finished walk, so 0 m means the 45 s timer unlocked it. */
+const walkedReadout = (meters: number) => `<span data-testid="walked">${meters > 0 ? `${meters} M WALKED` : "WALKED BY TIMER"}</span>`;
 /** Walk: the timer while GPS isn't usable, otherwise metres walked on this walk. */
 export const walkHud = (w: WalkStatus) => (w.mode === "gps" ? `${w.meters} M WALKED` : `${clock(w.msLeft)} LEFT`);
 

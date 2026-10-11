@@ -90,6 +90,7 @@ test("full day: 3 pairs, reveal, best pair, done for today", async ({ page }) =>
   await expect(page.getByTestId("labels")).toContainText("tire");
   await expect(page.getByTestId("labels")).toContainText("donut");
   await expect(page.getByTestId("band")).toHaveText(/UNCANNY|COUSINS|DISTANT|STRANGERS/);
+  await expect(page.getByTestId("walked")).toHaveText("WALKED BY TIMER");
   await expect(page.getByTestId("verdict")).not.toBeEmpty();
   await expect(page.getByTestId("shared")).toContainText(/Both: |Not much, honestly\./);
   await snap(page, "5-reveal-fullday", false);
@@ -105,7 +106,7 @@ test("full day: 3 pairs, reveal, best pair, done for today", async ({ page }) =>
   await expect(page.locator(".pairs li")).toHaveCount(3);
   const best = Math.max(s1, s2, s3);
   await expect(page.locator(".done .band")).toContainText(`${best}/100`);
-  await expect(page.getByTestId("walked")).toHaveText("0 M WALKED");
+  await expect(page.getByTestId("walked")).toHaveText("WALKED BY TIMER"); // no GPS: never "0 M WALKED"
   await expect(page.getByTestId("next-day")).not.toBeEmpty();
   await page.clock.runFor(500);
   await snap(page, "6-done", true);
@@ -179,6 +180,7 @@ test("walking 50 m with GPS unlocks the twin and counts the distance", async ({ 
   await context.setGeolocation(at(55));
   await page.clock.runFor(1000);
   await expect(page.getByRole("region", { name: "Twin photo" })).toBeVisible();
+  await expect(page.getByTestId("walked")).toHaveText(/^5\d M WALKED$/); // real distance shows as metres
 });
 
 test("Need an idea? shows 3 hints, the same all day, different the next day; the daily theme shows", async ({ page }) => {
