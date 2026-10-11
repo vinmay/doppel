@@ -14,10 +14,13 @@ Three pairs a day, about 10 to 15 minutes, then "Done for today". You can't lose
 
 Built Oct 10 to 11, 2026 for DEV Hacktoberfest Week 1 ("Touch Grass").
 
-- **Live:** https://doppel-ws59.onrender.com
+- **Live:** https://doppel-ws59.onrender.com (Chrome on Android or desktop; needs WebGPU)
+- **No time to go outside?** [Try a demo round](https://doppel-ws59.onrender.com/#/demo): one full round with bundled CC0 photos, no camera needed, nothing saved.
 - **Write-up:** {{V: DEV post URL}}
 
 ## How to play
+
+The **?** in the app's header opens the same rules on one screen.
 
 1. **First photo.** Point the camera at anything outside (things, not people). Doppel names what it sees.
 2. **Walk.** The screen goes quiet: "Find its twin. Walk." The twin shot unlocks after about 50 m (GPS), or after 45 s if GPS isn't available or is too vague (worse than 30 m). You see your real photo and what Doppel sees in it ("cloud / sky"), what to look for ("Look for something ridged, layered or wrinkled.") and three twins to try ("TRY seed pod · corn on the cob · seashell"). Not happy with the first photo? Retake it, free.
@@ -68,7 +71,9 @@ npm run dev                 # http://localhost:5173 (downloads the model from Hu
 npm run build               # production build in web/dist/
 ```
 
-Needs a browser with WebGPU (Chrome or Edge on Android or desktop). The model is `litert-community/embeddinggemma-2-text-vision-440m-litert-lm` (388 MB, downloaded once and cached).
+Needs a browser with WebGPU (Chrome or Edge on Android or desktop) and Node 20+. The model is `litert-community/embeddinggemma-2-text-vision-440m-litert-lm` (388 MB, downloaded once from Hugging Face and cached; afterwards the app works offline). To try it without going outside, open `#/demo`.
+
+Deploy: `render.yaml` is a Render Blueprint for a static site (`rootDir: web`, `npm ci && npm run build`, publish `dist/`).
 
 ## Tests
 
@@ -99,14 +104,14 @@ PW_BASE_URL=https://... npm run test:live   # smoke test of a deployment
 - **Gemma 4 E4B** (Google), run locally with Ollama, wrote the idea hints.
 - **LiteRT-LM** (`@litert-lm/core`), Google AI Edge.
 - **Sanzo Wada**, *A Dictionary of Color Combinations* (1933); colors from [mattdesl/dictionary-of-colour-combinations](https://github.com/mattdesl/dictionary-of-colour-combinations) (MIT, vendored in `data/wada/`).
-- **Photos:** CC0 and public-domain images from Wikimedia Commons and Openverse (Flickr, rawpixel); every file, author and license in [`web/tests/fixtures/CREDITS.md`](web/tests/fixtures/CREDITS.md) and [`web/public/practice/CREDITS.md`](web/public/practice/CREDITS.md).
+- **Photos:** CC0 and public-domain images from Wikimedia Commons and Openverse (Flickr, rawpixel); every file, author and license in [`web/tests/fixtures/CREDITS.md`](web/tests/fixtures/CREDITS.md), [`web/public/practice/CREDITS.md`](web/public/practice/CREDITS.md) and [`web/public/demo/CREDITS.md`](web/public/demo/CREDITS.md).
 - Fonts: IBM Plex Mono (OFL), Instrument Serif (OFL), via Fontsource.
 
 ## Commits after the deadline
 
-The deadline is Oct 11, 2026, 11:59 PM PDT. Commits after it are listed here.
+The deadline is Oct 11, 2026, 11:59 PM PDT (Oct 12, 06:59 UTC). Commits after it are listed here.
 
-- none yet
+_(none)_
 
 ## License
 
