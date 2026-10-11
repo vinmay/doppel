@@ -43,18 +43,21 @@ async function main() {
       const r = judgePair(A, B, `eval#${a}`);
       return {
         set, a, b, labelA: A.reading.label, labelB: B.reading.label, marginA: A.reading.margin, marginB: B.reading.margin,
-        checkA: checkShot(A.reading) ?? null, problem: checkTwin(A, B, vocab) ?? null,
+        checkA: checkShot(A.reading) ?? null, checkB: checkShot(B.reading) ?? null, altA: A.reading.alt ?? null, altB: B.reading.alt ?? null, problem: checkTwin(A, B, vocab) ?? null,
         sim: r.sim, score: r.score, band: r.band, shared: r.shared, looksA: topAttributes(A.reading.attrZ),
       };
     }),
   );
+  // F1 regression: the practice photos (same files as twins/01-*) as first shot and as twin, both ways
+  const pc = shots["twins/01-cloud.jpg"], pt = shots["twins/01-cotton.jpg"];
+  const practice = { cloudFirst: checkShot(pc.reading) ?? null, cottonFirst: checkShot(pt.reading) ?? null, cloudAsTwin: checkTwin(pt, pc, vocab) ?? null, cottonAsTwin: checkTwin(pc, pt, vocab) ?? null, cloud: { label: pc.reading.label, alt: pc.reading.alt ?? null, margin: pc.reading.margin, topSim: pc.reading.topSim } };
   const rejects = Object.keys(shots).filter((n) => n.startsWith("reject/")).map((n) => ({ name: n, label: shots[n].reading.label, kind: shots[n].reading.kind, margin: shots[n].reading.margin, problem: checkShot(shots[n].reading) ?? null }));
   const sorted = [...embedMs].sort((x, y) => x - y);
   const result = {
     adapter: e.info.adapter, loadMs: Math.round(loadMs), images: embedMs.length,
     embedMedianMs: Math.round(sorted[sorted.length >> 1]), embedMaxMs: Math.round(sorted.at(-1)!),
     longTasks: { count: longTasks.length, maxMs: Math.round(Math.max(0, ...longTasks)), totalMs: Math.round(longTasks.reduce((s, x) => s + x, 0)) },
-    pairs, rejects,
+    pairs, rejects, practice,
   };
   await post(`EVAL_RESULT ${JSON.stringify(result)}`);
   await log("EVAL_DONE");

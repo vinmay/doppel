@@ -163,12 +163,12 @@ async function showToday(seq: number, force = false) {
     return mountDebug(app);
   }
   if (p.kind === "walking") {
-    render(app, walkView(p.pair, pr.first!.label, p.walk, pr.first!.looks ?? []));
+    render(app, walkView(p.pair, pr.first!.label, p.walk, pr.first!.looks ?? [], pr.first!.alt));
     startGps();
     return void printInto(app.querySelector("#print-a"), pr.first!.id, "neutral");
   }
   if (p.kind === "twin") {
-    render(app, twinView(p.pair, pr.first!.label, pr.first!.looks ?? []));
+    render(app, twinView(p.pair, pr.first!.label, pr.first!.looks ?? [], pr.first!.alt));
     startGps(); // keep counting metres until the twin is in
     void printInto(app.querySelector("#print-a"), pr.first!.id, "neutral");
     return wireShoot(seq, "twin");
@@ -260,7 +260,7 @@ async function takePhoto(file: File, which: "first" | "twin", onStatus: (s: stri
     if (problem) return (onStatus(""), onRefused(PROBLEM_TEXT[problem]), false);
     const id = newId();
     await putShot({ id, day: day!.day, ts: now, vector, reading, thumbBlob });
-    day = acceptFirst(day!, { id, ts: now, label: reading.label, looks: topAttributes(reading.attrZ) }, now);
+    day = acceptFirst(day!, { id, ts: now, label: reading.label, ...(reading.alt ? { alt: reading.alt } : {}), looks: topAttributes(reading.attrZ) }, now);
     await setMeta("played", true);
   } else {
     const first = (await shotById(pr.first!.id))!;

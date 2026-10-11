@@ -15,7 +15,9 @@ export interface TwinConfig {
   bands: { uncanny: number; cousins: number; distant: number };
   duplicateSim: number; // photo-photo cosine above this = the same thing twice
   sameKindTextSim: number; // label-label text cosine at or above this = same kind of thing
-  margin: number; // below this the label is a coin toss
+  margin: number; // below this (and below minTopSim) the label is a coin toss
+  synonymTextSim: number; // labels at least this close are near-synonyms ("cloud / sky"), not rivals
+  minTopSim: number; // a photo whose top label is at least this close is never "uncertain"
   attrZ: number; // shared attribute threshold (z-score, both photos)
   attr: { labels: string[]; mu: number[]; sd: number[] };
 }
@@ -79,6 +81,8 @@ export function band(score: number, cfg: Pick<TwinConfig, "bands"> = TWIN): Band
 export interface Reading {
   index: number; // vocab row of the top label
   label: string;
+  alt?: string; // runner-up when it's a near-synonym: "Doppel sees: cloud / sky"
+  topSim: number;
   kind: Kind;
   margin: number;
   /** z-score per attribute, in TwinConfig.attr.labels order */
@@ -111,11 +115,16 @@ export function readPhoto(photo: ArrayLike<number>, vocab: LabelVocab, cfg: Twin
   }
   if (top < 0) throw new Error("vocab has no labels");
   let rival = -Infinity;
+  let second = -1;
   for (let i = 0; i < sims.length; i++) {
     if (i === top || vocab.items[i].kind === "attr") continue;
-    if (labelSim(vocab, top, i) >= cfg.sameKindTextSim) continue; // a synonym isn't a rival
+    if (second < 0 || sims[i] > sims[second]) second = i;
+    if (labelSim(vocab, top, i) >= cfg.synonymTextSim) continue; // a near-synonym isn't a rival
     rival = Math.max(rival, sims[i]);
   }
+  const alt = second >= 0 && vocab.items[second].kind === vocab.items[top].kind && labelSim(vocab, top, second) >= cfg.synonymTextSim
+    ? vocab.items[second].label
+    : undefined;
 
   const byLabel = new Map<string, number>();
   vocab.items.forEach((it, i) => it.kind === "attr" && byLabel.set(it.label, i));
@@ -128,6 +137,8 @@ export function readPhoto(photo: ArrayLike<number>, vocab: LabelVocab, cfg: Twin
   return {
     index: top,
     label: vocab.items[top].label,
+    ...(alt ? { alt } : {}),
+    topSim: sims[top],
     kind: vocab.items[top].kind,
     margin: Number.isFinite(rival) ? sims[top] - rival : 1,
     attrZ,
@@ -145,9 +156,12 @@ export const PROBLEM_TEXT: Record<Problem, string> = {
 };
 
 /** Any photo: must be outdoors-ish and legible. */
-export function checkShot(r: Reading, cfg: Pick<TwinConfig, "margin"> = TWIN): Problem | undefined {
+export function checkShot(r: Reading, cfg: Pick<TwinConfig, "margin" | "minTopSim"> = TWIN): Problem | undefined {
   if (r.kind === "reject") return "outside";
-  if (r.kind === "unclear" || r.margin < cfg.margin) return "uncertain";
+  if (r.kind === "unclear") return "uncertain";
+  // Only a coin toss between different kinds AND a weak match is "can't tell" (F1: a clear
+  // cloud sits between "cloud" and "sky" and must never be refused).
+  if (r.margin < cfg.margin && r.topSim < cfg.minTopSim) return "uncertain";
   return undefined;
 }
 

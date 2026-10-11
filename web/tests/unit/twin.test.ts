@@ -39,6 +39,8 @@ const cfg: TwinConfig = {
   bands: { uncanny: 80, cousins: 55, distant: 30 },
   duplicateSim: 0.97,
   sameKindTextSim: 0.9,
+  synonymTextSim: 0.9,
+  minTopSim: 0.9,
   margin: 0.003,
   attrZ: 1,
   attr: { labels: ["round", "striped"], mu: [0.2, 0.1], sd: [0.1, 0.1] },
@@ -109,6 +111,17 @@ describe("readPhoto", () => {
     const r = readPhoto(unit(w.map((x, i) => x + d[i])), vocab, cfg);
     expect(r.margin).toBeLessThan(cfg.margin);
     expect(checkShot(r, cfg)).toBe("uncertain");
+  });
+  it("names a near-synonym runner-up next to the label (cloud / sky)", () => {
+    const r = readPhoto(e(1, 0.04, 0, 0, 0.23, 0), vocab, cfg);
+    expect([r.label, r.alt].sort()).toEqual(["tire", "wheel"]);
+  });
+  it("F1: a clear photo between two different kinds is accepted when its top match is strong", () => {
+    const w = ROWS[1][2], d = ROWS[2][2];
+    const tie = readPhoto(unit(w.map((x, i) => x + d[i])), vocab, cfg);
+    expect(tie.margin).toBeLessThan(cfg.margin);
+    expect(checkShot({ ...tie, topSim: 0.95 }, cfg)).toBeUndefined(); // strong match: not "can't tell"
+    expect(checkShot(tie, cfg)).toBe("uncertain"); // weak match (0.74): "can't tell"
   });
   it("computes attribute z-scores in config order", () => {
     const r = readPhoto(e(0, 1, 0, 0, 1, 0), vocab, cfg);

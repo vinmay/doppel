@@ -144,7 +144,7 @@ describe("persistence: reload mid-round restores state", () => {
   });
   it("stores the first photo's vector so the twin can be compared after a reload", async () => {
     const vector = Float32Array.from({ length: 768 }, (_, i) => Math.sin(i));
-    await putShot({ id: "a", day: "2026-10-11", ts: T0, vector, reading: { index: 3, label: "tire", kind: "thing", margin: 0.05, attrZ: [1, 2] }, thumbBlob: new Blob(["x"]) });
+    await putShot({ id: "a", day: "2026-10-11", ts: T0, vector, reading: { index: 3, label: "tire", kind: "thing", margin: 0.05, topSim: 0.7, attrZ: [1, 2] }, thumbBlob: new Blob(["x"]) });
     _resetDbForTests();
     const s = (await getShot("a"))!;
     expect(Array.from(s.vector)).toEqual(Array.from(vector));

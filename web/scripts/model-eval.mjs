@@ -28,9 +28,12 @@ const crit = [
   ["≥ 6 of 8 strangers score Distant or worse", `${strangers.filter((p) => !good(p)).length} of ${strangers.length}`, strangers.filter((p) => !good(p)).length >= 6],
   ["≥ 3 of 4 same-kind pairs rejected as same kind", `${same.filter((p) => p.problem === "same-kind").length} of ${same.length}`, same.filter((p) => p.problem === "same-kind").length >= 3],
   ["All 4 reject images rejected or uncertain", `${r.rejects.filter((x) => x.problem).length} of ${r.rejects.length}`, r.rejects.every((x) => x.problem)],
+  ["F1: practice photos accepted as first shot and as twin", JSON.stringify(r.practice), Object.entries(r.practice).filter(([k]) => k !== "cloud").every(([, v]) => v === null)],
+  ["F1: no twins/ or strangers/ photo refused as uncertain or outside", `${[...twins, ...strangers].filter((p) => p.checkA || p.checkB).length} refused`, [...twins, ...strangers].every((p) => !p.checkA && !p.checkB)],
   ["What they share: ≥ 1 attribute for ≥ 6 of 8 twins (sense judged in LOG.md)", `${twins.filter((p) => p.shared.length).length} of ${twins.length}`, twins.filter((p) => p.shared.length).length >= 6],
 ];
-const row = (p) => `| ${short(p.a)} ↔ ${short(p.b)} | ${p.labelA} ↔ ${p.labelB} | ${p.sim.toFixed(3)} | **${p.score}** | ${BANDS[p.band]} | ${p.shared.length ? p.shared.join(" · ") : "Not much, honestly."} | ${p.problem ?? "–"} |`;
+const seen = (l, alt) => (alt ? `${l} / ${alt}` : l);
+const row = (p) => `| ${short(p.a)} ↔ ${short(p.b)} | ${seen(p.labelA, p.altA)} ↔ ${seen(p.labelB, p.altB)} | ${p.sim.toFixed(3)} | **${p.score}** | ${BANDS[p.band]} | ${p.shared.length ? p.shared.join(" · ") : "Not much, honestly."} | ${[p.checkA && `A: ${p.checkA}`, p.checkB && `B: ${p.checkB}`, p.problem].filter(Boolean).join(", ") || "–"} |`;
 const head = "| Pair | Doppel sees | cosine | Score | Band | What they share | Rule |\n|---|---|---|---|---|---|---|";
 const md = `# Model-in-the-loop eval
 

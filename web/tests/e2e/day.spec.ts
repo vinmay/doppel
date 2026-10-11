@@ -75,7 +75,7 @@ test("full day: 3 pairs, reveal, best pair, done for today", async ({ page }) =>
 
   await shoot(page, "twins/02-tire.jpg");
   await expect(page.getByRole("region", { name: "Walk" })).toBeVisible();
-  await expect(page.getByTestId("sees")).toHaveText("tire");
+  await expect(page.getByTestId("sees")).toHaveText(/^tire( \/ [a-z ]+)?$/);
   await expect(page.getByTestId("walk-left")).toHaveText(/^0:4\d$/); // no GPS permission -> timer
   await expect(page.getByTestId("look-for")).toHaveText(/^Look for something .+\.$/);
   await page.clock.runFor(500);
@@ -156,7 +156,7 @@ test("reload during the walk and during the twin shot restores state; the timer 
   await expect(page.getByRole("region", { name: "Twin photo" })).toBeVisible();
   await page.reload();
   await expect(page.getByRole("region", { name: "Twin photo" })).toBeVisible();
-  await expect(page.getByTestId("sees")).toHaveText("tree bark");
+  await expect(page.getByTestId("sees")).toHaveText(/^tree bark( \/ [a-z ]+)?$/);
   await shoot(page, "twins/03-elephant-skin.jpg");
   await expect(page.getByRole("region", { name: "Reveal" })).toBeVisible();
   await page.reload();

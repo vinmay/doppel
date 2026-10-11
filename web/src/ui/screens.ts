@@ -32,7 +32,7 @@ const slot = (side: "a" | "b", inner: string, caption = "") => `
     <figcaption>${caption}</figcaption>
   </figure>`;
 
-const sees = (label: string) => `Doppel sees: <b data-testid="sees">${esc(label)}</b>`;
+const sees = (label: string, alt?: string) => `Doppel sees: <b data-testid="sees">${esc(label)}${alt ? ` / ${esc(alt)}` : ""}</b>`;
 
 const shootButton = (text: string) => `
   <label class="shoot">
@@ -109,12 +109,12 @@ export function firstView(pair: number, ideas: string[], firstRun: boolean, prac
 export const lookFor = (looks: string[]) =>
   looks.length ? `<p class="sub" data-testid="look-for">Look for something ${esc(looks.length === 1 ? looks[0] : `${looks.slice(0, -1).join(", ")} or ${looks.at(-1)}`)}.</p>` : "";
 
-export function walkView(pair: number, label: string, w: WalkStatus, looks: string[] = []): string {
+export function walkView(pair: number, label: string, w: WalkStatus, looks: string[] = [], alt?: string): string {
   return `
     <section class="screen walk" aria-label="Walk">
       ${hud(pair, `${w.meters} M WALKED`)}
       <div class="pair">
-        ${slot("a", `<canvas id="print-a" aria-label="Your first photo, printed"></canvas>`, sees(label))}
+        ${slot("a", `<canvas id="print-a" aria-label="Your first photo, printed"></canvas>`, sees(label, alt))}
         ${slot("b", `<div class="countdown">${walkReadout(w)}</div>`, "its twin")}
       </div>
       <h1 class="voice">Find its twin. Walk.</h1>
@@ -135,12 +135,12 @@ export function walkReadout(w: WalkStatus): string {
 
 export const article = (label: string) => (/^[aeiou]/.test(label) ? `an ${label}` : `a ${label}`);
 
-export function twinView(pair: number, label: string, looks: string[] = []): string {
+export function twinView(pair: number, label: string, looks: string[] = [], alt?: string): string {
   return `
     <section class="screen twin" aria-label="Twin photo">
       ${hud(pair)}
       <div class="pair">
-        ${slot("a", `<canvas id="print-a" aria-label="Your first photo, printed"></canvas>`, sees(label))}
+        ${slot("a", `<canvas id="print-a" aria-label="Your first photo, printed"></canvas>`, sees(label, alt))}
         ${slot("b", `<span class="slot-word">?</span>`, "its twin")}
       </div>
       <h1 class="voice">Now its twin.</h1>

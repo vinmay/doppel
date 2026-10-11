@@ -180,7 +180,9 @@ def main():
         out["bands"] = {"uncanny": 80, "cousins": 50, "distant": 30}  # cousins 55 -> 50 after the D7 model eval (LOG.md)
         out["duplicateSim"] = 0.97  # photo-photo cosine above this = the same thing twice (max seen between different objects: 0.919)
         out["sameKindTextSim"] = 0.90  # label text cosine; honeycomb~hexagonal tiles is 0.869 (a twin), rock~boulder 0.946 (same kind)
-        out["margin"] = 0.003  # top-1 minus best label of a different kind; ~3% of 67 photos fall below
+        out["margin"] = 0.003  # top-1 minus best label of a different kind (text sim < synonymTextSim)
+        out["synonymTextSim"] = 0.85  # labels this close are near-synonyms: shown together ("cloud / sky"), never rivals (F1)
+        out["minTopSim"] = 0.67  # uncertain needs a small margin AND a top-label sim below this; lowest clear photo: 0.681 (F1)
         out["attrZ"] = 1.0  # an attribute is shared when both photos are >= 1.0 sd above its mean
         save_candidates(diff_pairs[:10], lo, hi)
         (ROOT / "data" / "twin-scoring.json").write_text(json.dumps(out, indent=1) + "\n")

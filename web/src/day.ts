@@ -13,6 +13,7 @@ export interface ShotRef {
   id: string;
   ts: number;
   label: string;
+  alt?: string; // near-synonym runner-up ("cloud / sky")
   looks?: string[]; // its strongest attributes, the hint for finding a twin
 }
 

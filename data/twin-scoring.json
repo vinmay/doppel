@@ -156,5 +156,7 @@
  "duplicateSim": 0.97,
  "sameKindTextSim": 0.9,
  "margin": 0.003,
- "attrZ": 1.0
+ "attrZ": 1.0,
+ "synonymTextSim": 0.85,
+ "minTopSim": 0.67
 }
