@@ -117,7 +117,7 @@ export const lookFor = (looks: string[]) =>
 /** "Try: snow · foam · sheep" (G1). */
 export const tryThese = (tries: string[]) => (tries.length ? `<p class="sub tries" data-testid="tries"><span class="label">Try</span> ${tries.map(esc).join(" · ")}</p>` : "");
 
-export function walkView(pair: number, label: string, w: WalkStatus, looks: string[] = [], alt?: string, tries: string[] = []): string {
+export function walkView(pair: number, label: string, w: WalkStatus, looks: string[] = [], alt?: string, tries: string[] = [], again = false): string {
   return `
     <section class="screen walk" aria-label="Walk">
       ${hud(pair, `${w.meters} M WALKED`)}
@@ -125,7 +125,7 @@ export function walkView(pair: number, label: string, w: WalkStatus, looks: stri
         ${slot("a", `<canvas id="photo-a" aria-label="Your first photo"></canvas>`, sees(label, alt))}
         ${slot("b", `<div class="countdown">${walkReadout(w)}</div>`, "its twin")}
       </div>
-      <h1 class="voice">Find its twin. Walk.</h1>
+      <h1 class="voice">${again ? "Find another twin. Walk." : "Find its twin. Walk."}</h1>
       <p class="sub">${esc(notButLike(label))} Phone in your pocket until then.</p>
       ${lookFor(looks)}
       ${tryThese(tries)}
@@ -143,7 +143,7 @@ export function walkReadout(w: WalkStatus): string {
 }
 
 
-export function twinView(pair: number, label: string, looks: string[] = [], alt?: string, tries: string[] = []): string {
+export function twinView(pair: number, label: string, looks: string[] = [], alt?: string, tries: string[] = [], again = false): string {
   return `
     <section class="screen twin" aria-label="Twin photo">
       ${hud(pair)}
@@ -151,7 +151,7 @@ export function twinView(pair: number, label: string, looks: string[] = [], alt?
         ${slot("a", `<canvas id="photo-a" aria-label="Your first photo"></canvas>`, sees(label, alt))}
         ${slot("b", `<span class="slot-word">?</span>`, "its twin")}
       </div>
-      <h1 class="voice">Now its twin.</h1>
+      <h1 class="voice">${again ? "Now another twin." : "Now its twin."}</h1>
       <p class="sub">${esc(notButLike(label))}</p>
       ${lookFor(looks)}
       ${tryThese(tries)}
@@ -159,7 +159,13 @@ export function twinView(pair: number, label: string, looks: string[] = [], alt?
     </section>`;
 }
 
-export function revealView(pair: number, p: Required<Pick<PairState, "first" | "twin" | "result">>, last: boolean): string {
+export interface RevealExtras {
+  canRetry: boolean;
+  tries: number;
+  secondKept: boolean; // after two tries: was the second twin the better one?
+}
+
+export function revealView(pair: number, p: Required<Pick<PairState, "first" | "twin" | "result">>, last: boolean, x: RevealExtras = { canRetry: false, tries: 1, secondKept: false }): string {
   const r = p.result;
   return `
     <section class="screen reveal" aria-label="Reveal" data-band="${r.band}">
@@ -174,7 +180,11 @@ export function revealView(pair: number, p: Required<Pick<PairState, "first" | "
       ${r.bonus ? `<p class="stretch" data-testid="stretch"><b>+${r.bonus}</b> Stretch: ${STRETCH_LINE}</p>` : ""}
       <p class="voice verdict" data-testid="verdict">${esc(r.verdict)}</p>
       <p class="shared" data-testid="shared"><span class="label">What they share</span> ${r.shared.length ? `Both: ${r.shared.map(esc).join(" · ")}` : NOTHING_SHARED}</p>
-      <div class="dock"><button class="btn btn-shoot" id="next" type="button">${last ? "See today" : "Next pair"}</button></div>
+      ${x.tries >= 2 ? `<p class="best-of" data-testid="best-of"><span class="label">Best of 2</span> ${x.secondKept ? "Your second twin scored higher." : "Your first twin scored higher, so it stays."}</p>` : ""}
+      <div class="dock">
+        <button class="btn btn-shoot" id="next" type="button">${last ? "See today" : "Next pair"}</button>
+        ${x.canRetry ? `<button class="link" id="retry" type="button">Try another twin (one more walk)</button>` : ""}
+      </div>
     </section>`;
 }
 

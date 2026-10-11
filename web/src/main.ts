@@ -4,7 +4,7 @@ import "@fontsource/instrument-serif/latin-400.css";
 import "./wada.css";
 import "./style.css";
 import { prepareImage } from "./capture";
-import { acceptFirst, acceptTwin, bestPair, closeReveal, donePairs, metersWalked, newDay, phase, updateWalk, type DayState, type Phase } from "./day";
+import { acceptFirst, acceptTwin, activeWalk, bestPair, canRetry, closeReveal, retrying, startRetry, donePairs, metersWalked, newDay, phase, updateWalk, type DayState, type Phase } from "./day";
 import { clearAll, getDay, getMeta, getShot, listDays, newId, putDay, putShot, setMeta, type StoredShot } from "./db";
 import { getEmbedder, isFakeEmbedder, onModelProgress } from "./embed";
 import { fakePhotoVector } from "./embed/fake";
@@ -44,7 +44,7 @@ let watchId: number | undefined;
 let lastSaved = 0;
 function startGps() {
   if (watchId !== undefined || !day) return;
-  const w = current().walk;
+  const w = activeWalk(current());
   if (!w || w.gpsDenied) return;
   if (!("geolocation" in navigator)) {
     day = updateWalk(day, denyGps);
@@ -187,19 +187,19 @@ async function showToday(seq: number, force = false) {
     return mountDebug(app);
   }
   if (p.kind === "walking") {
-    render(app, walkView(p.pair, pr.first!.label, p.walk, pr.first!.looks ?? [], pr.first!.alt, pr.first!.tries ?? []));
+    render(app, walkView(p.pair, pr.first!.label, p.walk, pr.first!.looks ?? [], pr.first!.alt, pr.first!.tries ?? [], retrying(pr)));
     startGps();
     return void photoInto(app.querySelector("#photo-a"), pr.first!.id);
   }
   if (p.kind === "twin") {
-    render(app, twinView(p.pair, pr.first!.label, pr.first!.looks ?? [], pr.first!.alt, pr.first!.tries ?? []));
+    render(app, twinView(p.pair, pr.first!.label, pr.first!.looks ?? [], pr.first!.alt, pr.first!.tries ?? [], retrying(pr)));
     startGps(); // keep counting metres until the twin is in
     void photoInto(app.querySelector("#photo-a"), pr.first!.id);
     return wireShoot(seq, "twin");
   }
   if (p.kind === "reveal") {
     const done = pr as Required<typeof pr>;
-    render(app, revealView(p.pair, done, p.pair >= 3));
+    render(app, revealView(p.pair, done, p.pair >= 3, { canRetry: canRetry(pr), tries: pr.tries ?? 1, secondKept: !!pr.lastTry && pr.lastTry.twin.id === pr.twin!.id }));
     const tone = done.result.band;
     await Promise.all([fillStack(app.querySelector('[data-stack="a"]'), done.first.id, tone), fillStack(app.querySelector('[data-stack="b"]'), done.twin.id, tone)]);
     if (seq !== routeSeq) return;
@@ -211,6 +211,11 @@ async function showToday(seq: number, force = false) {
       countUp(app.querySelector<HTMLElement>("[data-testid=score]"));
     }, reducedMotion ? 0 : 550);
     if (tone === "uncanny") navigator.vibrate?.(30);
+    app.querySelector("#retry")?.addEventListener("click", async () => {
+      day = startRetry(day!, Date.now());
+      await save();
+      void showToday(seq, true);
+    });
     app.querySelector("#next")!.addEventListener("click", async () => {
       day = closeReveal(day!, Date.now());
       await save();
@@ -297,7 +302,7 @@ async function takePhoto(file: File, which: "first" | "twin", onStatus: (s: stri
     if (problem) return (onStatus(""), onRefused(PROBLEM_TEXT[problem]), false);
     const id = newId();
     await putShot({ id, day: day!.day, ts: now, vector, reading, thumbBlob });
-    const result = judgePair({ vector: first.vector, reading: first.reading }, { vector, reading }, `${day!.day}#${day!.pairs.length}`, undefined, vocab);
+    const result = judgePair({ vector: first.vector, reading: first.reading }, { vector, reading }, `${day!.day}#${day!.pairs.length}#${retrying(pr) ? 2 : 1}`, undefined, vocab);
     day = acceptTwin(day!, { id, ts: now, label: reading.label }, result, now);
     stopGps();
   }

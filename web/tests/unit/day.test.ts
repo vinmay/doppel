@@ -200,3 +200,40 @@ describe("day boundary at sunrise", () => {
     expect(addDays("2026-12-31", 1)).toBe("2027-01-01");
   });
 });
+
+describe("two tries per twin (G3)", () => {
+  const setup = (score1: number) => {
+    let d = acceptFirst(newDay("2026-10-11"), shot("a", T0), T0);
+    d = acceptTwin(d, shot("b1", T0 + 50_000), result(score1), T0 + 50_000);
+    return d;
+  };
+  it("a retry needs another walk, then keeps the higher score", async () => {
+    const { startRetry, canRetry } = await import("../../src/day");
+    let d = startRetry(setup(60), T0 + 60_000);
+    expect(phase(d, T0 + 61_000)).toMatchObject({ kind: "walking", walk: { msLeft: 44_000 } });
+    expect(phase(d, T0 + 105_000)).toEqual({ kind: "twin", pair: 1 });
+    d = acceptTwin(d, shot("b2", T0 + 106_000), result(80), T0 + 106_000);
+    expect(phase(d, T0 + 106_000)).toEqual({ kind: "reveal", pair: 1 });
+    expect(d.pairs[0].result!.score).toBe(80);
+    expect(d.pairs[0].twin!.id).toBe("b2");
+    expect(d.pairs[0].tries).toBe(2);
+    expect(canRetry(d.pairs[0])).toBe(false);
+    expect(() => startRetry(d, T0 + 107_000)).toThrow(/no more tries/);
+  });
+  it("keeps the first twin when the second scores lower (or ties)", async () => {
+    const { startRetry } = await import("../../src/day");
+    for (const s2 of [40, 60]) {
+      let d = startRetry(setup(60), T0 + 60_000);
+      d = acceptTwin(d, shot("b2", T0 + 106_000), result(s2), T0 + 106_000);
+      expect(d.pairs[0].twin!.id).toBe("b1");
+      expect(d.pairs[0].lastTry!.result.score).toBe(s2);
+    }
+  });
+  it("the retry walk takes GPS fixes and counts toward metres walked", async () => {
+    const { startRetry } = await import("../../src/day");
+    let d = startRetry(setup(60), T0 + 60_000);
+    for (const m of [0, 30, 60]) d = updateWalk(d, (w) => addFix(w, fix(m, T0 + 61_000 + m * 10)));
+    expect(phase(d, T0 + 62_000).kind).toBe("twin");
+    expect(metersWalked(d)).toBe(60);
+  });
+});
