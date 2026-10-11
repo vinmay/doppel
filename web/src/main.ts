@@ -18,7 +18,7 @@ import { band, checkShot, checkTwin, judgePair, PROBLEM_TEXT, readPhoto, suggest
 import { mountDebug } from "./ui/debug";
 import { esc, render } from "./ui/dom";
 import { loadModelWithStatus } from "./ui/model-status";
-import { doneView, firstView, historyView, revealView, twinView, walkPct, walkReadout, walkView, type DonePair } from "./ui/screens";
+import { doneView, firstView, historyView, revealView, twinView, walkHud, walkPct, walkReadout, walkView, type DonePair } from "./ui/screens";
 import { loadVocab } from "./vocab";
 import { addFix, denyGps } from "./walk";
 
@@ -212,7 +212,7 @@ async function showToday(seq: number, force = false) {
     return void photoInto(app.querySelector("#photo-a"), pr.first!.id);
   }
   if (p.kind === "twin") {
-    render(app, twinView(p.pair, pr.first!.label, pr.first!.looks ?? [], pr.first!.alt, pr.first!.tries ?? [], retrying(pr)));
+    render(app, twinView(p.pair, pr.first!.label, pr.first!.looks ?? [], pr.first!.alt, pr.first!.tries ?? [], retrying(pr), metersWalked(day)));
     startGps(); // keep counting metres until the twin is in
     void photoInto(app.querySelector("#photo-a"), pr.first!.id);
     wireRetake();
@@ -220,7 +220,7 @@ async function showToday(seq: number, force = false) {
   }
   if (p.kind === "reveal") {
     const done = pr as Required<typeof pr>;
-    render(app, revealView(p.pair, done, p.pair >= 3, { canRetry: canRetry(pr), tries: pr.tries ?? 1, secondKept: !!pr.lastTry && pr.lastTry.twin.id === pr.twin!.id }));
+    render(app, revealView(p.pair, done, p.pair >= 3, { canRetry: canRetry(pr), tries: pr.tries ?? 1, secondKept: !!pr.lastTry && pr.lastTry.twin.id === pr.twin!.id }, metersWalked(day)));
     const tone = done.result.band;
     await Promise.all([fillStack(app.querySelector('[data-stack="a"]'), done.first.id, tone), fillStack(app.querySelector('[data-stack="b"]'), done.twin.id, tone)]);
     if (seq !== routeSeq) return;

@@ -27,10 +27,14 @@ a { color: var(--fg); text-underline-offset: 3px; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
 /* ---------- frame */
+/* One app shell: the header is the same on every route and phase (sticky, fixed height). */
+:root { --header-h: 56px; --hud-h: 40px; }
 .topbar {
+  position: sticky; top: 0; z-index: 10;
   display: flex; align-items: center; justify-content: space-between; gap: 12px;
-  padding: max(8px, env(safe-area-inset-top)) var(--gutter) 8px;
-  border-bottom: var(--rule);
+  box-sizing: border-box; height: calc(var(--header-h) + env(safe-area-inset-top));
+  padding: env(safe-area-inset-top) var(--gutter) 0;
+  border-bottom: var(--rule); background: var(--bg);
 }
 .brand { font-weight: 600; letter-spacing: .32em; text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
 .topbar nav { display: flex; gap: 2px; }
@@ -45,16 +49,18 @@ main { max-width: 520px; margin: 0 auto; padding: 0 var(--gutter); outline: none
 /* ---------- type */
 .label { letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
 .hud {
-  display: flex; justify-content: space-between; gap: 8px; margin: 0;
-  padding: 10px 0; letter-spacing: .1em; text-transform: uppercase; font-variant-numeric: tabular-nums;
+  display: flex; justify-content: space-between; align-items: center; gap: 8px; margin: 0;
+  height: var(--hud-h); padding: 0; letter-spacing: .1em; text-transform: uppercase; font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
+.hud-right { overflow: hidden; text-overflow: ellipsis; min-width: 0; }
 .hud b { font-weight: 600; }
 .voice { font-family: var(--serif); font-weight: 400; font-size: var(--t-l); line-height: 1.05; margin: 18px 0 8px; letter-spacing: -.01em; }
 .sub { margin: 6px 0; }
 .privacy { color: var(--accent); }
 
 /* ---------- screens: a column whose dock sits at the bottom, under the thumb */
-.screen { display: flex; flex-direction: column; min-height: calc(100dvh - 61px); padding-bottom: 8px; }
+.screen { display: flex; flex-direction: column; min-height: calc(100dvh - var(--header-h) - env(safe-area-inset-top)); padding-bottom: 8px; }
 
 /* ---------- the pair frame */
 .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; overflow: clip; }
@@ -104,17 +110,15 @@ main { max-width: 520px; margin: 0 auto; padding: 0 var(--gutter); outline: none
 .shared .label { display: block; }
 
 /* ---------- first run: practice reveal */
-.lede { margin-top: 14px; }
-.practice { border-top: var(--rule); padding-top: 8px; }
-.practice .label { margin: 0 0 8px; }
-.practice .pair { max-width: 300px; margin: 0 auto; }
+.lede { margin-top: 10px; }
+.practice .label { margin: 8px 0 0; display: block; text-align: center; }
 .score.compact { font-size: var(--t-m); }
 .score.compact .n { font-size: 1em; }
 .band-inline { font-size: var(--t-s); font-weight: 400; letter-spacing: .14em; margin-left: 8px; vertical-align: middle; }
 
 /* ---------- walk (pocket screen): no chrome, nothing to stare at */
-body[data-phase="walking"] .topbar, body[data-phase="walking"] .test-banner { display: none; }
-.walk { min-height: 100dvh; justify-content: center; }
+/* phone away: the header stays (and stays tappable) but steps back */
+body[data-phase="walking"] .topbar { opacity: .72; }
 .walkbar { height: 8px; border: var(--rule); margin: 14px 0; }
 .walkbar > div { height: 100%; background: var(--fg); transition: width .25s linear; }
 
@@ -185,6 +189,12 @@ body[data-phase="walking"] .topbar, body[data-phase="walking"] .test-banner { di
 .debug dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; margin: 0 0 12px; }
 .debug dd { margin: 0; font-variant-numeric: tabular-nums; }
 .debug pre { white-space: pre-wrap; word-break: break-all; }
+
+/* short phones: keep the first-run headline above the dock (frames stay put, the practice pair's detail goes) */
+@media (max-height: 700px) {
+  .practice .shared { display: none; }
+  .practice .label { margin-top: 4px; }
+}
 
 @keyframes pulse { 50% { opacity: .3; } }
 @media (prefers-reduced-motion: reduce) {

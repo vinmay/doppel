@@ -15,11 +15,20 @@ const clock = (ms: number) => {
   return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
 };
 
+/**
+ * The one HUD row under the header on every game screen: "PAIR n OF 3" on the
+ * left, the phase's readout on the right (theme, walk timer/metres, metres walked).
+ */
 const hud = (pair: number, right = "") => `
   <div class="hud" aria-label="Progress">
     <span>PAIR <b data-testid="pair-n">${pair}</b> OF ${PAIRS_PER_DAY}</span>
-    <span>${right}</span>
+    <span class="hud-right" data-testid="hud-right">${right}</span>
   </div>`;
+
+const themeReadout = (theme?: string) => (theme ? `<span data-testid="theme">Today: ${esc(theme)}</span>` : "");
+const walkedReadout = (meters: number) => `<span data-testid="walked">${meters} M WALKED</span>`;
+/** Walk: the timer while GPS isn't usable, otherwise metres walked on this walk. */
+export const walkHud = (w: WalkStatus) => (w.mode === "gps" ? `${w.meters} M WALKED` : `${clock(w.msLeft)} LEFT`);
 
 /** A 4-step scale, Strangers to Uncanny, with only the current step filled. Always shown next to the band name, so it never rests on color alone. */
 export const bandMarks = (b: Band) => {
@@ -75,27 +84,25 @@ export function practiceView(p: Practice): string {
   const b = band(p.score);
   return `
     <div class="practice" aria-label="Practice reveal" data-testid="practice">
-      <p class="label" id="practice-label">A practice pair</p>
       <div class="pair together" id="practice-pair">
         ${slot("a", stack("practice-a", p.first.label, true), "", b)}
         ${slot("b", stack("practice-b", p.twin.label, true), "", b)}
       </div>
+      <p class="label" id="practice-label">A practice pair</p>
       <p class="labels">${esc(p.first.label)} <span aria-label="and">↔</span> ${esc(p.twin.label)}</p>
       <p class="score compact" data-value="${p.score}"><span class="n">${p.score}</span><span class="of">/100</span> <span class="band-inline">${bandMarks(b)} ${BAND_NAMES[b].toUpperCase()}</span></p>
       <p class="shared"><span class="label">What they share</span> Both: ${p.shared.map(esc).join(" · ")}</p>
     </div>`;
 }
 
-const themeLine = (theme?: string) => (theme ? `<p class="theme" data-testid="theme"><span class="label">Today</span> ${esc(theme)}</p>` : "");
 
 export function firstView(pair: number, ideas: string[], firstRun: boolean, practice?: Practice, theme?: string): string {
   if (firstRun && practice) {
     return `
     <section class="screen first" aria-label="First photo">
-      ${hud(pair)}
-      <h1 class="voice lede">Find two different things that look the same. Outside.</h1>
+      ${hud(pair, themeReadout(theme))}
       ${practiceView(practice)}
-      ${themeLine(theme)}
+      <h1 class="voice lede">Find two different things that look the same. Outside.</h1>
       <p class="sub privacy">Photos never leave your phone. Point it at things, not people.</p>
       <details class="ideas">
         <summary>Need an idea?</summary>
@@ -106,14 +113,13 @@ export function firstView(pair: number, ideas: string[], firstRun: boolean, prac
   }
   return `
     <section class="screen first" aria-label="First photo">
-      ${hud(pair)}
+      ${hud(pair, themeReadout(theme))}
       <div class="pair empty">
         ${slot("a", `<span class="slot-word">this</span>`)}
         ${slot("b", `<span class="slot-word">its twin</span>`)}
       </div>
       <h1 class="voice">${pair === 1 ? "Find two different things that look the same." : "Again. Start with anything outside."}</h1>
       <p class="sub">${pair === 1 ? "Photograph anything outside. Then walk, and find its twin." : "Then walk, and find its twin."}</p>
-      ${themeLine(theme)}
       ${firstRun ? `<p class="sub privacy">Photos never leave your phone. Point it at things, not people.</p>` : ""}
       <details class="ideas">
         <summary>Need an idea?</summary>
@@ -133,7 +139,7 @@ export const tryThese = (tries: string[]) => (tries.length ? `<p class="sub trie
 export function walkView(pair: number, label: string, w: WalkStatus, looks: string[] = [], alt?: string, tries: string[] = [], again = false): string {
   return `
     <section class="screen walk" aria-label="Walk">
-      ${hud(pair, `${w.meters} M WALKED`)}
+      ${hud(pair, `<span data-testid="walk-hud">${walkHud(w)}</span>`)}
       <div class="pair">
         ${slot("a", `<canvas id="photo-a" aria-label="Your first photo"></canvas>`, "", "neutral")}
         ${slot("b", `<div class="countdown">${walkReadout(w)}</div>`)}
@@ -158,10 +164,10 @@ export function walkReadout(w: WalkStatus): string {
 }
 
 
-export function twinView(pair: number, label: string, looks: string[] = [], alt?: string, tries: string[] = [], again = false): string {
+export function twinView(pair: number, label: string, looks: string[] = [], alt?: string, tries: string[] = [], again = false, meters = 0): string {
   return `
     <section class="screen twin" aria-label="Twin photo">
-      ${hud(pair)}
+      ${hud(pair, walkedReadout(meters))}
       <div class="pair">
         ${slot("a", `<canvas id="photo-a" aria-label="Your first photo"></canvas>`, "", "neutral")}
         ${slot("b", `<span class="slot-word">its twin?</span>`)}
@@ -181,11 +187,11 @@ export interface RevealExtras {
   secondKept: boolean; // after two tries: was the second twin the better one?
 }
 
-export function revealView(pair: number, p: Required<Pick<PairState, "first" | "twin" | "result">>, last: boolean, x: RevealExtras = { canRetry: false, tries: 1, secondKept: false }): string {
+export function revealView(pair: number, p: Required<Pick<PairState, "first" | "twin" | "result">>, last: boolean, x: RevealExtras = { canRetry: false, tries: 1, secondKept: false }, meters = 0): string {
   const r = p.result;
   return `
     <section class="screen reveal" aria-label="Reveal" data-band="${r.band}">
-      ${hud(pair)}
+      ${hud(pair, walkedReadout(meters))}
       <div class="pair together" id="pair">
         ${slot("a", stack("a", p.first.label, true), "", r.band)}
         ${slot("b", stack("b", p.twin.label, true), "", r.band)}
@@ -215,7 +221,7 @@ export function doneView(pairs: DonePair[], best: number, meters: number, nextDa
   const b = pairs[best];
   return `
     <section class="screen done" aria-label="Done for today">
-      <div class="hud"><span>DONE FOR TODAY</span><span data-testid="walked">${meters} M WALKED</span></div>
+      ${hud(pairs.length, walkedReadout(meters))}
       <p class="label">TODAY'S DOPPEL</p>
       <div class="pair together best">
         ${slot("a", stack(`best-a`, b.first), "", b.band)}

@@ -27,6 +27,7 @@ test("practice pair, reveal and history end on the real photos, in Wada mats", a
   // practice pair: developing flash, then originals
   const pa = page.locator('[data-stack="practice-a"]');
   await expect.poll(() => colors(pa.locator(".photo"))).toBeGreaterThan(200);
+  await expect(page.locator("#practice-pair")).toHaveClass(/developed/);
   await page.clock.runFor(1500);
   await expect(page.locator(".practice .score .n")).toHaveText("85");
   await expect.poll(() => opacity(pa.locator(".print"))).toBe("0");
