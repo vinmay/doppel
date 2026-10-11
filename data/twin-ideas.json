@@ -1,17 +1,215 @@
 {
- "source": "hand-written seed (D4); replaced in D6",
+ "source": "Gemma 4 E4B (gemma4:e4b) via Ollama, tools/gen_ideas.py, validated and deduplicated",
+ "date": "2026-10-11",
+ "count": 69,
  "ideas": [
-  {"text": "Something round and dark"},
-  {"text": "Something fluffy and white"},
-  {"text": "Something with stripes"},
-  {"text": "Something that looks like skin"},
-  {"text": "Something with a pattern of holes"},
-  {"text": "Something spiky"},
-  {"text": "Something cracked like old paint"},
-  {"text": "Something that looks soft but isn't"},
-  {"text": "Something shaped like a ring"},
-  {"text": "Something bumpy and green"},
-  {"text": "Something in neat rows"},
-  {"text": "Something rusty orange"}
- ]
+  {
+   "text": "Something perfectly round and smooth"
+  },
+  {
+   "text": "Something rough and light gray"
+  },
+  {
+   "text": "Something with thin brown stripes"
+  },
+  {
+   "text": "Something dark and deeply cracked"
+  },
+  {
+   "text": "Something soft and pure white"
+  },
+  {
+   "text": "Something black with sharp edges"
+  },
+  {
+   "text": "Something long and nicely curved"
+  },
+  {
+   "text": "Something fuzzy and deep green"
+  },
+  {
+   "text": "Something with a tight mesh"
+  },
+  {
+   "text": "Something covered in dark spots"
+  },
+  {
+   "text": "Something green and very wavy"
+  },
+  {
+   "text": "Something dark and quite shiny"
+  },
+  {
+   "text": "Something yellow with bristly texture"
+  },
+  {
+   "text": "Something round and open inside"
+  },
+  {
+   "text": "Something patchy and mottled"
+  },
+  {
+   "text": "Something sharp and prickly"
+  },
+  {
+   "text": "Something pale and puffy"
+  },
+  {
+   "text": "Something slick and bright"
+  },
+  {
+   "text": "Something brown and twisted"
+  },
+  {
+   "text": "Something ridged and heavy"
+  },
+  {
+   "text": "Something woolly and light"
+  },
+  {
+   "text": "Something glassy and clear"
+  },
+  {
+   "text": "Something tightly bundled and coarse"
+  },
+  {
+   "text": "Something dark and spongy"
+  },
+  {
+   "text": "Something hollow and curved"
+  },
+  {
+   "text": "Something soft and deeply wrinkled"
+  },
+  {
+   "text": "Something bumpy and pale"
+  },
+  {
+   "text": "Something jagged and grey"
+  },
+  {
+   "text": "Something square and deep red"
+  },
+  {
+   "text": "Something porous and pale"
+  },
+  {
+   "text": "Something silvery and wet"
+  },
+  {
+   "text": "Something conical and hard"
+  },
+  {
+   "text": "Something speckled dark and light"
+  },
+  {
+   "text": "Something muted orange and fuzzy"
+  },
+  {
+   "text": "Something chalky white and brittle"
+  },
+  {
+   "text": "Something zigzagging and thin"
+  },
+  {
+   "text": "Something bright blue and flat"
+  },
+  {
+   "text": "Something smooth and oblong"
+  },
+  {
+   "text": "Something dappled and leafy green"
+  },
+  {
+   "text": "Something golden and coarse"
+  },
+  {
+   "text": "Something pointed and dry"
+  },
+  {
+   "text": "Something with neat brown rings"
+  },
+  {
+   "text": "Something smooth and heavy grey"
+  },
+  {
+   "text": "Something woven with dark strands"
+  },
+  {
+   "text": "Something light and finely dusted"
+  },
+  {
+   "text": "Something covered in stiff fuzz"
+  },
+  {
+   "text": "Something curved with rough edges"
+  },
+  {
+   "text": "Something dark and heavily bumpy"
+  },
+  {
+   "text": "Something bright red and lumpy"
+  },
+  {
+   "text": "Something made of many small holes"
+  },
+  {
+   "text": "Something sharp and tightly layered"
+  },
+  {
+   "text": "Something stiff and sharply angled"
+  },
+  {
+   "text": "Something patterned black and white"
+  },
+  {
+   "text": "Something long and greatly twisted"
+  },
+  {
+   "text": "Something white and thickly spread"
+  },
+  {
+   "text": "Something rough and sandy"
+  },
+  {
+   "text": "Something pale and rounded"
+  },
+  {
+   "text": "Something dark with thick fur"
+  },
+  {
+   "text": "Something flat and widely spread"
+  },
+  {
+   "text": "Something small and clustered together"
+  },
+  {
+   "text": "Something wrinkled and reddish"
+  },
+  {
+   "text": "Something light with fine hairs"
+  },
+  {
+   "text": "Something deep brown and brittle"
+  },
+  {
+   "text": "Something round and deeply scored"
+  },
+  {
+   "text": "Something green with patchy white"
+  },
+  {
+   "text": "Something grey and extremely weathered"
+  },
+  {
+   "text": "Something smooth and brightly mottled"
+  },
+  {
+   "text": "Something pale with a thick cap"
+  },
+  {
+   "text": "Something short and densely layered"
+  }
+ ],
+ "curated": "10 removed by tools/gen_ideas.py --curate (DROP list)"
 }
