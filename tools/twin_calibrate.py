@@ -177,7 +177,7 @@ def main():
                      "source": f"mean/sd of each attribute's cosine over {len(names)} photos (eval + fixtures)"},
         }
         # Rule thresholds, chosen from the numbers printed above (see LOG.md D1 for the reasoning).
-        out["bands"] = {"uncanny": 80, "cousins": 55, "distant": 30}
+        out["bands"] = {"uncanny": 80, "cousins": 50, "distant": 30}  # cousins 55 -> 50 after the D7 model eval (LOG.md)
         out["duplicateSim"] = 0.97  # photo-photo cosine above this = the same thing twice (max seen between different objects: 0.919)
         out["sameKindTextSim"] = 0.90  # label text cosine; honeycomb~hexagonal tiles is 0.869 (a twin), rock~boulder 0.946 (same kind)
         out["margin"] = 0.003  # top-1 minus best label of a different kind; ~3% of 67 photos fall below

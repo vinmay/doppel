@@ -150,7 +150,7 @@
  },
  "bands": {
   "uncanny": 80,
-  "cousins": 55,
+  "cousins": 50,
   "distant": 30
  },
  "duplicateSim": 0.97,
