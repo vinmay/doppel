@@ -18,7 +18,7 @@ import { band, checkShot, checkTwin, judgePair, PROBLEM_TEXT, readPhoto, suggest
 import { mountDebug } from "./ui/debug";
 import { esc, render } from "./ui/dom";
 import { loadModelWithStatus } from "./ui/model-status";
-import { doneView, firstView, historyView, revealView, twinView, walkHud, walkPct, walkReadout, walkView, type DonePair } from "./ui/screens";
+import { doneView, firstView, historyView, howView, revealView, twinView, walkHud, walkPct, walkReadout, walkView, type DonePair } from "./ui/screens";
 import { loadVocab } from "./vocab";
 import { addFix, denyGps } from "./walk";
 
@@ -358,6 +358,10 @@ function route() {
   if (r.name === "history") {
     document.body.dataset.phase = "history";
     return void showHistory(seq);
+  }
+  if (r.name === "how") {
+    document.body.dataset.phase = "how";
+    return render(app, howView());
   }
   void showToday(seq, true);
   tick = window.setInterval(() => void showToday(seq), 250);

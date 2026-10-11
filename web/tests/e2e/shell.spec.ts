@@ -27,12 +27,18 @@ for (const size of [{ width: 390, height: 844 }, { width: 375, height: 667 }]) {
       await expect(header.getByRole("link", { name: "DOPPEL" })).toBeVisible();
       await expect(header.getByRole("link", { name: "Today" })).toBeVisible();
       await expect(header.getByRole("link", { name: "History" })).toBeVisible();
+      const help = header.getByRole("link", { name: "How to play" });
+      await expect(help).toBeVisible();
+      await expect(help).toHaveText("?");
+      const hb2 = (await help.boundingBox())!;
+      expect(hb2.width, phase).toBeGreaterThanOrEqual(44);
+      expect(hb2.height, phase).toBeGreaterThanOrEqual(44);
       const hb = (await header.boundingBox())!;
       headerY.push(hb.y);
       expect(hb.y, phase).toBe(0);
       expect(Math.round(hb.height), phase).toBe(56); // fixed height (border-box, rule included)
-      const current = await header.locator("[aria-current]").textContent();
-      expect(current, phase).toBe(phase === "history" ? "History" : "Today");
+      const current = await header.locator("[aria-current]").getAttribute("data-nav");
+      expect(current, phase).toBe(phase === "history" ? "history" : phase === "how" ? "how" : "today");
       if (opts.hud !== false) {
         await expect(page.locator(".hud"), phase).toHaveCount(1);
         await expect(page.locator(".hud").getByText(/^PAIR \d OF 3$/), phase).toBeVisible();
@@ -51,6 +57,7 @@ for (const size of [{ width: 390, height: 844 }, { width: 375, height: 667 }]) {
     const h1 = (await page.getByRole("heading", { level: 1 }).boundingBox())!, dock = (await page.locator(".dock").boundingBox())!;
     expect(h1.y + h1.height).toBeLessThanOrEqual(dock.y);
     await check("first-run", { frame: true });
+    await expect(page.locator(".practice").getByRole("link", { name: "How to play" })).toBeVisible();
     await shoot(page, "twins/02-tire.jpg");
     await expect(page.getByRole("region", { name: "Walk" })).toBeVisible();
     await check("walk", { frame: true });
@@ -92,6 +99,10 @@ for (const size of [{ width: 390, height: 844 }, { width: 375, height: 667 }]) {
     await page.getByRole("link", { name: "History" }).click();
     await expect(page.getByRole("heading", { name: "Past Doppels" })).toBeVisible();
     await check("history", { hud: false });
+    await page.getByRole("link", { name: "How to play" }).click();
+    await expect(page.getByRole("heading", { level: 1, name: "How to play" })).toBeVisible();
+    await expect(page.getByText(/About 50 m, measured by GPS\. Without location, or with weak GPS, a 45-second timer instead\./)).toBeVisible();
+    await check("how", { hud: false });
 
     expect(new Set(headerY).size).toBe(1);
     const ys = Object.values(frameY);

@@ -88,7 +88,7 @@ export function practiceView(p: Practice): string {
         ${slot("a", stack("practice-a", p.first.label, true), "", b)}
         ${slot("b", stack("practice-b", p.twin.label, true), "", b)}
       </div>
-      <p class="label" id="practice-label">A practice pair</p>
+      <p class="label" id="practice-label">A practice pair · <a href="${href.how()}">How to play</a></p>
       <p class="labels">${esc(p.first.label)} <span aria-label="and">↔</span> ${esc(p.twin.label)}</p>
       <p class="score compact" data-value="${p.score}"><span class="n">${p.score}</span><span class="of">/100</span> <span class="band-inline">${bandMarks(b)} ${BAND_NAMES[b].toUpperCase()}</span></p>
       <p class="shared"><span class="label">What they share</span> Both: ${p.shared.map(esc).join(" · ")}</p>
@@ -264,5 +264,28 @@ export function historyView(rows: HistoryRow[]): string {
               <span>${esc(dayLabel(r.day))}: ${esc(r.first)} ↔ ${esc(r.twin)}</span><b>${r.score}</b></li>`).join("")}</ol>
           <p class="sub">Photos and scores are stored only on this device.</p>
           <p><button class="btn btn-quiet" id="delete-all" type="button">Delete everything</button></p>`}
+    </section>`;
+}
+
+/** How to play (F8): one phone screen of rules, opened from the "?" in the header. */
+export function howView(): string {
+  return `
+    <section class="screen how" aria-label="How to play">
+      <h1 class="voice">How to play</h1>
+      <ol class="steps">
+        <li><b>Photograph anything outside.</b> Doppel says what it sees.</li>
+        <li><b>Walk.</b> About 50 m, measured by GPS. Without location, or with weak GPS, a 45-second timer instead.</li>
+        <li><b>Find its twin:</b> a different kind of thing that looks the same. A tire and a donut. Moss and broccoli.</li>
+        <li><b>The reveal.</b> Doppel scores how alike they look, from 0 to 100.</li>
+      </ol>
+      <h2 class="label">The score</h2>
+      <p class="sub"><b>Uncanny</b> 80+ · <b>Cousins</b> 50+ · <b>Distant</b> 30+ · <b>Strangers</b> below. "What they share" names what both photos have, like round or striped. Very different kinds of thing that still look alike earn a stretch bonus, up to +10.</p>
+      <h2 class="label">Your day</h2>
+      <p class="sub">Three pairs a day; your best pair is today's Doppel. You can retake the first photo before the twin, and try one more twin per pair: the better one counts. A new day starts at sunrise (6:00 without location).</p>
+      <h2 class="label">Not counted</h2>
+      <p class="sub">Screens, rooms, documents and people (take it outside), photos Doppel can't read, the same photo twice, or the same kind of thing. Refused shots never use up a turn.</p>
+      <h2 class="label">Your phone</h2>
+      <p class="sub">Needs WebGPU (Chrome on Android, or a recent desktop browser). The AI model downloads once (388 MB, Wi-Fi is best), then Doppel works offline. Photos never leave your phone. Location is only used to measure the walk.</p>
+      <p class="sub"><a href="${href.today()}">Back to today</a></p>
     </section>`;
 }

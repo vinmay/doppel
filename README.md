@@ -24,7 +24,7 @@ Built Oct 10 to 11, 2026 for DEV Hacktoberfest Week 1 ("Touch Grass").
 3. **Its twin.** Photograph a different kind of thing that looks like the first.
 4. **Reveal.** Both photos slide together in a brief two-ink "developing" flash, then resolve to the real photos while the score counts up. Your photos are never tinted: the Sanzo Wada colors live in the mat around them. Very different kinds of thing that still look alike earn a **stretch bonus** (up to +10). You may try one more twin per pair (another walk); the better one counts.
 
-Shots Doppel can't use are refused and **not counted**: screens, rooms, documents and people ("Take it outside."), photos it can't read ("Get closer and fill the frame."), the same photo twice, or the same kind of thing ("Find something different that looks like it."). Stuck? **Need an idea?** offers three hints a day, nudged toward a daily theme ("Today: Round things").
+Shots Doppel can't use are refused and **not counted**: screens, rooms, documents and people ("Take it outside."), photos it can't read ("Get closer and fill the frame."), the same photo twice, or the same kind of thing ("Find something different that looks like it."). The **?** in the header opens a one-screen "How to play". Stuck? **Need an idea?** offers three hints a day, nudged toward a daily theme ("Today: Round things").
 
 ## How it works
 
