@@ -73,6 +73,22 @@ def article(label: str) -> str:
     return ("an " if label[0] in "aeiou" else "a ") + label
 
 
+THE = {"sky"}  # "something that isn't the sky"
+
+
+def grammar(label: str) -> dict:
+    """Article and number for using a label in a sentence (F4): "isn't a tire, but looks like one",
+    "isn't cotton, but looks like it", "isn't pebbles, but looks like them"."""
+    if label in THE:
+        return {"article": "the", "number": "mass"}
+    if label in MASS and label != "soda can":
+        plural = label.endswith("s") and label not in {"moss", "grass"}
+        return {"article": "", "number": "plural" if plural else "mass"}
+    if label.endswith("s") and label not in {"bus", "cactus", "hibiscus", "glass"}:
+        return {"article": "", "number": "plural"}
+    return {"article": "an" if label[0] in "aeiou" else "a", "number": "one"}
+
+
 def main():
     items = []
     seen = set()
@@ -82,7 +98,7 @@ def main():
                 raise SystemExit(f"duplicate label: {label}")
             seen.add(label)
             text = f"a photo of {article(label)}" if kind != "unclear" else f"a {label}"
-            items.append({"text": text, "label": label, "kind": kind})
+            items.append({"text": text, "label": label, "kind": kind, **grammar(label)})
     attrs = split(ATTRS)
     if len(set(attrs)) != len(attrs):
         raise SystemExit("duplicate attr")

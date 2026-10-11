@@ -12,1157 +12,1619 @@
   {
    "text": "a photo of a tree",
    "label": "tree",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of tree bark",
    "label": "tree bark",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "mass"
   },
   {
    "text": "a photo of a tree trunk",
    "label": "tree trunk",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a tree stump",
    "label": "tree stump",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of tree roots",
    "label": "tree roots",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "plural"
   },
   {
    "text": "a photo of a branch",
    "label": "branch",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a twig",
    "label": "twig",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a log",
    "label": "log",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a leaf",
    "label": "leaf",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of pile of leaves",
    "label": "pile of leaves",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "plural"
   },
   {
    "text": "a photo of pine needles",
    "label": "pine needles",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "plural"
   },
   {
    "text": "a photo of a pinecone",
    "label": "pinecone",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of an acorn",
    "label": "acorn",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "an",
+   "number": "one"
   },
   {
    "text": "a photo of a seed pod",
    "label": "seed pod",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of moss",
    "label": "moss",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "mass"
   },
   {
    "text": "a photo of lichen",
    "label": "lichen",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "mass"
   },
   {
    "text": "a photo of grass",
    "label": "grass",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "mass"
   },
   {
    "text": "a photo of clover",
    "label": "clover",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "mass"
   },
   {
    "text": "a photo of weeds",
    "label": "weeds",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "plural"
   },
   {
    "text": "a photo of a dandelion",
    "label": "dandelion",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a flower",
    "label": "flower",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a rose",
    "label": "rose",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a tulip",
    "label": "tulip",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a sunflower",
    "label": "sunflower",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a daisy",
    "label": "daisy",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a mushroom",
    "label": "mushroom",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a fern",
    "label": "fern",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a bush",
    "label": "bush",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a hedge",
    "label": "hedge",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a cactus",
    "label": "cactus",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a succulent plant",
    "label": "succulent plant",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of ivy",
    "label": "ivy",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "mass"
   },
   {
    "text": "a photo of a vine",
    "label": "vine",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a rock",
    "label": "rock",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of pebbles",
    "label": "pebbles",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "plural"
   },
   {
    "text": "a photo of gravel",
    "label": "gravel",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "mass"
   },
   {
    "text": "a photo of a boulder",
    "label": "boulder",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of sand",
    "label": "sand",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "mass"
   },
   {
    "text": "a photo of soil",
    "label": "soil",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "mass"
   },
   {
    "text": "a photo of mud",
    "label": "mud",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "mass"
   },
   {
    "text": "a photo of a puddle",
    "label": "puddle",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a pond",
    "label": "pond",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a lake",
    "label": "lake",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a river",
    "label": "river",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a waterfall",
    "label": "waterfall",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of ocean waves",
    "label": "ocean waves",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "plural"
   },
   {
    "text": "a photo of a beach",
    "label": "beach",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of snow",
    "label": "snow",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "mass"
   },
   {
    "text": "a photo of ice",
    "label": "ice",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "mass"
   },
   {
    "text": "a photo of an icicle",
    "label": "icicle",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "an",
+   "number": "one"
   },
   {
    "text": "a photo of a cloud",
    "label": "cloud",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of sky",
    "label": "sky",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "the",
+   "number": "mass"
   },
   {
    "text": "a photo of a sunset",
    "label": "sunset",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a mountain",
    "label": "mountain",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a hill",
    "label": "hill",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a field",
    "label": "field",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a feather",
    "label": "feather",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a bird",
    "label": "bird",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a pigeon",
    "label": "pigeon",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a duck",
    "label": "duck",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a squirrel",
    "label": "squirrel",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a dog",
    "label": "dog",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a cat",
    "label": "cat",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a butterfly",
    "label": "butterfly",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a bee",
    "label": "bee",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a spider web",
    "label": "spider web",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a snail shell",
    "label": "snail shell",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a seashell",
    "label": "seashell",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a bird nest",
    "label": "bird nest",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of an eggshell",
    "label": "eggshell",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "an",
+   "number": "one"
   },
   {
    "text": "a photo of a zebra",
    "label": "zebra",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of elephant skin",
    "label": "elephant skin",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "mass"
   },
   {
    "text": "a photo of a tiger",
    "label": "tiger",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a giraffe",
    "label": "giraffe",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of leopard spots",
    "label": "leopard spots",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "plural"
   },
   {
    "text": "a photo of snake skin",
    "label": "snake skin",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "mass"
   },
   {
    "text": "a photo of fish scales",
    "label": "fish scales",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "plural"
   },
   {
    "text": "a photo of a turtle shell",
    "label": "turtle shell",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a caterpillar",
    "label": "caterpillar",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a donut",
    "label": "donut",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a bagel",
    "label": "bagel",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of broccoli",
    "label": "broccoli",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "mass"
   },
   {
    "text": "a photo of cauliflower",
    "label": "cauliflower",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "mass"
   },
   {
    "text": "a photo of an artichoke",
    "label": "artichoke",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "an",
+   "number": "one"
   },
   {
    "text": "a photo of a chocolate bar",
    "label": "chocolate bar",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a waffle",
    "label": "waffle",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a pancake",
    "label": "pancake",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a cookie",
    "label": "cookie",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a cracker",
    "label": "cracker",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a loaf of bread",
    "label": "loaf of bread",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a pretzel",
    "label": "pretzel",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of cotton candy",
    "label": "cotton candy",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "mass"
   },
   {
    "text": "a photo of cotton",
    "label": "cotton",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "mass"
   },
   {
    "text": "a photo of a pumpkin",
    "label": "pumpkin",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of an orange",
    "label": "orange",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "an",
+   "number": "one"
   },
   {
    "text": "a photo of a lemon",
    "label": "lemon",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of an apple",
    "label": "apple",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "an",
+   "number": "one"
   },
   {
    "text": "a photo of a strawberry",
    "label": "strawberry",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a pineapple",
    "label": "pineapple",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a corn on the cob",
    "label": "corn on the cob",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a melon",
    "label": "melon",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of cabbage",
    "label": "cabbage",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "mass"
   },
   {
    "text": "a photo of lettuce",
    "label": "lettuce",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "mass"
   },
   {
    "text": "a photo of an onion",
    "label": "onion",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "an",
+   "number": "one"
   },
   {
    "text": "a photo of a pomegranate",
    "label": "pomegranate",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of popcorn",
    "label": "popcorn",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "mass"
   },
   {
    "text": "a photo of honeycomb",
    "label": "honeycomb",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "mass"
   },
   {
    "text": "a photo of coffee beans",
    "label": "coffee beans",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "plural"
   },
   {
    "text": "a photo of rice",
    "label": "rice",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "mass"
   },
   {
    "text": "a photo of noodles",
    "label": "noodles",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "plural"
   },
   {
    "text": "a photo of a pizza",
    "label": "pizza",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of cheese",
    "label": "cheese",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "mass"
   },
   {
    "text": "a photo of a marshmallow",
    "label": "marshmallow",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of an egg",
    "label": "egg",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "an",
+   "number": "one"
   },
   {
    "text": "a photo of an ice cream cone",
    "label": "ice cream cone",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "an",
+   "number": "one"
   },
   {
    "text": "a photo of a brain coral",
    "label": "brain coral",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a sponge",
    "label": "sponge",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a brick wall",
    "label": "brick wall",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a stone wall",
    "label": "stone wall",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of concrete",
    "label": "concrete",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "mass"
   },
   {
    "text": "a photo of an asphalt road",
    "label": "asphalt road",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "an",
+   "number": "one"
   },
   {
    "text": "a photo of a sidewalk",
    "label": "sidewalk",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a crack in the pavement",
    "label": "crack in the pavement",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a manhole cover",
    "label": "manhole cover",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a drain grate",
    "label": "drain grate",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a fence",
    "label": "fence",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a chain-link fence",
    "label": "chain-link fence",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a wooden fence",
    "label": "wooden fence",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a gate",
    "label": "gate",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of hexagonal tiles",
    "label": "hexagonal tiles",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "plural"
   },
   {
    "text": "a photo of paving stones",
    "label": "paving stones",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "plural"
   },
   {
    "text": "a photo of cobblestones",
    "label": "cobblestones",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "plural"
   },
   {
    "text": "a photo of roof tiles",
    "label": "roof tiles",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "plural"
   },
   {
    "text": "a photo of a window",
    "label": "window",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a door",
    "label": "door",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a staircase",
    "label": "staircase",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a railing",
    "label": "railing",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a bench",
    "label": "bench",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a picnic table",
    "label": "picnic table",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a trash can",
    "label": "trash can",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a mailbox",
    "label": "mailbox",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a fire hydrant",
    "label": "fire hydrant",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a stop sign",
    "label": "stop sign",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a traffic cone",
    "label": "traffic cone",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a traffic light",
    "label": "traffic light",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a street lamp",
    "label": "street lamp",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of an utility pole",
    "label": "utility pole",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "an",
+   "number": "one"
   },
   {
    "text": "a photo of power lines",
    "label": "power lines",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "plural"
   },
   {
    "text": "a photo of a street sign",
    "label": "street sign",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a bicycle",
    "label": "bicycle",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a car",
    "label": "car",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a truck",
    "label": "truck",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a bus",
    "label": "bus",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a tire",
    "label": "tire",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a wheel",
    "label": "wheel",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a motorcycle",
    "label": "motorcycle",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a parking lot",
    "label": "parking lot",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a garage door",
    "label": "garage door",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a striped awning",
    "label": "striped awning",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of an umbrella",
    "label": "umbrella",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "an",
+   "number": "one"
   },
   {
    "text": "a photo of a flag",
    "label": "flag",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a playground slide",
    "label": "playground slide",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a swing",
    "label": "swing",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a basketball hoop",
    "label": "basketball hoop",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a ball",
    "label": "ball",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a tennis ball",
    "label": "tennis ball",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a soccer ball",
    "label": "soccer ball",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a rope",
    "label": "rope",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a chain",
    "label": "chain",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a garden hose",
    "label": "garden hose",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a bucket",
    "label": "bucket",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a flower pot",
    "label": "flower pot",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a statue",
    "label": "statue",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a fountain",
    "label": "fountain",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a bridge",
    "label": "bridge",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a building",
    "label": "building",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a house",
    "label": "house",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a shed",
    "label": "shed",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a barn",
    "label": "barn",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of graffiti",
    "label": "graffiti",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "mass"
   },
   {
    "text": "a photo of a mural",
    "label": "mural",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a poster",
    "label": "poster",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of rusty metal",
    "label": "rusty metal",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "mass"
   },
   {
    "text": "a photo of peeling paint",
    "label": "peeling paint",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "mass"
   },
   {
    "text": "a photo of corrugated metal",
    "label": "corrugated metal",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "mass"
   },
   {
    "text": "a photo of an air conditioner unit",
    "label": "air conditioner unit",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "an",
+   "number": "one"
   },
   {
    "text": "a photo of a solar panel",
    "label": "solar panel",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a pipe",
    "label": "pipe",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of crosswalk stripes",
    "label": "crosswalk stripes",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "plural"
   },
   {
    "text": "a photo of a shadow",
    "label": "shadow",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a reflection",
    "label": "reflection",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of knitted wool",
    "label": "knitted wool",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "mass"
   },
   {
    "text": "a photo of a wicker basket",
    "label": "wicker basket",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of straw",
    "label": "straw",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "mass"
   },
   {
    "text": "a photo of a hay bale",
    "label": "hay bale",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of cork",
    "label": "cork",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "",
+   "number": "mass"
   },
   {
    "text": "a photo of a cardboard box",
    "label": "cardboard box",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a plastic bag",
    "label": "plastic bag",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a bottle",
    "label": "bottle",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a soda can",
    "label": "soda can",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a glove",
    "label": "glove",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a shoe",
    "label": "shoe",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a hat",
    "label": "hat",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a doormat",
    "label": "doormat",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a tarp",
    "label": "tarp",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a scarecrow",
    "label": "scarecrow",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a birdhouse",
    "label": "birdhouse",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a pumpkin patch",
    "label": "pumpkin patch",
-   "kind": "thing"
+   "kind": "thing",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a phone screen",
    "label": "phone screen",
-   "kind": "reject"
+   "kind": "reject",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a computer screen",
    "label": "computer screen",
-   "kind": "reject"
+   "kind": "reject",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a television",
    "label": "television",
-   "kind": "reject"
+   "kind": "reject",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a laptop",
    "label": "laptop",
-   "kind": "reject"
+   "kind": "reject",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of an indoor room",
    "label": "indoor room",
-   "kind": "reject"
+   "kind": "reject",
+   "article": "an",
+   "number": "one"
   },
   {
    "text": "a photo of a living room",
    "label": "living room",
-   "kind": "reject"
+   "kind": "reject",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a bedroom",
    "label": "bedroom",
-   "kind": "reject"
+   "kind": "reject",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a kitchen",
    "label": "kitchen",
-   "kind": "reject"
+   "kind": "reject",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of an office",
    "label": "office",
-   "kind": "reject"
+   "kind": "reject",
+   "article": "an",
+   "number": "one"
   },
   {
    "text": "a photo of a bathroom",
    "label": "bathroom",
-   "kind": "reject"
+   "kind": "reject",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a document",
    "label": "document",
-   "kind": "reject"
+   "kind": "reject",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a page of text",
    "label": "page of text",
-   "kind": "reject"
+   "kind": "reject",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a book",
    "label": "book",
-   "kind": "reject"
+   "kind": "reject",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a receipt",
    "label": "receipt",
-   "kind": "reject"
+   "kind": "reject",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a person",
    "label": "person",
-   "kind": "reject"
+   "kind": "reject",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a face",
    "label": "face",
-   "kind": "reject"
+   "kind": "reject",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a selfie",
    "label": "selfie",
-   "kind": "reject"
+   "kind": "reject",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a group of people",
    "label": "group of people",
-   "kind": "reject"
+   "kind": "reject",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a photo of a hand",
    "label": "hand",
-   "kind": "reject"
+   "kind": "reject",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a dark blurry photo",
    "label": "dark blurry photo",
-   "kind": "unclear"
+   "kind": "unclear",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a black image",
    "label": "black image",
-   "kind": "unclear"
+   "kind": "unclear",
+   "article": "a",
+   "number": "one"
   },
   {
    "text": "a out of focus photo",
    "label": "out of focus photo",
-   "kind": "unclear"
+   "kind": "unclear",
+   "article": "an",
+   "number": "one"
   },
   {
    "text": "a overexposed white photo",
    "label": "overexposed white photo",
-   "kind": "unclear"
+   "kind": "unclear",
+   "article": "an",
+   "number": "one"
   },
   {
    "text": "something round",

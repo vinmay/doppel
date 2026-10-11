@@ -7,6 +7,7 @@ import type { PairState } from "../day";
 import { PAIRS_PER_DAY } from "../day";
 import type { WalkStatus } from "../walk";
 import { href } from "../router";
+import { notButLike } from "../grammar";
 import { esc } from "./dom";
 
 const clock = (ms: number) => {
@@ -118,7 +119,7 @@ export function walkView(pair: number, label: string, w: WalkStatus, looks: stri
         ${slot("b", `<div class="countdown">${walkReadout(w)}</div>`, "its twin")}
       </div>
       <h1 class="voice">Find its twin. Walk.</h1>
-      <p class="sub">Something that isn't ${esc(article(label))}, but looks like one. Phone in your pocket until then.</p>
+      <p class="sub">${esc(notButLike(label))} Phone in your pocket until then.</p>
       ${lookFor(looks)}
       <div class="walkbar" role="progressbar" aria-label="Walk" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${walkPct(w)}"><div style="width:${walkPct(w)}%"></div></div>
     </section>`;
@@ -133,7 +134,6 @@ export function walkReadout(w: WalkStatus): string {
     : `<span class="big" data-testid="walk-left">${clock(w.msLeft)}</span><span class="small">no GPS, so a timer</span>`;
 }
 
-export const article = (label: string) => (/^[aeiou]/.test(label) ? `an ${label}` : `a ${label}`);
 
 export function twinView(pair: number, label: string, looks: string[] = [], alt?: string): string {
   return `
@@ -144,7 +144,7 @@ export function twinView(pair: number, label: string, looks: string[] = [], alt?
         ${slot("b", `<span class="slot-word">?</span>`, "its twin")}
       </div>
       <h1 class="voice">Now its twin.</h1>
-      <p class="sub">Something that isn't ${esc(article(label))}, but looks like one.</p>
+      <p class="sub">${esc(notButLike(label))}</p>
       ${lookFor(looks)}
       ${dock(shootButton("Photograph its twin"))}
     </section>`;
