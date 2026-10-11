@@ -8,7 +8,7 @@
 import { createHash } from "node:crypto";
 import { readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 
-const DIM = 256;
+const DIM = 768; // Doppel: photo-photo, labels and attributes all at full 768-d (D1)
 const MODEL = ".models/embeddinggemma-2-text-vision-440m.litertlm";
 const args = process.argv.slice(2);
 const opt = (k) => (args.includes(k) ? args[args.indexOf(k) + 1] : undefined);

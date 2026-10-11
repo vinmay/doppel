@@ -1,15 +1,16 @@
-// P2: embed every phrase in data/vocab.json with the app's in-browser
-// embedder (design rule 1: same runtime as photos) and POST the vectors back
-// as base64 Float32 (768-d, L2-normalised); scripts/vocab-pack.mjs turns them
-// into public/vocab-<hash>.bin. With ?photos it also embeds V's eval photos,
-// staged by hand into web/.eval-photos/ (never committed), for the GATE H1
-// analysis. Dev-only page. Run:
-//   scripts/edge-run.sh "/vocab-build.html[?photos]" "VOCAB_(DONE|FAIL)" 1200
+// Embeds every row of data/vocab.json (labels, rejects, attributes) with the
+// app's own in-browser embedder and POSTs the vectors to /__report as base64
+// Float32 (768-d, unit). scripts/vocab-pack.mjs turns them into
+// public/vocab-<hash>.bin. With ?photos it also embeds the photos used for
+// calibration and the model-in-the-loop eval: V's eval photos (staged by hand
+// in web/.eval-photos/, never committed) and the CC0 fixtures. Dev-only page:
+//   scripts/edge-run.sh "/vocab-build.html?photos" "VOCAB_(DONE|FAIL)" 1500
 import vocab from "../../data/vocab.json";
 import { prepareImage } from "./capture";
 import { LiteRtEmbedder } from "./embed/litert";
 
 const evalPhotos = import.meta.glob<string>("../.eval-photos/*", { query: "?url", import: "default", eager: true });
+const fixtures = import.meta.glob<string>("../tests/fixtures/*/*.jpg", { query: "?url", import: "default", eager: true });
 
 const out = document.getElementById("out")!;
 const post = (s: string) => fetch("/__report", { method: "POST", body: s }).catch(() => {});
@@ -26,32 +27,42 @@ function b64(v: Float32Array): string {
 }
 
 async function main() {
+  const params = new URLSearchParams(location.search);
   const texts = vocab.items.map((i) => i.text);
   const e = new LiteRtEmbedder({ modelUrl: "/models/embeddinggemma-2-text-vision-440m.litertlm" });
   await e.ready();
   await log(`VOCAB_READY loadMs=${Math.round(e.info.loadMs ?? 0)} adapter=${e.info.adapter}`);
-  const t0 = performance.now();
-  let dim = 0;
-  const all: Float32Array[] = [];
-  for (const [i, t] of texts.entries()) {
-    const v = await e.embedText(t);
-    dim = v.length;
-    all.push(v);
-    if ((i + 1) % 50 === 0) await log(`VOCAB_PROGRESS ${i + 1}/${texts.length} ${Math.round(performance.now() - t0)}ms`);
-  }
-  const textMs = performance.now() - t0;
-  const mat = new Float32Array(all.length * dim);
-  all.forEach((v, i) => mat.set(v, i * dim));
-  await log(`VOCAB_META ${JSON.stringify({ count: texts.length, dim, textMs: Math.round(textMs), perTextMs: +(textMs / texts.length).toFixed(1), adapter: e.info.adapter })}`);
-  await post(`VOCAB_B64 ${b64(mat)}`);
-
-  if (new URLSearchParams(location.search).has("photos")) {
-    for (const k of Object.keys(evalPhotos).sort()) {
-      const blob = await (await fetch(evalPhotos[k])).blob();
-      const v = await e.embedImage((await prepareImage(blob)).embedBlob);
-      await post(`PHOTO_B64 ${k.split("/").pop()} ${b64(v)}`);
+  if (!params.has("photosOnly")) {
+    const t0 = performance.now();
+    let dim = 0;
+    const all: Float32Array[] = [];
+    for (const [i, t] of texts.entries()) {
+      const v = await e.embedText(t);
+      dim = v.length;
+      all.push(v);
+      if ((i + 1) % 50 === 0) await log(`VOCAB_PROGRESS ${i + 1}/${texts.length} ${Math.round(performance.now() - t0)}ms`);
     }
-    await log(`VOCAB_PHOTOS ${Object.keys(evalPhotos).length}`);
+    const textMs = performance.now() - t0;
+    const mat = new Float32Array(all.length * dim);
+    all.forEach((v, i) => mat.set(v, i * dim));
+    await log(`VOCAB_META ${JSON.stringify({ count: texts.length, dim, textMs: Math.round(textMs), perTextMs: +(textMs / texts.length).toFixed(1), adapter: e.info.adapter })}`);
+    await post(`VOCAB_B64 ${b64(mat)}`);
+  }
+
+  if (params.has("photos") || params.has("photosOnly")) {
+    const sources: [string, string][] = [
+      ...Object.entries(evalPhotos).map(([k, u]): [string, string] => [`eval/${k.split("/").pop()}`, u]),
+      ...Object.entries(fixtures).map(([k, u]): [string, string] => [`fx/${k.split("/").slice(-2).join("/")}`, u]),
+    ].sort();
+    const times: number[] = [];
+    for (const [name, url] of sources) {
+      const blob = await (await fetch(url)).blob();
+      const v = await e.embedImage((await prepareImage(blob)).embedBlob);
+      times.push(e.info.lastImageMs ?? -1);
+      await post(`PHOTO_B64 ${name} ${b64(v)}`);
+    }
+    times.sort((a, b) => a - b);
+    await log(`VOCAB_PHOTOS ${JSON.stringify({ n: sources.length, medianImageMs: Math.round(times[times.length >> 1]), maxImageMs: Math.round(times.at(-1)!) })}`);
   }
   await log("VOCAB_DONE");
 }

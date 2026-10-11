@@ -1,1792 +1,1393 @@
 {
- "model": "google/embeddinggemma-2 (text, SearchQuery prompt)",
- "dedupe_threshold": 0.9,
- "date": "2026-10-10",
- "count": 446,
+ "model": "litert-community/embeddinggemma-2-text-vision-440m-litert-lm (browser, query prefix)",
+ "date": "2026-10-11",
+ "count": 276,
+ "counts": {
+  "thing": 208,
+  "reject": 19,
+  "unclear": 4,
+  "attr": 45
+ },
  "items": [
   {
-   "text": "an orange leaf on concrete pavement",
-   "source": "secret"
+   "text": "a photo of a tree",
+   "label": "tree",
+   "kind": "thing"
   },
   {
-   "text": "some gray bark on a mature tree trunk",
-   "source": "secret"
+   "text": "a photo of tree bark",
+   "label": "tree bark",
+   "kind": "thing"
   },
   {
-   "text": "a pale mushroom growing in damp grass",
-   "source": "secret"
+   "text": "a photo of a tree trunk",
+   "label": "tree trunk",
+   "kind": "thing"
   },
   {
-   "text": "a red fire hydrant near a sidewalk",
-   "source": "secret"
+   "text": "a photo of a tree stump",
+   "label": "tree stump",
+   "kind": "thing"
   },
   {
-   "text": "a brown seedpod hanging on dry weeds",
-   "source": "secret"
+   "text": "a photo of tree roots",
+   "label": "tree roots",
+   "kind": "thing"
   },
   {
-   "text": "some rough brown bark on a birch tree",
-   "source": "secret"
+   "text": "a photo of a branch",
+   "label": "branch",
+   "kind": "thing"
   },
   {
-   "text": "some small purple berries on a bush",
-   "source": "secret"
+   "text": "a photo of a twig",
+   "label": "twig",
+   "kind": "thing"
   },
   {
-   "text": "a patch of green moss on a stone",
-   "source": "secret"
+   "text": "a photo of a log",
+   "label": "log",
+   "kind": "thing"
   },
   {
-   "text": "a yellow maple leaf on dark soil",
-   "source": "secret"
+   "text": "a photo of a leaf",
+   "label": "leaf",
+   "kind": "thing"
   },
   {
-   "text": "a weathered wooden park bench",
-   "source": "secret"
+   "text": "a photo of pile of leaves",
+   "label": "pile of leaves",
+   "kind": "thing"
   },
   {
-   "text": "some brittle brown stems on dry ground",
-   "source": "secret"
+   "text": "a photo of pine needles",
+   "label": "pine needles",
+   "kind": "thing"
   },
   {
-   "text": "a weathered gray wooden post near a path",
-   "source": "secret"
+   "text": "a photo of a pinecone",
+   "label": "pinecone",
+   "kind": "thing"
   },
   {
-   "text": "a pale yellow shelf growing on a log",
-   "source": "secret"
+   "text": "a photo of an acorn",
+   "label": "acorn",
+   "kind": "thing"
   },
   {
-   "text": "a small orange pumpkin resting on grass",
-   "source": "secret"
+   "text": "a photo of a seed pod",
+   "label": "seed pod",
+   "kind": "thing"
   },
   {
-   "text": "a smooth gray stone next to a curb",
-   "source": "secret"
+   "text": "a photo of moss",
+   "label": "moss",
+   "kind": "thing"
   },
   {
-   "text": "a brown acorn on green grass",
-   "source": "secret"
+   "text": "a photo of lichen",
+   "label": "lichen",
+   "kind": "thing"
   },
   {
-   "text": "some white seeds scattered on asphalt",
-   "source": "secret"
+   "text": "a photo of grass",
+   "label": "grass",
+   "kind": "thing"
   },
   {
-   "text": "a light gray lichen growing on bark",
-   "source": "secret"
+   "text": "a photo of clover",
+   "label": "clover",
+   "kind": "thing"
   },
   {
-   "text": "some twisted brown root poking through dirt",
-   "source": "secret"
+   "text": "a photo of weeds",
+   "label": "weeds",
+   "kind": "thing"
   },
   {
-   "text": "a deep red vine trailing along a fence",
-   "source": "secret"
+   "text": "a photo of a dandelion",
+   "label": "dandelion",
+   "kind": "thing"
   },
   {
-   "text": "some intense red berries on green foliage",
-   "source": "secret"
+   "text": "a photo of a flower",
+   "label": "flower",
+   "kind": "thing"
   },
   {
-   "text": "a pale gray root piece sticking from the dirt",
-   "source": "secret"
+   "text": "a photo of a rose",
+   "label": "rose",
+   "kind": "thing"
   },
   {
-   "text": "a soft orange growth on a fallen log",
-   "source": "secret"
+   "text": "a photo of a tulip",
+   "label": "tulip",
+   "kind": "thing"
   },
   {
-   "text": "a mossy green patch on a concrete curb",
-   "source": "secret"
+   "text": "a photo of a sunflower",
+   "label": "sunflower",
+   "kind": "thing"
   },
   {
-   "text": "a large fluffy pale brown seed head on dry weeds",
-   "source": "secret"
+   "text": "a photo of a daisy",
+   "label": "daisy",
+   "kind": "thing"
   },
   {
-   "text": "a pale yellow chrysanthemum bloom",
-   "source": "secret"
+   "text": "a photo of a mushroom",
+   "label": "mushroom",
+   "kind": "thing"
   },
   {
-   "text": "some slender brown twig on the ground",
-   "source": "secret"
+   "text": "a photo of a fern",
+   "label": "fern",
+   "kind": "thing"
   },
   {
-   "text": "a patch of yellow grass in the lawn",
-   "source": "secret"
+   "text": "a photo of a bush",
+   "label": "bush",
+   "kind": "thing"
   },
   {
-   "text": "a large brown pinecone on the path",
-   "source": "secret"
+   "text": "a photo of a hedge",
+   "label": "hedge",
+   "kind": "thing"
   },
   {
-   "text": "a light gray curb next to the street",
-   "source": "secret"
+   "text": "a photo of a cactus",
+   "label": "cactus",
+   "kind": "thing"
   },
   {
-   "text": "a light brown nut on dry soil",
-   "source": "secret"
+   "text": "a photo of a succulent plant",
+   "label": "succulent plant",
+   "kind": "thing"
   },
   {
-   "text": "some red stem with small green leaves",
-   "source": "secret"
+   "text": "a photo of ivy",
+   "label": "ivy",
+   "kind": "thing"
   },
   {
-   "text": "a small yellow fungus growing on wood",
-   "source": "secret"
+   "text": "a photo of a vine",
+   "label": "vine",
+   "kind": "thing"
   },
   {
-   "text": "a weathered red brick near a sidewalk",
-   "source": "secret"
+   "text": "a photo of a rock",
+   "label": "rock",
+   "kind": "thing"
   },
   {
-   "text": "a thin brown tendril winding around a branch",
-   "source": "secret"
+   "text": "a photo of pebbles",
+   "label": "pebbles",
+   "kind": "thing"
   },
   {
-   "text": "some white shelf fungus on damp wood",
-   "source": "secret"
+   "text": "a photo of gravel",
+   "label": "gravel",
+   "kind": "thing"
   },
   {
-   "text": "a brown hickory nut on dirt",
-   "source": "secret"
+   "text": "a photo of a boulder",
+   "label": "boulder",
+   "kind": "thing"
   },
   {
-   "text": "a curled brown fern frond on path",
-   "source": "secret"
+   "text": "a photo of sand",
+   "label": "sand",
+   "kind": "thing"
   },
   {
-   "text": "a faded green painted railing",
-   "source": "secret"
+   "text": "a photo of soil",
+   "label": "soil",
+   "kind": "thing"
   },
   {
-   "text": "some yellow thistle bloom in dry ground",
-   "source": "secret"
+   "text": "a photo of mud",
+   "label": "mud",
+   "kind": "thing"
   },
   {
-   "text": "a single yellow flower growing in grass",
-   "source": "secret"
+   "text": "a photo of a puddle",
+   "label": "puddle",
+   "kind": "thing"
   },
   {
-   "text": "a light brown pod lying on pavement",
-   "source": "secret"
+   "text": "a photo of a pond",
+   "label": "pond",
+   "kind": "thing"
   },
   {
-   "text": "a gray rectangular paving stone near a path",
-   "source": "secret"
+   "text": "a photo of a lake",
+   "label": "lake",
+   "kind": "thing"
   },
   {
-   "text": "some pale green moss growing on concrete",
-   "source": "secret"
+   "text": "a photo of a river",
+   "label": "river",
+   "kind": "thing"
   },
   {
-   "text": "a dark purple stalk on dry ground",
-   "source": "secret"
+   "text": "a photo of a waterfall",
+   "label": "waterfall",
+   "kind": "thing"
   },
   {
-   "text": "some brown reed stalks in wet ground",
-   "source": "secret"
+   "text": "a photo of ocean waves",
+   "label": "ocean waves",
+   "kind": "thing"
   },
   {
-   "text": "a rusty bracket growing on damp tree",
-   "source": "secret"
+   "text": "a photo of a beach",
+   "label": "beach",
+   "kind": "thing"
   },
   {
-   "text": "a gray circular utility cover on asphalt",
-   "source": "secret"
+   "text": "a photo of snow",
+   "label": "snow",
+   "kind": "thing"
   },
   {
-   "text": "a dark red fruit hanging from branch",
-   "source": "secret"
+   "text": "a photo of ice",
+   "label": "ice",
+   "kind": "thing"
   },
   {
-   "text": "some small gray gravel near a path edge",
-   "source": "secret"
+   "text": "a photo of an icicle",
+   "label": "icicle",
+   "kind": "thing"
   },
   {
-   "text": "a bright red toadstool on damp soil",
-   "source": "secret"
+   "text": "a photo of a cloud",
+   "label": "cloud",
+   "kind": "thing"
   },
   {
-   "text": "a green and red autumn leaf on grass",
-   "source": "secret"
+   "text": "a photo of sky",
+   "label": "sky",
+   "kind": "thing"
   },
   {
-   "text": "a rotting gray stump in a garden bed",
-   "source": "secret"
+   "text": "a photo of a sunset",
+   "label": "sunset",
+   "kind": "thing"
   },
   {
-   "text": "a rusted metal grate near a storm drain",
-   "source": "secret"
+   "text": "a photo of a mountain",
+   "label": "mountain",
+   "kind": "thing"
   },
   {
-   "text": "a dry orange seed head on dark soil",
-   "source": "secret"
+   "text": "a photo of a hill",
+   "label": "hill",
+   "kind": "thing"
   },
   {
-   "text": "an intense yellow leaf on dark asphalt",
-   "source": "secret"
+   "text": "a photo of a field",
+   "label": "field",
+   "kind": "thing"
   },
   {
-   "text": "some brittle brown seed heads on dirt",
-   "source": "secret"
+   "text": "a photo of a feather",
+   "label": "feather",
+   "kind": "thing"
   },
   {
-   "text": "a thick gray branch fragment on grass",
-   "source": "secret"
+   "text": "a photo of a bird",
+   "label": "bird",
+   "kind": "thing"
   },
   {
-   "text": "a rough reddish stone near a path",
-   "source": "secret"
+   "text": "a photo of a pigeon",
+   "label": "pigeon",
+   "kind": "thing"
   },
   {
-   "text": "some dark brown mushroom growing in moss",
-   "source": "secret"
+   "text": "a photo of a duck",
+   "label": "duck",
+   "kind": "thing"
   },
   {
-   "text": "a deep red maple leaf on concrete",
-   "source": "secret"
+   "text": "a photo of a squirrel",
+   "label": "squirrel",
+   "kind": "thing"
   },
   {
-   "text": "a light gray patch of bark on a tree",
-   "source": "secret"
+   "text": "a photo of a dog",
+   "label": "dog",
+   "kind": "thing"
   },
   {
-   "text": "a white clustered mushroom growing in dirt",
-   "source": "secret"
+   "text": "a photo of a cat",
+   "label": "cat",
+   "kind": "thing"
   },
   {
-   "text": "a dark black seed on dry pavement",
-   "source": "secret"
+   "text": "a photo of a butterfly",
+   "label": "butterfly",
+   "kind": "thing"
   },
   {
-   "text": "a rounded gray stone on gravel",
-   "source": "secret"
+   "text": "a photo of a bee",
+   "label": "bee",
+   "kind": "thing"
   },
   {
-   "text": "some brittle yellow grass in a patch",
-   "source": "secret"
+   "text": "a photo of a spider web",
+   "label": "spider web",
+   "kind": "thing"
   },
   {
-   "text": "a weathered gray wooden fence section",
-   "source": "secret"
+   "text": "a photo of a snail shell",
+   "label": "snail shell",
+   "kind": "thing"
   },
   {
-   "text": "a dry brown husk on the soil",
-   "source": "secret"
+   "text": "a photo of a seashell",
+   "label": "seashell",
+   "kind": "thing"
   },
   {
-   "text": "a dark red clump of dried weeds",
-   "source": "secret"
+   "text": "a photo of a bird nest",
+   "label": "bird nest",
+   "kind": "thing"
   },
   {
-   "text": "some light gray wood on a fallen branch",
-   "source": "secret"
+   "text": "a photo of an eggshell",
+   "label": "eggshell",
+   "kind": "thing"
   },
   {
-   "text": "an orange leaf lying on pavement",
-   "source": "eval"
+   "text": "a photo of a zebra",
+   "label": "zebra",
+   "kind": "thing"
   },
   {
-   "text": "a red fire hydrant on a sidewalk",
-   "source": "eval"
+   "text": "a photo of elephant skin",
+   "label": "elephant skin",
+   "kind": "thing"
   },
   {
-   "text": "a pine cone on the ground",
-   "source": "eval"
+   "text": "a photo of a tiger",
+   "label": "tiger",
+   "kind": "thing"
   },
   {
-   "text": "a brown mushroom growing in grass",
-   "source": "eval"
+   "text": "a photo of a giraffe",
+   "label": "giraffe",
+   "kind": "thing"
   },
   {
-   "text": "a tree trunk with peeling bark",
-   "source": "eval"
+   "text": "a photo of leopard spots",
+   "label": "leopard spots",
+   "kind": "thing"
   },
   {
-   "text": "a wooden park bench",
-   "source": "eval"
+   "text": "a photo of snake skin",
+   "label": "snake skin",
+   "kind": "thing"
   },
   {
-   "text": "a yellow leaf still on a branch",
-   "source": "eval"
+   "text": "a photo of fish scales",
+   "label": "fish scales",
+   "kind": "thing"
   },
   {
-   "text": "a pumpkin on a front porch",
-   "source": "eval"
+   "text": "a photo of a turtle shell",
+   "label": "turtle shell",
+   "kind": "thing"
   },
   {
-   "text": "an acorn on the ground",
-   "source": "eval"
+   "text": "a photo of a caterpillar",
+   "label": "caterpillar",
+   "kind": "thing"
   },
   {
-   "text": "a stop sign",
-   "source": "eval"
+   "text": "a photo of a donut",
+   "label": "donut",
+   "kind": "thing"
   },
   {
-   "text": "a puddle reflecting the sky",
-   "source": "eval"
+   "text": "a photo of a bagel",
+   "label": "bagel",
+   "kind": "thing"
   },
   {
-   "text": "moss growing on a rock",
-   "source": "eval"
+   "text": "a photo of broccoli",
+   "label": "broccoli",
+   "kind": "thing"
   },
   {
-   "text": "a storm drain grate in a street",
-   "source": "eval"
+   "text": "a photo of cauliflower",
+   "label": "cauliflower",
+   "kind": "thing"
   },
   {
-   "text": "a crape myrtle tree with smooth bark",
-   "source": "eval"
+   "text": "a photo of an artichoke",
+   "label": "artichoke",
+   "kind": "thing"
   },
   {
-   "text": "a pile of fallen leaves",
-   "source": "eval"
+   "text": "a photo of a chocolate bar",
+   "label": "chocolate bar",
+   "kind": "thing"
   },
   {
-   "text": "a white pebble",
-   "source": "decoy"
+   "text": "a photo of a waffle",
+   "label": "waffle",
+   "kind": "thing"
   },
   {
-   "text": "a straight stick",
-   "source": "decoy"
+   "text": "a photo of a pancake",
+   "label": "pancake",
+   "kind": "thing"
   },
   {
-   "text": "green moss",
-   "source": "decoy"
+   "text": "a photo of a cookie",
+   "label": "cookie",
+   "kind": "thing"
   },
   {
-   "text": "brown plank",
-   "source": "decoy"
+   "text": "a photo of a cracker",
+   "label": "cracker",
+   "kind": "thing"
   },
   {
-   "text": "gray rock",
-   "source": "decoy"
+   "text": "a photo of a loaf of bread",
+   "label": "loaf of bread",
+   "kind": "thing"
   },
   {
-   "text": "black dirt",
-   "source": "decoy"
+   "text": "a photo of a pretzel",
+   "label": "pretzel",
+   "kind": "thing"
   },
   {
-   "text": "dry twig",
-   "source": "decoy"
+   "text": "a photo of cotton candy",
+   "label": "cotton candy",
+   "kind": "thing"
   },
   {
-   "text": "blue plastic",
-   "source": "decoy"
+   "text": "a photo of cotton",
+   "label": "cotton",
+   "kind": "thing"
   },
   {
-   "text": "yellow flower",
-   "source": "decoy"
+   "text": "a photo of a pumpkin",
+   "label": "pumpkin",
+   "kind": "thing"
   },
   {
-   "text": "rusty nail",
-   "source": "decoy"
+   "text": "a photo of an orange",
+   "label": "orange",
+   "kind": "thing"
   },
   {
-   "text": "brown fallen log",
-   "source": "decoy"
+   "text": "a photo of a lemon",
+   "label": "lemon",
+   "kind": "thing"
   },
   {
-   "text": "white chunk of stone",
-   "source": "decoy"
+   "text": "a photo of an apple",
+   "label": "apple",
+   "kind": "thing"
   },
   {
-   "text": "dark soil patch",
-   "source": "decoy"
+   "text": "a photo of a strawberry",
+   "label": "strawberry",
+   "kind": "thing"
   },
   {
-   "text": "small pine cone",
-   "source": "decoy"
+   "text": "a photo of a pineapple",
+   "label": "pineapple",
+   "kind": "thing"
   },
   {
-   "text": "dried grass stem",
-   "source": "decoy"
+   "text": "a photo of a corn on the cob",
+   "label": "corn on the cob",
+   "kind": "thing"
   },
   {
-   "text": "silver metal fence post",
-   "source": "decoy"
+   "text": "a photo of a melon",
+   "label": "melon",
+   "kind": "thing"
   },
   {
-   "text": "red brick",
-   "source": "decoy"
+   "text": "a photo of cabbage",
+   "label": "cabbage",
+   "kind": "thing"
   },
   {
-   "text": "purple wildflower",
-   "source": "decoy"
+   "text": "a photo of lettuce",
+   "label": "lettuce",
+   "kind": "thing"
   },
   {
-   "text": "a cracked acorn",
-   "source": "decoy"
+   "text": "a photo of an onion",
+   "label": "onion",
+   "kind": "thing"
   },
   {
-   "text": "a dry pine cone",
-   "source": "decoy"
+   "text": "a photo of a pomegranate",
+   "label": "pomegranate",
+   "kind": "thing"
   },
   {
-   "text": "green clover patch",
-   "source": "decoy"
+   "text": "a photo of popcorn",
+   "label": "popcorn",
+   "kind": "thing"
   },
   {
-   "text": "a yellow dandelion",
-   "source": "decoy"
+   "text": "a photo of honeycomb",
+   "label": "honeycomb",
+   "kind": "thing"
   },
   {
-   "text": "a tangled root",
-   "source": "decoy"
+   "text": "a photo of coffee beans",
+   "label": "coffee beans",
+   "kind": "thing"
   },
   {
-   "text": "red berry cluster",
-   "source": "decoy"
+   "text": "a photo of rice",
+   "label": "rice",
+   "kind": "thing"
   },
   {
-   "text": "a small flat stone",
-   "source": "decoy"
+   "text": "a photo of noodles",
+   "label": "noodles",
+   "kind": "thing"
   },
   {
-   "text": "a yellow trash can",
-   "source": "decoy"
+   "text": "a photo of a pizza",
+   "label": "pizza",
+   "kind": "thing"
   },
   {
-   "text": "a metallic street sign",
-   "source": "decoy"
+   "text": "a photo of cheese",
+   "label": "cheese",
+   "kind": "thing"
   },
   {
-   "text": "a black bicycle tire",
-   "source": "decoy"
+   "text": "a photo of a marshmallow",
+   "label": "marshmallow",
+   "kind": "thing"
   },
   {
-   "text": "a white utility box",
-   "source": "decoy"
+   "text": "a photo of an egg",
+   "label": "egg",
+   "kind": "thing"
   },
   {
-   "text": "a green dumpster",
-   "source": "decoy"
+   "text": "a photo of an ice cream cone",
+   "label": "ice cream cone",
+   "kind": "thing"
   },
   {
-   "text": "a wooden fence post",
-   "source": "decoy"
+   "text": "a photo of a brain coral",
+   "label": "brain coral",
+   "kind": "thing"
   },
   {
-   "text": "a metal drain cover",
-   "source": "decoy"
+   "text": "a photo of a sponge",
+   "label": "sponge",
+   "kind": "thing"
   },
   {
-   "text": "a brown mailbox",
-   "source": "decoy"
+   "text": "a photo of a brick wall",
+   "label": "brick wall",
+   "kind": "thing"
   },
   {
-   "text": "a gray lamp post",
-   "source": "decoy"
+   "text": "a photo of a stone wall",
+   "label": "stone wall",
+   "kind": "thing"
   },
   {
-   "text": "a small dark berry",
-   "source": "decoy"
+   "text": "a photo of concrete",
+   "label": "concrete",
+   "kind": "thing"
   },
   {
-   "text": "a green clover",
-   "source": "decoy"
+   "text": "a photo of an asphalt road",
+   "label": "asphalt road",
+   "kind": "thing"
   },
   {
-   "text": "a dry straw piece",
-   "source": "decoy"
+   "text": "a photo of a sidewalk",
+   "label": "sidewalk",
+   "kind": "thing"
   },
   {
-   "text": "a light gray stone",
-   "source": "decoy"
+   "text": "a photo of a crack in the pavement",
+   "label": "crack in the pavement",
+   "kind": "thing"
   },
   {
-   "text": "a black clump of soil",
-   "source": "decoy"
+   "text": "a photo of a manhole cover",
+   "label": "manhole cover",
+   "kind": "thing"
   },
   {
-   "text": "a thick piece of grass",
-   "source": "decoy"
+   "text": "a photo of a drain grate",
+   "label": "drain grate",
+   "kind": "thing"
   },
   {
-   "text": "a reddish fallen leaf",
-   "source": "decoy"
+   "text": "a photo of a fence",
+   "label": "fence",
+   "kind": "thing"
   },
   {
-   "text": "a thin brown stick",
-   "source": "decoy"
+   "text": "a photo of a chain-link fence",
+   "label": "chain-link fence",
+   "kind": "thing"
   },
   {
-   "text": "a moss patch",
-   "source": "decoy"
+   "text": "a photo of a wooden fence",
+   "label": "wooden fence",
+   "kind": "thing"
   },
   {
-   "text": "a rusty metal bench in park",
-   "source": "decoy"
+   "text": "a photo of a gate",
+   "label": "gate",
+   "kind": "thing"
   },
   {
-   "text": "a small white flower growing low",
-   "source": "decoy"
+   "text": "a photo of hexagonal tiles",
+   "label": "hexagonal tiles",
+   "kind": "thing"
   },
   {
-   "text": "a fallen piece of driftwood",
-   "source": "decoy"
+   "text": "a photo of paving stones",
+   "label": "paving stones",
+   "kind": "thing"
   },
   {
-   "text": "a smooth gray river stone",
-   "source": "decoy"
+   "text": "a photo of cobblestones",
+   "label": "cobblestones",
+   "kind": "thing"
   },
   {
-   "text": "a brown cap mushroom in mulch",
-   "source": "decoy"
+   "text": "a photo of roof tiles",
+   "label": "roof tiles",
+   "kind": "thing"
   },
   {
-   "text": "a patch of green moss on log",
-   "source": "decoy"
+   "text": "a photo of a window",
+   "label": "window",
+   "kind": "thing"
   },
   {
-   "text": "a mound of dark brown soil",
-   "source": "decoy"
+   "text": "a photo of a door",
+   "label": "door",
+   "kind": "thing"
   },
   {
-   "text": "a bright red maple leaf",
-   "source": "decoy"
+   "text": "a photo of a staircase",
+   "label": "staircase",
+   "kind": "thing"
   },
   {
-   "text": "a bent small twig on earth",
-   "source": "decoy"
+   "text": "a photo of a railing",
+   "label": "railing",
+   "kind": "thing"
   },
   {
-   "text": "a light birch bark piece on ground",
-   "source": "decoy"
+   "text": "a photo of a bench",
+   "label": "bench",
+   "kind": "thing"
   },
   {
-   "text": "a purple crocus flower in grass",
-   "source": "decoy"
+   "text": "a photo of a picnic table",
+   "label": "picnic table",
+   "kind": "thing"
   },
   {
-   "text": "a cracked gray sidewalk stone",
-   "source": "decoy"
+   "text": "a photo of a trash can",
+   "label": "trash can",
+   "kind": "thing"
   },
   {
-   "text": "a wooden garden bench section",
-   "source": "decoy"
+   "text": "a photo of a mailbox",
+   "label": "mailbox",
+   "kind": "thing"
   },
   {
-   "text": "a red cap mushroom on wood",
-   "source": "decoy"
+   "text": "a photo of a fire hydrant",
+   "label": "fire hydrant",
+   "kind": "thing"
   },
   {
-   "text": "a round gray garden stone",
-   "source": "decoy"
+   "text": "a photo of a stop sign",
+   "label": "stop sign",
+   "kind": "thing"
   },
   {
-   "text": "some blue berries on a low bush",
-   "source": "decoy"
+   "text": "a photo of a traffic cone",
+   "label": "traffic cone",
+   "kind": "thing"
   },
   {
-   "text": "a rough oak bark chunk",
-   "source": "decoy"
+   "text": "a photo of a traffic light",
+   "label": "traffic light",
+   "kind": "thing"
   },
   {
-   "text": "an iron park bench near trail",
-   "source": "decoy"
+   "text": "a photo of a street lamp",
+   "label": "street lamp",
+   "kind": "thing"
   },
   {
-   "text": "a white dry seedpod on shrub",
-   "source": "decoy"
+   "text": "a photo of an utility pole",
+   "label": "utility pole",
+   "kind": "thing"
   },
   {
-   "text": "a pale mushroom in shaded spot",
-   "source": "decoy"
+   "text": "a photo of power lines",
+   "label": "power lines",
+   "kind": "thing"
   },
   {
-   "text": "a green dry seedpod hanging low",
-   "source": "decoy"
+   "text": "a photo of a street sign",
+   "label": "street sign",
+   "kind": "thing"
   },
   {
-   "text": "an orange autumn flower blooming",
-   "source": "decoy"
+   "text": "a photo of a bicycle",
+   "label": "bicycle",
+   "kind": "thing"
   },
   {
-   "text": "a mound of dirt in garden bed",
-   "source": "decoy"
+   "text": "a photo of a car",
+   "label": "car",
+   "kind": "thing"
   },
   {
-   "text": "a small black pebble",
-   "source": "decoy"
+   "text": "a photo of a truck",
+   "label": "truck",
+   "kind": "thing"
   },
   {
-   "text": "a dark blue plastic container",
-   "source": "decoy"
+   "text": "a photo of a bus",
+   "label": "bus",
+   "kind": "thing"
   },
   {
-   "text": "a white plastic trash bag",
-   "source": "decoy"
+   "text": "a photo of a tire",
+   "label": "tire",
+   "kind": "thing"
   },
   {
-   "text": "a rusty iron bracket",
-   "source": "decoy"
+   "text": "a photo of a wheel",
+   "label": "wheel",
+   "kind": "thing"
   },
   {
-   "text": "a chipped terracotta pot",
-   "source": "decoy"
+   "text": "a photo of a motorcycle",
+   "label": "motorcycle",
+   "kind": "thing"
   },
   {
-   "text": "a purple fallen flower",
-   "source": "decoy"
+   "text": "a photo of a parking lot",
+   "label": "parking lot",
+   "kind": "thing"
   },
   {
-   "text": "a jagged twig",
-   "source": "decoy"
+   "text": "a photo of a garage door",
+   "label": "garage door",
+   "kind": "thing"
   },
   {
-   "text": "a square drainage grate",
-   "source": "decoy"
+   "text": "a photo of a striped awning",
+   "label": "striped awning",
+   "kind": "thing"
   },
   {
-   "text": "a yellow plastic bucket",
-   "source": "decoy"
+   "text": "a photo of an umbrella",
+   "label": "umbrella",
+   "kind": "thing"
   },
   {
-   "text": "a green painted fence section",
-   "source": "decoy"
+   "text": "a photo of a flag",
+   "label": "flag",
+   "kind": "thing"
   },
   {
-   "text": "a pale yellow autumn gourd",
-   "source": "decoy"
+   "text": "a photo of a playground slide",
+   "label": "playground slide",
+   "kind": "thing"
   },
   {
-   "text": "a metal chain link",
-   "source": "decoy"
+   "text": "a photo of a swing",
+   "label": "swing",
+   "kind": "thing"
   },
   {
-   "text": "a dark gray patch of asphalt",
-   "source": "decoy"
+   "text": "a photo of a basketball hoop",
+   "label": "basketball hoop",
+   "kind": "thing"
   },
   {
-   "text": "a piece of cardboard",
-   "source": "decoy"
+   "text": "a photo of a ball",
+   "label": "ball",
+   "kind": "thing"
   },
   {
-   "text": "an orange pumpkin",
-   "source": "decoy"
+   "text": "a photo of a tennis ball",
+   "label": "tennis ball",
+   "kind": "thing"
   },
   {
-   "text": "a brown piece of dried leaf",
-   "source": "decoy"
+   "text": "a photo of a soccer ball",
+   "label": "soccer ball",
+   "kind": "thing"
   },
   {
-   "text": "a yellow plastic bottle",
-   "source": "decoy"
+   "text": "a photo of a rope",
+   "label": "rope",
+   "kind": "thing"
   },
   {
-   "text": "a black drain grate",
-   "source": "decoy"
+   "text": "a photo of a chain",
+   "label": "chain",
+   "kind": "thing"
   },
   {
-   "text": "a white piece of mortar",
-   "source": "decoy"
+   "text": "a photo of a garden hose",
+   "label": "garden hose",
+   "kind": "thing"
   },
   {
-   "text": "a green patch of lichen",
-   "source": "decoy"
+   "text": "a photo of a bucket",
+   "label": "bucket",
+   "kind": "thing"
   },
   {
-   "text": "a dark gray pine cone",
-   "source": "decoy"
+   "text": "a photo of a flower pot",
+   "label": "flower pot",
+   "kind": "thing"
   },
   {
-   "text": "a dark brown seedpod",
-   "source": "decoy"
+   "text": "a photo of a statue",
+   "label": "statue",
+   "kind": "thing"
   },
   {
-   "text": "a small gray curbstone",
-   "source": "decoy"
+   "text": "a photo of a fountain",
+   "label": "fountain",
+   "kind": "thing"
   },
   {
-   "text": "a brittle brown stem",
-   "source": "decoy"
+   "text": "a photo of a bridge",
+   "label": "bridge",
+   "kind": "thing"
   },
   {
-   "text": "a green plastic bottle",
-   "source": "decoy"
+   "text": "a photo of a building",
+   "label": "building",
+   "kind": "thing"
   },
   {
-   "text": "a pale yellow shelf",
-   "source": "decoy"
+   "text": "a photo of a house",
+   "label": "house",
+   "kind": "thing"
   },
   {
-   "text": "a small gray post",
-   "source": "decoy"
+   "text": "a photo of a shed",
+   "label": "shed",
+   "kind": "thing"
   },
   {
-   "text": "a small white shell on a twig",
-   "source": "decoy"
+   "text": "a photo of a barn",
+   "label": "barn",
+   "kind": "thing"
   },
   {
-   "text": "a small pebble on gray pavement",
-   "source": "decoy"
+   "text": "a photo of graffiti",
+   "label": "graffiti",
+   "kind": "thing"
   },
   {
-   "text": "a patch of bright moss on dirt",
-   "source": "decoy"
+   "text": "a photo of a mural",
+   "label": "mural",
+   "kind": "thing"
   },
   {
-   "text": "a few brown leaves on soil",
-   "source": "decoy"
+   "text": "a photo of a poster",
+   "label": "poster",
+   "kind": "thing"
   },
   {
-   "text": "a cluster of dried dirt on gravel",
-   "source": "decoy"
+   "text": "a photo of rusty metal",
+   "label": "rusty metal",
+   "kind": "thing"
   },
   {
-   "text": "a pale rock near a gravel pile",
-   "source": "decoy"
+   "text": "a photo of peeling paint",
+   "label": "peeling paint",
+   "kind": "thing"
   },
   {
-   "text": "a tiny flower on a stem",
-   "source": "decoy"
+   "text": "a photo of corrugated metal",
+   "label": "corrugated metal",
+   "kind": "thing"
   },
   {
-   "text": "a short piece of bark on a tree",
-   "source": "decoy"
+   "text": "a photo of an air conditioner unit",
+   "label": "air conditioner unit",
+   "kind": "thing"
   },
   {
-   "text": "a short green vine along a curb",
-   "source": "decoy"
+   "text": "a photo of a solar panel",
+   "label": "solar panel",
+   "kind": "thing"
   },
   {
-   "text": "a patch of yellow lichen on bark",
-   "source": "decoy"
+   "text": "a photo of a pipe",
+   "label": "pipe",
+   "kind": "thing"
   },
   {
-   "text": "a piece of wood on the ground",
-   "source": "decoy"
+   "text": "a photo of crosswalk stripes",
+   "label": "crosswalk stripes",
+   "kind": "thing"
   },
   {
-   "text": "a handful of dirt near a path",
-   "source": "decoy"
+   "text": "a photo of a shadow",
+   "label": "shadow",
+   "kind": "thing"
   },
   {
-   "text": "a small patch of grass in the street",
-   "source": "decoy"
+   "text": "a photo of a reflection",
+   "label": "reflection",
+   "kind": "thing"
   },
   {
-   "text": "a curled twig on the pavement",
-   "source": "decoy"
+   "text": "a photo of knitted wool",
+   "label": "knitted wool",
+   "kind": "thing"
   },
   {
-   "text": "a low cluster of pebbles on dirt",
-   "source": "decoy"
+   "text": "a photo of a wicker basket",
+   "label": "wicker basket",
+   "kind": "thing"
   },
   {
-   "text": "a dark piece of bark on a log",
-   "source": "decoy"
+   "text": "a photo of straw",
+   "label": "straw",
+   "kind": "thing"
   },
   {
-   "text": "a small gray stone in dark dirt",
-   "source": "decoy"
+   "text": "a photo of a hay bale",
+   "label": "hay bale",
+   "kind": "thing"
   },
   {
-   "text": "a handful of pebbles on pavement",
-   "source": "decoy"
+   "text": "a photo of cork",
+   "label": "cork",
+   "kind": "thing"
   },
   {
-   "text": "a bright orange leaf on dirt",
-   "source": "decoy"
+   "text": "a photo of a cardboard box",
+   "label": "cardboard box",
+   "kind": "thing"
   },
   {
-   "text": "a small patch of green grass on dirt",
-   "source": "decoy"
+   "text": "a photo of a plastic bag",
+   "label": "plastic bag",
+   "kind": "thing"
   },
   {
-   "text": "a growing red vine on a wall",
-   "source": "decoy"
+   "text": "a photo of a bottle",
+   "label": "bottle",
+   "kind": "thing"
   },
   {
-   "text": "a light patch of lichen on a stone",
-   "source": "decoy"
+   "text": "a photo of a soda can",
+   "label": "soda can",
+   "kind": "thing"
   },
   {
-   "text": "a curved piece of bark on the ground",
-   "source": "decoy"
+   "text": "a photo of a glove",
+   "label": "glove",
+   "kind": "thing"
   },
   {
-   "text": "a small pebble on the grass",
-   "source": "decoy"
+   "text": "a photo of a shoe",
+   "label": "shoe",
+   "kind": "thing"
   },
   {
-   "text": "a pine branch lying on the ground",
-   "source": "decoy"
+   "text": "a photo of a hat",
+   "label": "hat",
+   "kind": "thing"
   },
   {
-   "text": "some light brown pebbles near a path",
-   "source": "decoy"
+   "text": "a photo of a doormat",
+   "label": "doormat",
+   "kind": "thing"
   },
   {
-   "text": "some light brown needles on dirt",
-   "source": "decoy"
+   "text": "a photo of a tarp",
+   "label": "tarp",
+   "kind": "thing"
   },
   {
-   "text": "a smooth gray leaf",
-   "source": "decoy"
+   "text": "a photo of a scarecrow",
+   "label": "scarecrow",
+   "kind": "thing"
   },
   {
-   "text": "a patch of white seeds",
-   "source": "decoy"
+   "text": "a photo of a birdhouse",
+   "label": "birdhouse",
+   "kind": "thing"
   },
   {
-   "text": "a small orange decoration",
-   "source": "decoy"
+   "text": "a photo of a pumpkin patch",
+   "label": "pumpkin patch",
+   "kind": "thing"
   },
   {
-   "text": "a dark gray stone",
-   "source": "decoy"
+   "text": "a photo of a phone screen",
+   "label": "phone screen",
+   "kind": "reject"
   },
   {
-   "text": "a rough wooden fence",
-   "source": "decoy"
+   "text": "a photo of a computer screen",
+   "label": "computer screen",
+   "kind": "reject"
   },
   {
-   "text": "a dark wet earth spot",
-   "source": "decoy"
+   "text": "a photo of a television",
+   "label": "television",
+   "kind": "reject"
   },
   {
-   "text": "a rough bark patch",
-   "source": "decoy"
+   "text": "a photo of a laptop",
+   "label": "laptop",
+   "kind": "reject"
   },
   {
-   "text": "a gray bark texture",
-   "source": "decoy"
+   "text": "a photo of an indoor room",
+   "label": "indoor room",
+   "kind": "reject"
   },
   {
-   "text": "a yellow maple leaf on gray concrete",
-   "source": "decoy"
+   "text": "a photo of a living room",
+   "label": "living room",
+   "kind": "reject"
   },
   {
-   "text": "a light gray pebble near a path",
-   "source": "decoy"
+   "text": "a photo of a bedroom",
+   "label": "bedroom",
+   "kind": "reject"
   },
   {
-   "text": "a weathered wooden log piece",
-   "source": "decoy"
+   "text": "a photo of a kitchen",
+   "label": "kitchen",
+   "kind": "reject"
   },
   {
-   "text": "a tiny white lichen on a branch",
-   "source": "decoy"
+   "text": "a photo of an office",
+   "label": "office",
+   "kind": "reject"
   },
   {
-   "text": "a patch of bright yellow flowers",
-   "source": "decoy"
+   "text": "a photo of a bathroom",
+   "label": "bathroom",
+   "kind": "reject"
   },
   {
-   "text": "a round brown berry cluster on a bush",
-   "source": "decoy"
+   "text": "a photo of a document",
+   "label": "document",
+   "kind": "reject"
   },
   {
-   "text": "a thick brown branch lying on ground",
-   "source": "decoy"
+   "text": "a photo of a page of text",
+   "label": "page of text",
+   "kind": "reject"
   },
   {
-   "text": "a hollow wooden post near the yard",
-   "source": "decoy"
+   "text": "a photo of a book",
+   "label": "book",
+   "kind": "reject"
   },
   {
-   "text": "a patch of dark wet earth near a curb",
-   "source": "decoy"
+   "text": "a photo of a receipt",
+   "label": "receipt",
+   "kind": "reject"
   },
   {
-   "text": "a piece of weathered red brick",
-   "source": "decoy"
+   "text": "a photo of a person",
+   "label": "person",
+   "kind": "reject"
   },
   {
-   "text": "a fallen brown leaf on wet ground",
-   "source": "decoy"
+   "text": "a photo of a face",
+   "label": "face",
+   "kind": "reject"
   },
   {
-   "text": "a thick woody vine trailing along a wall",
-   "source": "decoy"
+   "text": "a photo of a selfie",
+   "label": "selfie",
+   "kind": "reject"
   },
   {
-   "text": "a dark brown root poking through cracked pavement",
-   "source": "decoy"
+   "text": "a photo of a group of people",
+   "label": "group of people",
+   "kind": "reject"
   },
   {
-   "text": "a patch of dark green moss on a wall",
-   "source": "decoy"
+   "text": "a photo of a hand",
+   "label": "hand",
+   "kind": "reject"
   },
   {
-   "text": "a piece of dry wooden planking",
-   "source": "decoy"
+   "text": "a dark blurry photo",
+   "label": "dark blurry photo",
+   "kind": "unclear"
   },
   {
-   "text": "a thick brown stem with leaves",
-   "source": "decoy"
+   "text": "a black image",
+   "label": "black image",
+   "kind": "unclear"
   },
   {
-   "text": "a small ripe berry on a bush",
-   "source": "decoy"
+   "text": "a out of focus photo",
+   "label": "out of focus photo",
+   "kind": "unclear"
   },
   {
-   "text": "a small, smooth stone by a garden edge",
-   "source": "decoy"
+   "text": "a overexposed white photo",
+   "label": "overexposed white photo",
+   "kind": "unclear"
   },
   {
-   "text": "a piece of thin gray wire near a fence",
-   "source": "decoy"
+   "text": "something round",
+   "label": "round",
+   "kind": "attr"
   },
   {
-   "text": "a fallen leaf on the dirt path",
-   "source": "decoy"
+   "text": "something striped",
+   "label": "striped",
+   "kind": "attr"
   },
   {
-   "text": "a patch of short green grass in the yard",
-   "source": "decoy"
+   "text": "something spotted",
+   "label": "spotted",
+   "kind": "attr"
   },
   {
-   "text": "a wooden post near a garden bed",
-   "source": "decoy"
+   "text": "something rough",
+   "label": "rough",
+   "kind": "attr"
   },
   {
-   "text": "a cluster of small light brown seeds on dry weeds",
-   "source": "decoy"
+   "text": "something smooth",
+   "label": "smooth",
+   "kind": "attr"
   },
   {
-   "text": "a small brown stem in dirt",
-   "source": "decoy"
+   "text": "something fluffy",
+   "label": "fluffy",
+   "kind": "attr"
   },
   {
-   "text": "some light pollen on pavement",
-   "source": "decoy"
+   "text": "something ridged",
+   "label": "ridged",
+   "kind": "attr"
   },
   {
-   "text": "a tiny mushroom on dirt",
-   "source": "decoy"
+   "text": "something shiny",
+   "label": "shiny",
+   "kind": "attr"
   },
   {
-   "text": "a curved tree branch on path",
-   "source": "decoy"
+   "text": "something dark",
+   "label": "dark",
+   "kind": "attr"
   },
   {
-   "text": "a patch of organic ground litter",
-   "source": "decoy"
+   "text": "something white",
+   "label": "white",
+   "kind": "attr"
   },
   {
-   "text": "a yellow maple leaf on grass",
-   "source": "decoy"
+   "text": "something bright",
+   "label": "bright",
+   "kind": "attr"
   },
   {
-   "text": "a thin winding vine on fence",
-   "source": "decoy"
+   "text": "something green",
+   "label": "green",
+   "kind": "attr"
   },
   {
-   "text": "a bright orange flower petal",
-   "source": "decoy"
+   "text": "something red",
+   "label": "red",
+   "kind": "attr"
   },
   {
-   "text": "a clump of dark berries on bush",
-   "source": "decoy"
+   "text": "something brown",
+   "label": "brown",
+   "kind": "attr"
   },
   {
-   "text": "a tangled soil root near path",
-   "source": "decoy"
+   "text": "something yellow",
+   "label": "yellow",
+   "kind": "attr"
   },
   {
-   "text": "a cluster of small floral blooms",
-   "source": "decoy"
+   "text": "something orange",
+   "label": "orange",
+   "kind": "attr"
   },
   {
-   "text": "a rusty metal gate on fence",
-   "source": "decoy"
+   "text": "something blue",
+   "label": "blue",
+   "kind": "attr"
   },
   {
-   "text": "a wooden signpost in park",
-   "source": "decoy"
+   "text": "something gray",
+   "label": "gray",
+   "kind": "attr"
   },
   {
-   "text": "a metal ladder leaning on wall",
-   "source": "decoy"
+   "text": "something pink",
+   "label": "pink",
+   "kind": "attr"
   },
   {
-   "text": "a concrete retaining wall near path",
-   "source": "decoy"
+   "text": "something black",
+   "label": "black",
+   "kind": "attr"
   },
   {
-   "text": "a metal decorative fixture on fence",
-   "source": "decoy"
+   "text": "something bumpy",
+   "label": "bumpy",
+   "kind": "attr"
   },
   {
-   "text": "a simple path structure in park",
-   "source": "decoy"
+   "text": "something wrinkled",
+   "label": "wrinkled",
+   "kind": "attr"
   },
   {
-   "text": "a metal trim along walkway",
-   "source": "decoy"
+   "text": "something scaly",
+   "label": "scaly",
+   "kind": "attr"
   },
   {
-   "text": "a concrete barrier near road",
-   "source": "decoy"
+   "text": "something hexagonal",
+   "label": "hexagonal",
+   "kind": "attr"
   },
   {
-   "text": "a patch of wild tall grass",
-   "source": "decoy"
+   "text": "something grid-like",
+   "label": "grid-like",
+   "kind": "attr"
   },
   {
-   "text": "a bright purple flower bloom",
-   "source": "decoy"
+   "text": "something square",
+   "label": "square",
+   "kind": "attr"
   },
   {
-   "text": "a dried seed on loose earth",
-   "source": "decoy"
+   "text": "something pointed",
+   "label": "pointed",
+   "kind": "attr"
   },
   {
-   "text": "a small moss cushion on rock",
-   "source": "decoy"
+   "text": "something spiky",
+   "label": "spiky",
+   "kind": "attr"
   },
   {
-   "text": "a fallen flower head in field",
-   "source": "decoy"
+   "text": "something furry",
+   "label": "furry",
+   "kind": "attr"
   },
   {
-   "text": "a patch of dry brown weeds",
-   "source": "decoy"
+   "text": "something cracked",
+   "label": "cracked",
+   "kind": "attr"
   },
   {
-   "text": "some light dirt patch",
-   "source": "decoy"
+   "text": "something curved",
+   "label": "curved",
+   "kind": "attr"
   },
   {
-   "text": "a red plastic bottle piece",
-   "source": "decoy"
+   "text": "something wavy",
+   "label": "wavy",
+   "kind": "attr"
   },
   {
-   "text": "a pale fallen stem",
-   "source": "decoy"
+   "text": "something full of holes",
+   "label": "full of holes",
+   "kind": "attr"
   },
   {
-   "text": "a small brown nut",
-   "source": "decoy"
+   "text": "something grainy",
+   "label": "grainy",
+   "kind": "attr"
   },
   {
-   "text": "a small rock",
-   "source": "decoy"
+   "text": "something layered",
+   "label": "layered",
+   "kind": "attr"
   },
   {
-   "text": "a gray piece of pavement",
-   "source": "decoy"
+   "text": "something woven",
+   "label": "woven",
+   "kind": "attr"
   },
   {
-   "text": "a dried clump of grass",
-   "source": "decoy"
+   "text": "something puffy",
+   "label": "puffy",
+   "kind": "attr"
   },
   {
-   "text": "a thin piece of wood",
-   "source": "decoy"
+   "text": "something speckled",
+   "label": "speckled",
+   "kind": "attr"
   },
   {
-   "text": "a gray twig",
-   "source": "decoy"
+   "text": "something checkered",
+   "label": "checkered",
+   "kind": "attr"
   },
   {
-   "text": "a fallen branch piece",
-   "source": "decoy"
+   "text": "something metallic",
+   "label": "metallic",
+   "kind": "attr"
   },
   {
-   "text": "some dark plastic chunk",
-   "source": "decoy"
+   "text": "something wooden",
+   "label": "wooden",
+   "kind": "attr"
   },
   {
-   "text": "a clump of weeds",
-   "source": "decoy"
+   "text": "something leafy",
+   "label": "leafy",
+   "kind": "attr"
   },
   {
-   "text": "a light leaf",
-   "source": "decoy"
+   "text": "something ring-shaped",
+   "label": "ring-shaped",
+   "kind": "attr"
   },
   {
-   "text": "a piece of plastic debris",
-   "source": "decoy"
+   "text": "something cone-shaped",
+   "label": "cone-shaped",
+   "kind": "attr"
   },
   {
-   "text": "a piece of dirt",
-   "source": "decoy"
-  },
-  {
-   "text": "a white flower bloom in damp soil",
-   "source": "decoy"
-  },
-  {
-   "text": "a yellow twig on dark earth",
-   "source": "decoy"
-  },
-  {
-   "text": "a red wire coiled on asphalt",
-   "source": "decoy"
-  },
-  {
-   "text": "a pale mud puddle near the curb",
-   "source": "decoy"
-  },
-  {
-   "text": "a gray small fallen limb on dirt",
-   "source": "decoy"
-  },
-  {
-   "text": "a tan cloth scrap under a tree",
-   "source": "decoy"
-  },
-  {
-   "text": "a blue painted fence section",
-   "source": "decoy"
-  },
-  {
-   "text": "a black patch of tar on pavement",
-   "source": "decoy"
-  },
-  {
-   "text": "a red plastic watering can nearby",
-   "source": "decoy"
-  },
-  {
-   "text": "a yellow metal sign on a pole",
-   "source": "decoy"
-  },
-  {
-   "text": "a smooth gray rock under a bush",
-   "source": "decoy"
-  },
-  {
-   "text": "a green painted bucket by a path",
-   "source": "decoy"
-  },
-  {
-   "text": "a brown soil mound in the park",
-   "source": "decoy"
-  },
-  {
-   "text": "a white dried seed pod on the grass",
-   "source": "decoy"
-  },
-  {
-   "text": "a black patch of mildew on stone",
-   "source": "decoy"
-  },
-  {
-   "text": "a blue drainage grate on the sidewalk",
-   "source": "decoy"
-  },
-  {
-   "text": "an orange terracotta pot near the path",
-   "source": "decoy"
-  },
-  {
-   "text": "a pale green vine wrapped on a pole",
-   "source": "decoy"
-  },
-  {
-   "text": "a black rubber tire chunk near the road",
-   "source": "decoy"
-  },
-  {
-   "text": "a yellow traffic cone on grass",
-   "source": "decoy"
-  },
-  {
-   "text": "a white plastic bag blown by wind",
-   "source": "decoy"
-  },
-  {
-   "text": "a blue paint spill on concrete",
-   "source": "decoy"
-  },
-  {
-   "text": "an orange plastic bin by the path",
-   "source": "decoy"
-  },
-  {
-   "text": "a brown discarded wrapper on ground",
-   "source": "decoy"
-  },
-  {
-   "text": "a green painted mailbox near the walk",
-   "source": "decoy"
-  },
-  {
-   "text": "a red hose coiled on the ground",
-   "source": "decoy"
-  },
-  {
-   "text": "a pale yellow street lamp base",
-   "source": "decoy"
-  },
-  {
-   "text": "a green smooth pebble on soil",
-   "source": "decoy"
-  },
-  {
-   "text": "a brown folded paper under a tree",
-   "source": "decoy"
-  },
-  {
-   "text": "a white dried flower on the ground",
-   "source": "decoy"
-  },
-  {
-   "text": "a dark soil clod near a tree",
-   "source": "decoy"
-  },
-  {
-   "text": "a blue painted marker on concrete",
-   "source": "decoy"
-  },
-  {
-   "text": "a pale green fern frond on path",
-   "source": "decoy"
-  },
-  {
-   "text": "an orange bottle cap by the curb",
-   "source": "decoy"
-  },
-  {
-   "text": "a thin metal nail in the dirt",
-   "source": "decoy"
-  },
-  {
-   "text": "a yellow leaf pile under a tree",
-   "source": "decoy"
-  },
-  {
-   "text": "a brown stem cluster in the grass",
-   "source": "decoy"
-  },
-  {
-   "text": "some white scattered plastic pieces",
-   "source": "decoy"
-  },
-  {
-   "text": "a red clay streak on dirt",
-   "source": "decoy"
-  },
-  {
-   "text": "a blue painted barrier near the street",
-   "source": "decoy"
-  },
-  {
-   "text": "a dark soil smear on concrete",
-   "source": "decoy"
-  },
-  {
-   "text": "a pale gray stone near a fence",
-   "source": "decoy"
-  },
-  {
-   "text": "a light brown husk lying on the path",
-   "source": "decoy"
-  },
-  {
-   "text": "a gray wooden fence post in the neighborhood",
-   "source": "decoy"
-  },
-  {
-   "text": "a black seed",
-   "source": "decoy"
-  },
-  {
-   "text": "a gray root",
-   "source": "decoy"
-  },
-  {
-   "text": "some brown dirt clump",
-   "source": "decoy"
-  },
-  {
-   "text": "a brown husk",
-   "source": "decoy"
-  },
-  {
-   "text": "a white fungus",
-   "source": "decoy"
-  },
-  {
-   "text": "a red rock",
-   "source": "decoy"
-  },
-  {
-   "text": "some brown bark",
-   "source": "decoy"
-  },
-  {
-   "text": "a red bloom",
-   "source": "decoy"
-  },
-  {
-   "text": "a white seed head",
-   "source": "decoy"
-  },
-  {
-   "text": "some brown root",
-   "source": "decoy"
-  },
-  {
-   "text": "a round brown cone on grass",
-   "source": "decoy"
-  },
-  {
-   "text": "a brown woody pod hanging from branch",
-   "source": "decoy"
-  },
-  {
-   "text": "a green weed pushing through asphalt",
-   "source": "decoy"
-  },
-  {
-   "text": "a patch of dark soil under bush",
-   "source": "decoy"
-  },
-  {
-   "text": "a gray brick",
-   "source": "decoy"
-  },
-  {
-   "text": "a weathered stump",
-   "source": "decoy"
-  },
-  {
-   "text": "a red berry",
-   "source": "decoy"
-  },
-  {
-   "text": "a yellow mushroom",
-   "source": "decoy"
-  },
-  {
-   "text": "a seedhead on a weed",
-   "source": "decoy"
-  },
-  {
-   "text": "a single mushroom",
-   "source": "decoy"
-  },
-  {
-   "text": "some pine needles",
-   "source": "decoy"
-  },
-  {
-   "text": "a small twig bundle",
-   "source": "decoy"
-  },
-  {
-   "text": "a weathered post",
-   "source": "decoy"
-  },
-  {
-   "text": "a large smooth stone",
-   "source": "decoy"
-  },
-  {
-   "text": "a parked car",
-   "source": "top-up"
-  },
-  {
-   "text": "a pickup truck",
-   "source": "top-up"
-  },
-  {
-   "text": "a bicycle",
-   "source": "top-up"
-  },
-  {
-   "text": "a motorcycle",
-   "source": "top-up"
-  },
-  {
-   "text": "a school bus",
-   "source": "top-up"
-  },
-  {
-   "text": "a house with a front door",
-   "source": "top-up"
-  },
-  {
-   "text": "a brick wall",
-   "source": "top-up"
-  },
-  {
-   "text": "a chain-link fence",
-   "source": "top-up"
-  },
-  {
-   "text": "a white picket fence",
-   "source": "top-up"
-  },
-  {
-   "text": "a garage door",
-   "source": "top-up"
-  },
-  {
-   "text": "a street lamp",
-   "source": "top-up"
-  },
-  {
-   "text": "a traffic light",
-   "source": "top-up"
-  },
-  {
-   "text": "a crosswalk",
-   "source": "top-up"
-  },
-  {
-   "text": "a speed limit sign",
-   "source": "top-up"
-  },
-  {
-   "text": "a street name sign",
-   "source": "top-up"
-  },
-  {
-   "text": "a parking meter",
-   "source": "top-up"
-  },
-  {
-   "text": "an utility pole with wires",
-   "source": "top-up"
-  },
-  {
-   "text": "a manhole cover",
-   "source": "top-up"
-  },
-  {
-   "text": "a curb",
-   "source": "top-up"
-  },
-  {
-   "text": "an asphalt road",
-   "source": "top-up"
-  },
-  {
-   "text": "a concrete sidewalk",
-   "source": "top-up"
-  },
-  {
-   "text": "a gravel path",
-   "source": "top-up"
-  },
-  {
-   "text": "a dirt trail",
-   "source": "top-up"
-  },
-  {
-   "text": "a wooden boardwalk",
-   "source": "top-up"
-  },
-  {
-   "text": "a bridge over a creek",
-   "source": "top-up"
-  },
-  {
-   "text": "a staircase outdoors",
-   "source": "top-up"
-  },
-  {
-   "text": "a handrail",
-   "source": "top-up"
-  },
-  {
-   "text": "a brick chimney",
-   "source": "top-up"
-  },
-  {
-   "text": "a roof with shingles",
-   "source": "top-up"
-  },
-  {
-   "text": "a window with shutters",
-   "source": "top-up"
-  },
-  {
-   "text": "a porch light",
-   "source": "top-up"
-  },
-  {
-   "text": "a recycling bin",
-   "source": "top-up"
-  },
-  {
-   "text": "a picnic table",
-   "source": "top-up"
-  },
-  {
-   "text": "a playground slide",
-   "source": "top-up"
-  },
-  {
-   "text": "a swing set",
-   "source": "top-up"
-  },
-  {
-   "text": "a basketball hoop",
-   "source": "top-up"
-  },
-  {
-   "text": "a soccer goal",
-   "source": "top-up"
-  },
-  {
-   "text": "a water fountain",
-   "source": "top-up"
-  },
-  {
-   "text": "a flag on a pole",
-   "source": "top-up"
-  },
-  {
-   "text": "a bird feeder",
-   "source": "top-up"
-  },
-  {
-   "text": "a garden hose",
-   "source": "top-up"
-  },
-  {
-   "text": "a lawn mower",
-   "source": "top-up"
-  },
-  {
-   "text": "a wheelbarrow",
-   "source": "top-up"
-  },
-  {
-   "text": "a shovel",
-   "source": "top-up"
-  },
-  {
-   "text": "a rake",
-   "source": "top-up"
-  },
-  {
-   "text": "a flower pot",
-   "source": "top-up"
-  },
-  {
-   "text": "a tall tree",
-   "source": "top-up"
-  },
-  {
-   "text": "a pine tree",
-   "source": "top-up"
-  },
-  {
-   "text": "an oak tree",
-   "source": "top-up"
-  },
-  {
-   "text": "a palm tree",
-   "source": "top-up"
-  },
-  {
-   "text": "a bush with red berries",
-   "source": "top-up"
-  },
-  {
-   "text": "a hedge",
-   "source": "top-up"
-  },
-  {
-   "text": "a sunflower",
-   "source": "top-up"
-  },
-  {
-   "text": "a rose",
-   "source": "top-up"
-  },
-  {
-   "text": "ivy climbing a wall",
-   "source": "top-up"
-  },
-  {
-   "text": "a cactus",
-   "source": "top-up"
-  },
-  {
-   "text": "a fern",
-   "source": "top-up"
-  },
-  {
-   "text": "a log",
-   "source": "top-up"
-  },
-  {
-   "text": "a large boulder",
-   "source": "top-up"
-  },
-  {
-   "text": "a pile of rocks",
-   "source": "top-up"
-  },
-  {
-   "text": "sand",
-   "source": "top-up"
-  },
-  {
-   "text": "mud",
-   "source": "top-up"
-  },
-  {
-   "text": "a creek",
-   "source": "top-up"
-  },
-  {
-   "text": "a pond",
-   "source": "top-up"
-  },
-  {
-   "text": "a lake",
-   "source": "top-up"
-  },
-  {
-   "text": "a waterfall",
-   "source": "top-up"
-  },
-  {
-   "text": "snow",
-   "source": "top-up"
-  },
-  {
-   "text": "ice",
-   "source": "top-up"
-  },
-  {
-   "text": "a blue sky",
-   "source": "top-up"
-  },
-  {
-   "text": "white clouds",
-   "source": "top-up"
-  },
-  {
-   "text": "a sunset",
-   "source": "top-up"
-  },
-  {
-   "text": "the moon",
-   "source": "top-up"
-  },
-  {
-   "text": "a shadow on the ground",
-   "source": "top-up"
-  },
-  {
-   "text": "a rainbow",
-   "source": "top-up"
-  },
-  {
-   "text": "a hill",
-   "source": "top-up"
-  },
-  {
-   "text": "a field of grass",
-   "source": "top-up"
-  },
-  {
-   "text": "a dog",
-   "source": "top-up"
-  },
-  {
-   "text": "a cat",
-   "source": "top-up"
-  },
-  {
-   "text": "a squirrel",
-   "source": "top-up"
-  },
-  {
-   "text": "a bird on a branch",
-   "source": "top-up"
-  },
-  {
-   "text": "a duck",
-   "source": "top-up"
-  },
-  {
-   "text": "a butterfly",
-   "source": "top-up"
-  },
-  {
-   "text": "a bee on a flower",
-   "source": "top-up"
-  },
-  {
-   "text": "an ant",
-   "source": "top-up"
-  },
-  {
-   "text": "a spider web",
-   "source": "top-up"
-  },
-  {
-   "text": "a snail",
-   "source": "top-up"
-  },
-  {
-   "text": "a feather",
-   "source": "top-up"
-  },
-  {
-   "text": "a bird nest",
-   "source": "top-up"
-  },
-  {
-   "text": "a sneaker",
-   "source": "top-up"
-  },
-  {
-   "text": "a ball",
-   "source": "top-up"
-  },
-  {
-   "text": "a kite",
-   "source": "top-up"
-  },
-  {
-   "text": "graffiti on a wall",
-   "source": "top-up"
-  },
-  {
-   "text": "a mural",
-   "source": "top-up"
-  },
-  {
-   "text": "a painted door",
-   "source": "top-up"
-  },
-  {
-   "text": "a bench in the sun",
-   "source": "top-up"
-  },
-  {
-   "text": "a gazebo",
-   "source": "top-up"
-  },
-  {
-   "text": "a statue",
-   "source": "top-up"
-  },
-  {
-   "text": "a church steeple",
-   "source": "top-up"
-  },
-  {
-   "text": "a store front",
-   "source": "top-up"
-  },
-  {
-   "text": "a parking lot",
-   "source": "top-up"
-  },
-  {
-   "text": "a gas station",
-   "source": "top-up"
-  },
-  {
-   "text": "a construction cone",
-   "source": "top-up"
+   "text": "something soft",
+   "label": "soft",
+   "kind": "attr"
   }
  ]
 }
