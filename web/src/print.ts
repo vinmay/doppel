@@ -58,6 +58,15 @@ export function printPixels(px: Uint8ClampedArray, width: number, tone: Tone) {
   }
 }
 
+/** Draw `blob` into `canvas` untinted, cropped to a square (cover) of `side` px: the photo as taken. */
+export async function drawPhoto(canvas: HTMLCanvasElement, blob: Blob, side = 480) {
+  const bmp = await createImageBitmap(blob);
+  const s = Math.min(bmp.width, bmp.height);
+  canvas.width = canvas.height = side;
+  canvas.getContext("2d")!.drawImage(bmp, (bmp.width - s) / 2, (bmp.height - s) / 2, s, s, 0, 0, side, side);
+  bmp.close();
+}
+
 /** Draw `blob` into `canvas` as a print, cropped to a square (cover) of `side` px. */
 export async function drawPrint(canvas: HTMLCanvasElement, blob: Blob, tone: Tone, side = 480) {
   const bmp = await createImageBitmap(blob);

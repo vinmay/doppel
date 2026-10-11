@@ -9,7 +9,7 @@ import { clearAll, getDay, getMeta, getShot, listDays, newId, putDay, putShot, s
 import { getEmbedder, isFakeEmbedder, onModelProgress } from "./embed";
 import { fakePhotoVector } from "./embed/fake";
 import { ideasFor } from "./ideas";
-import { drawPrint, type Tone } from "./print";
+import { drawPhoto, drawPrint, type Tone } from "./print";
 import { registerPwa } from "./pwa";
 import { parseHash } from "./router";
 import { dayKey, nextDayStart, type Place } from "./sun";
@@ -88,11 +88,27 @@ const shotById = (id: string) => {
   if (!blobs.has(id)) blobs.set(id, getShot(id));
   return blobs.get(id)!;
 };
-async function printInto(canvas: HTMLCanvasElement | null, id: string | undefined, tone: Tone, side = 480) {
+
+/** Fill a print-over-photo stack. The print starts hidden unless `printed`. */
+async function fillStack(el: Element | null, id: string | undefined, tone: Tone, side = 480) {
+  if (!el || !id) return;
+  const s = await shotById(id);
+  if (!s) return;
+  await Promise.all([drawPhoto(el.querySelector<HTMLCanvasElement>(".photo")!, s.thumbBlob, side), drawPrint(el.querySelector<HTMLCanvasElement>(".print")!, s.thumbBlob, tone, side)]);
+}
+async function photoInto(canvas: HTMLCanvasElement | null, id: string | undefined, side = 480) {
   if (!canvas || !id) return;
   const s = await shotById(id);
-  if (s) await drawPrint(canvas, s.thumbBlob, tone, side);
+  if (s) await drawPhoto(canvas, s.thumbBlob, side);
 }
+
+// Press and hold a print to see the original photo (pointer, or Space/Enter when focused).
+const peek = (t: EventTarget | null, on: boolean) => (t as Element | null)?.closest?.(".stack")?.classList.toggle("peek", on);
+app.addEventListener("pointerdown", (e) => peek(e.target, true));
+for (const ev of ["pointerup", "pointercancel", "pointerleave", "pointerout"]) app.addEventListener(ev, (e) => peek(e.target, false));
+app.addEventListener("contextmenu", (e) => (e.target as Element).closest?.(".stack") && e.preventDefault());
+app.addEventListener("keydown", (e) => (e.key === " " || e.key === "Enter") && (e.target as Element).classList?.contains("stack") && (e.preventDefault(), peek(e.target, true)));
+app.addEventListener("keyup", (e) => (e.key === " " || e.key === "Enter") && peek(e.target, false));
 
 /** Count the score up from 0 over ~700 ms. */
 function countUp(el: HTMLElement | null) {
@@ -173,22 +189,27 @@ async function showToday(seq: number, force = false) {
   if (p.kind === "walking") {
     render(app, walkView(p.pair, pr.first!.label, p.walk, pr.first!.looks ?? [], pr.first!.alt));
     startGps();
-    return void printInto(app.querySelector("#print-a"), pr.first!.id, "neutral");
+    return void photoInto(app.querySelector("#photo-a"), pr.first!.id);
   }
   if (p.kind === "twin") {
     render(app, twinView(p.pair, pr.first!.label, pr.first!.looks ?? [], pr.first!.alt));
     startGps(); // keep counting metres until the twin is in
-    void printInto(app.querySelector("#print-a"), pr.first!.id, "neutral");
+    void photoInto(app.querySelector("#photo-a"), pr.first!.id);
     return wireShoot(seq, "twin");
   }
   if (p.kind === "reveal") {
     const done = pr as Required<typeof pr>;
     render(app, revealView(p.pair, done, p.pair >= 3));
     const tone = done.result.band;
-    await Promise.all([printInto(app.querySelector("#print-a"), done.first.id, tone), printInto(app.querySelector("#print-b"), done.twin.id, tone)]);
+    await Promise.all([fillStack(app.querySelector('[data-stack="a"]'), done.first.id, tone), fillStack(app.querySelector('[data-stack="b"]'), done.twin.id, tone)]);
     if (seq !== routeSeq) return;
-    app.querySelector("#pair")?.classList.add("met");
-    window.setTimeout(() => countUp(app.querySelector<HTMLElement>("[data-testid=score]")), reducedMotion ? 0 : 450);
+    // The two real photos slide together; then they turn into the print while the score counts up.
+    const pair = app.querySelector("#pair");
+    pair?.classList.add("met");
+    window.setTimeout(() => {
+      pair?.classList.add("printed");
+      countUp(app.querySelector<HTMLElement>("[data-testid=score]"));
+    }, reducedMotion ? 0 : 550);
     if (tone === "uncanny") navigator.vibrate?.(30);
     app.querySelector("#next")!.addEventListener("click", async () => {
       day = closeReveal(day!, Date.now());
@@ -202,10 +223,10 @@ async function showToday(seq: number, force = false) {
   const rows: DonePair[] = pairs.map((x) => ({ first: x.first.label, twin: x.twin.label, score: x.result.score, band: x.result.band }));
   const best = bestPair(day) ?? 0;
   render(app, doneView(rows, best, metersWalked(day), timeOfDay(nextDayStart(now, place)), !!place));
-  for (const c of app.querySelectorAll<HTMLCanvasElement>("canvas[data-print]")) {
-    const [i, side] = c.dataset.print!.split("-");
-    const x = pairs[Number(i)];
-    void printInto(c, side === "a" ? x.first.id : x.twin.id, x.result.band, c.closest(".best") ? 480 : 160);
+  for (const el of app.querySelectorAll<HTMLElement>("[data-stack]")) {
+    const [i, side] = el.dataset.stack!.split("-");
+    const x = pairs[i === "best" ? best : Number(i)];
+    void fillStack(el, side === "a" ? x.first.id : x.twin.id, x.result.band, i === "best" ? 480 : 160);
   }
 }
 
@@ -294,10 +315,10 @@ async function showHistory(seq: number) {
     .filter((x) => x.i !== undefined)
     .map(({ d, i }) => ({ d, p: donePairs(d)[i!] }));
   render(app, historyView(rows.map(({ d, p }) => ({ day: d.day, first: p.first.label, twin: p.twin.label, score: p.result.score, band: p.result.band }))));
-  for (const c of app.querySelectorAll<HTMLCanvasElement>("canvas[data-print]")) {
-    const [i, side] = c.dataset.print!.split("-");
+  for (const el of app.querySelectorAll<HTMLElement>("[data-stack]")) {
+    const [i, side] = el.dataset.stack!.split("-");
     const { p } = rows[Number(i)];
-    void printInto(c, side === "a" ? p.first.id : p.twin.id, p.result.band, 160);
+    void fillStack(el, side === "a" ? p.first.id : p.twin.id, p.result.band, 160);
   }
   app.querySelector("#delete-all")?.addEventListener("click", async () => {
     if (!confirm("Delete all photos and scores from this device? This can't be undone.")) return;
