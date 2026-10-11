@@ -71,7 +71,7 @@ npm run dev                 # http://localhost:5173 (downloads the model from Hu
 npm run build               # production build in web/dist/
 ```
 
-Needs a browser with WebGPU (Chrome or Edge on Android or desktop) and Node 20+. The model is `litert-community/embeddinggemma-2-text-vision-440m-litert-lm` (388 MB, downloaded once from Hugging Face and cached; afterwards the app works offline). To try it without going outside, open `#/demo`.
+Needs a browser with WebGPU (Chrome or Edge on Android or desktop) and Node 22.12+ (Vite and Vitest require it). The model is `litert-community/embeddinggemma-2-text-vision-440m-litert-lm` (388 MB, downloaded once from Hugging Face and cached; afterwards the app works offline). To try it without going outside, open `#/demo`.
 
 Deploy: `render.yaml` is a Render Blueprint for a static site (`rootDir: web`, `npm ci && npm run build`, publish `dist/`).
 
