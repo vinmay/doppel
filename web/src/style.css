@@ -82,8 +82,9 @@ main { max-width: 520px; margin: 0 auto; padding: 0 var(--gutter); outline: none
 .score .n { font-size: 2em; letter-spacing: -.04em; }
 .score .of { opacity: .85; font-weight: 400; }
 .band { margin: 8px 0 0; text-align: center; letter-spacing: .14em; }
-.marks { letter-spacing: .1em; margin-right: 6px; }
-.reveal[data-band="uncanny"] .marks, .reveal[data-band="cousins"] .marks { color: var(--accent); }
+.marks { display: inline-flex; gap: 3px; margin-right: 8px; vertical-align: middle; }
+.marks i { width: 14px; height: 10px; border: 1px solid var(--fg); display: block; }
+.marks i.on { background: var(--fg); }
 .verdict { text-align: center; font-size: var(--t-m); margin: 8px 0 4px; }
 .shared { text-align: center; margin: 4px 0 0; }
 .shared .label { display: block; }

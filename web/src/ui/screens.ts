@@ -20,10 +20,10 @@ const hud = (pair: number, right = "") => `
     <span>${right}</span>
   </div>`;
 
-/** Filled marks = band level, so the band never rests on color alone. */
+/** A 4-step scale, Strangers to Uncanny, with only the current step filled. Always shown next to the band name, so it never rests on color alone. */
 export const bandMarks = (b: Band) => {
-  const n = BANDS.indexOf(b) + 1;
-  return `<span class="marks" aria-hidden="true">${"■".repeat(n)}${"□".repeat(4 - n)}</span>`;
+  const n = BANDS.indexOf(b);
+  return `<span class="marks" aria-hidden="true">${BANDS.map((_, i) => `<i${i === n ? ` class="on"` : ""}></i>`).join("")}</span>`;
 };
 
 const slot = (side: "a" | "b", inner: string, caption = "") => `
@@ -61,7 +61,7 @@ export function practiceView(p: Practice): string {
   const b = band(p.score);
   return `
     <div class="practice" aria-label="Practice reveal" data-testid="practice">
-      <p class="label">A practice pair</p>
+      <p class="label" id="practice-label">A practice pair</p>
       <div class="pair together" id="practice-pair">
         ${slot("a", `<canvas id="practice-a" aria-label="${esc(p.first.label)}, printed"></canvas>`)}
         ${slot("b", `<canvas id="practice-b" aria-label="${esc(p.twin.label)}, printed"></canvas>`)}

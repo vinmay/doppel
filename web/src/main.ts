@@ -6,7 +6,7 @@ import "./style.css";
 import { prepareImage } from "./capture";
 import { acceptFirst, acceptTwin, bestPair, closeReveal, donePairs, metersWalked, newDay, phase, updateWalk, type DayState, type Phase } from "./day";
 import { clearAll, getDay, getMeta, getShot, listDays, newId, putDay, putShot, setMeta, type StoredShot } from "./db";
-import { getEmbedder, isFakeEmbedder } from "./embed";
+import { getEmbedder, isFakeEmbedder, onModelProgress } from "./embed";
 import { fakePhotoVector } from "./embed/fake";
 import { ideasFor } from "./ideas";
 import { drawPrint, type Tone } from "./print";
@@ -159,7 +159,15 @@ async function showToday(seq: number, force = false) {
     if (seq !== routeSeq) return;
     render(app, firstView(p.pair, ideasFor(day.day), firstRun, firstRun ? practice : undefined));
     wireShoot(seq, "first");
-    if (firstRun) void playPractice(seq);
+    if (firstRun) {
+      void playPractice(seq);
+      // "while Doppel downloads" only while a download is actually running
+      const off = onModelProgress((m) => {
+        const l = app.querySelector("#practice-label");
+        if (l) l.textContent = m.phase === "download" && m.loaded < m.total ? "A practice pair, while Doppel downloads" : "A practice pair";
+        if (m.phase === "init" && m.loaded >= m.total) off();
+      });
+    }
     return mountDebug(app);
   }
   if (p.kind === "walking") {
