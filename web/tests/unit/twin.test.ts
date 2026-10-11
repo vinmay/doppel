@@ -240,3 +240,32 @@ describe("suggestTwins (G1)", () => {
     expect(suggestTwins(photo, r, vocab, cfg)).toEqual(s); // deterministic
   });
 });
+
+describe("stretch bonus (G2)", () => {
+  const sc = { bands: { uncanny: 80, cousins: 50, distant: 30 }, stretch: { min: 0.2, full: 0.3, maxBonus: 10 } };
+  it("is earned only by Cousins-or-better pairs of very different things", async () => {
+    const { stretchBonus } = await import("../../src/twin");
+    expect(stretchBonus(49, 0.3, sc)).toBe(0); // not visually close enough
+    expect(stretchBonus(70, 0.19, sc)).toBe(0); // too similar as things
+    expect(stretchBonus(70, 0.2, sc)).toBe(1); // at the threshold: at least +1
+    expect(stretchBonus(70, 0.25, sc)).toBe(5);
+    expect(stretchBonus(70, 0.3, sc)).toBe(10);
+    expect(stretchBonus(70, 0.9, sc)).toBe(10); // capped at maxBonus
+  });
+  it("never pushes the score past 100", async () => {
+    const { stretchBonus } = await import("../../src/twin");
+    expect(stretchBonus(96, 0.3, sc)).toBe(4);
+    expect(stretchBonus(100, 0.3, sc)).toBe(0); // no room left: no "+1" that changes nothing
+    expect(stretchBonus(NaN, 0.3, sc)).toBe(0);
+    expect(stretchBonus(70, 0.3, { bands: sc.bands })).toBe(0); // no config, no bonus
+  });
+  it("judgePair adds the bonus to the final score and keeps the visual score", async () => {
+    const { judgePair } = await import("../../src/twin");
+    const a = { vector: e(1, 0, 0, 0, 1, 0), reading: readPhoto(e(1, 0, 0, 0, 1, 0), vocab, cfg) };
+    const b = { vector: e(0, 1, 0, 0, 1, 0), reading: readPhoto(e(0, 1, 0, 0, 1, 0), vocab, cfg) };
+    const r = judgePair(a, b, "s", { ...cfg, lo: 0.2, hi: 0.6, stretch: { min: 0.1, full: 0.5, maxBonus: 10 } }, vocab);
+    expect(r.visual).toBe(75);
+    expect(r.bonus).toBeGreaterThan(0);
+    expect(r.score).toBe(Math.min(100, r.visual! + r.bonus!));
+  });
+});

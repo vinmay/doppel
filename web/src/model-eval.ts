@@ -40,11 +40,11 @@ async function main() {
   const pairs = ["twins", "strangers", "same-kind"].flatMap((set) =>
     pairsOf(set).map(([a, b]) => {
       const A = shots[a], B = shots[b];
-      const r = judgePair(A, B, `eval#${a}`);
+      const r = judgePair(A, B, `eval#${a}`, undefined, vocab);
       return {
         set, a, b, labelA: A.reading.label, labelB: B.reading.label, marginA: A.reading.margin, marginB: B.reading.margin,
         checkA: checkShot(A.reading) ?? null, checkB: checkShot(B.reading) ?? null, altA: A.reading.alt ?? null, altB: B.reading.alt ?? null, problem: checkTwin(A, B, vocab) ?? null,
-        sim: r.sim, score: r.score, band: r.band, shared: r.shared, looksA: topAttributes(A.reading.attrZ), triesA: suggestTwins(A.vector, A.reading, vocab), triesB: suggestTwins(B.vector, B.reading, vocab),
+        sim: r.sim, score: r.score, visual: r.visual, bonus: r.bonus, band: r.band, shared: r.shared, looksA: topAttributes(A.reading.attrZ), triesA: suggestTwins(A.vector, A.reading, vocab), triesB: suggestTwins(B.vector, B.reading, vocab),
       };
     }),
   );

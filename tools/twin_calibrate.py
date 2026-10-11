@@ -188,6 +188,8 @@ def main():
         out["margin"] = 0.003  # top-1 minus best label of a different kind (text sim < synonymTextSim)
         out["synonymTextSim"] = 0.85  # labels this close are near-synonyms: shown together ("cloud / sky"), never rivals (F1)
         out["minTopSim"] = 0.67  # uncertain needs a small margin AND a top-label sim below this; lowest clear photo: 0.681 (F1)
+        out["stretch"] = {"min": 0.205, "full": 0.30, "maxBonus": 10,
+                          "source": "stretch = 1 - label text sim; min chosen so 3 of 8 fixture twins earn it (G2); full ~ p99 of all thing-pair stretches (0.304)"}
         out["attrZ"] = 1.0  # an attribute is shared when both photos are >= 1.0 sd above its mean
         save_candidates(diff_pairs[:10], lo, hi)
         (ROOT / "data" / "twin-scoring.json").write_text(json.dumps(out, indent=1) + "\n")

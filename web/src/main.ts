@@ -297,7 +297,7 @@ async function takePhoto(file: File, which: "first" | "twin", onStatus: (s: stri
     if (problem) return (onStatus(""), onRefused(PROBLEM_TEXT[problem]), false);
     const id = newId();
     await putShot({ id, day: day!.day, ts: now, vector, reading, thumbBlob });
-    const result = judgePair({ vector: first.vector, reading: first.reading }, { vector, reading }, `${day!.day}#${day!.pairs.length}`);
+    const result = judgePair({ vector: first.vector, reading: first.reading }, { vector, reading }, `${day!.day}#${day!.pairs.length}`, undefined, vocab);
     day = acceptTwin(day!, { id, ts: now, label: reading.label }, result, now);
     stopGps();
   }

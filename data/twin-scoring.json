@@ -717,5 +717,11 @@
  "margin": 0.003,
  "synonymTextSim": 0.85,
  "minTopSim": 0.67,
- "attrZ": 1.0
+ "attrZ": 1.0,
+ "stretch": {
+  "min": 0.205,
+  "full": 0.3,
+  "maxBonus": 10,
+  "source": "stretch = 1 - label text sim; min chosen so 3 of 8 fixture twins earn it (G2); full ~ p99 of all thing-pair stretches (0.304)"
+ }
 }

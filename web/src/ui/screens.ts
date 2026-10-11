@@ -2,7 +2,7 @@
 // the pair frame, two square slots side by side. Empty, it explains the game;
 // then the first print fills the left slot, the walk counts down in the right
 // one, the twin fills it, and at the reveal the two prints slide together.
-import { band, BANDS, BAND_NAMES, NOTHING_SHARED, type Band } from "../twin";
+import { band, BANDS, BAND_NAMES, NOTHING_SHARED, STRETCH_LINE, type Band } from "../twin";
 import type { PairState } from "../day";
 import { PAIRS_PER_DAY } from "../day";
 import type { WalkStatus } from "../walk";
@@ -171,6 +171,7 @@ export function revealView(pair: number, p: Required<Pick<PairState, "first" | "
       <p class="labels" data-testid="labels">${esc(p.first.label)} <span aria-label="and">↔</span> ${esc(p.twin.label)}</p>
       <p class="score" data-testid="score" data-value="${r.score}"><span class="n">${r.score}</span><span class="of">/100</span></p>
       <p class="band">${bandMarks(r.band)} <b data-testid="band">${BAND_NAMES[r.band].toUpperCase()}</b></p>
+      ${r.bonus ? `<p class="stretch" data-testid="stretch"><b>+${r.bonus}</b> Stretch: ${STRETCH_LINE}</p>` : ""}
       <p class="voice verdict" data-testid="verdict">${esc(r.verdict)}</p>
       <p class="shared" data-testid="shared"><span class="label">What they share</span> ${r.shared.length ? `Both: ${r.shared.map(esc).join(" · ")}` : NOTHING_SHARED}</p>
       <div class="dock"><button class="btn btn-shoot" id="next" type="button">${last ? "See today" : "Next pair"}</button></div>

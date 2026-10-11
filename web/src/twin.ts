@@ -20,6 +20,8 @@ export interface TwinConfig {
   minTopSim: number; // a photo whose top label is at least this close is never "uncertain"
   attrZ: number; // shared attribute threshold (z-score, both photos)
   attr: { labels: string[]; mu: number[]; sd: number[] };
+  /** G2: bonus for a visual twin between very different kinds of thing. */
+  stretch?: { min: number; full: number; maxBonus: number };
   /** Per vocab row: mean/sd of photo->label cosine over the calibration photos (G1 ranking). */
   labelStats?: { mu: number[]; sd: number[] };
 }
@@ -289,18 +291,45 @@ export function verdictLine(b: Band, seed: string): string {
   return lines[hash(seed) % lines.length];
 }
 
+/**
+ * Stretch bonus (G2): how different the two kinds of thing are, 1 - label text sim.
+ * Earned only by a visual Cousins-or-better pair with stretch >= min; scales to
+ * maxBonus at `full`. The final score is capped at 100.
+ */
+export function stretchBonus(visual: number, stretch: number, cfg: Pick<TwinConfig, "bands" | "stretch"> = TWIN): number {
+  const st = cfg.stretch;
+  if (!st || !Number.isFinite(visual) || !Number.isFinite(stretch)) return 0;
+  if (visual < cfg.bands.cousins || stretch < st.min) return 0;
+  const b = Math.round((st.maxBonus * (stretch - st.min)) / (st.full - st.min));
+  // at least +1 once earned, at most maxBonus, and never more than the room left under 100
+  return Math.min(Math.max(1, Math.min(st.maxBonus, b)), 100 - visual);
+}
+
+export const STRETCH_LINE = "these have nothing in common.";
+
 /** Everything the reveal needs for one pair. */
 export interface PairResult {
   sim: number;
-  score: number;
+  score: number; // final: visual + bonus, capped at 100
+  visual?: number; // the photo-photo score alone
+  bonus?: number; // stretch bonus (G2), 0 when not earned
   band: Band;
   shared: string[];
   verdict: string;
 }
 
-export function judgePair(a: { vector: ArrayLike<number>; reading: Reading }, b: { vector: ArrayLike<number>; reading: Reading }, seed: string, cfg: TwinConfig = TWIN): PairResult {
+export function judgePair(
+  a: { vector: ArrayLike<number>; reading: Reading },
+  b: { vector: ArrayLike<number>; reading: Reading },
+  seed: string,
+  cfg: TwinConfig = TWIN,
+  vocab?: LabelVocab,
+): PairResult {
   const sim = cosine(a.vector, b.vector);
-  const score = twinScore(sim, cfg);
+  const visual = twinScore(sim, cfg);
+  const stretch = vocab ? Math.min(1, Math.max(0, 1 - labelSim(vocab, a.reading.index, b.reading.index))) : 0;
+  const bonus = stretchBonus(visual, stretch, cfg);
+  const score = Math.min(100, visual + bonus);
   const bd = band(score, cfg);
-  return { sim, score, band: bd, shared: sharedAttributes(a.reading.attrZ, b.reading.attrZ, cfg), verdict: verdictLine(bd, seed) };
+  return { sim, score, visual, bonus, band: bd, shared: sharedAttributes(a.reading.attrZ, b.reading.attrZ, cfg), verdict: verdictLine(bd, seed) };
 }

@@ -33,7 +33,7 @@ const crit = [
   ["What they share: ≥ 1 attribute for ≥ 6 of 8 twins (sense judged in LOG.md)", `${twins.filter((p) => p.shared.length).length} of ${twins.length}`, twins.filter((p) => p.shared.length).length >= 6],
 ];
 const seen = (l, alt) => (alt ? `${l} / ${alt}` : l);
-const row = (p) => `| ${short(p.a)} ↔ ${short(p.b)} | ${seen(p.labelA, p.altA)} ↔ ${seen(p.labelB, p.altB)} | ${p.sim.toFixed(3)} | **${p.score}** | ${BANDS[p.band]} | ${p.shared.length ? p.shared.join(" · ") : "Not much, honestly."} | ${[p.checkA && `A: ${p.checkA}`, p.checkB && `B: ${p.checkB}`, p.problem].filter(Boolean).join(", ") || "–"} |`;
+const row = (p) => `| ${short(p.a)} ↔ ${short(p.b)} | ${seen(p.labelA, p.altA)} ↔ ${seen(p.labelB, p.altB)} | ${p.sim.toFixed(3)} | **${p.score}**${p.bonus ? ` (${p.visual} +${p.bonus} stretch)` : ""} | ${BANDS[p.band]} | ${p.shared.length ? p.shared.join(" · ") : "Not much, honestly."} | ${[p.checkA && `A: ${p.checkA}`, p.checkB && `B: ${p.checkB}`, p.problem].filter(Boolean).join(", ") || "–"} |`;
 const head = "| Pair | Doppel sees | cosine | Score | Band | What they share | Rule |\n|---|---|---|---|---|---|---|";
 const md = `# Model-in-the-loop eval
 
