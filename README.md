@@ -4,9 +4,9 @@ Doppel started as a fork of Sense Hunt and Warmr (same author, same challenge wi
 
 **Find two different things that look the same. Outside.**
 
-Photograph anything outdoors. Walk about 50 metres. Then find its twin: a *different kind* of thing that looks the same, like a tire and a donut, moss and broccoli, or bark and elephant skin. **EmbeddingGemma 2 runs on your phone** and judges how alike the two photos look, and it shows its reasons:
+Photograph anything outdoors. Walk about 50 metres. Then find its twin: a *different kind* of thing that looks the same, like a pinecone and an artichoke, moss and broccoli, or bark and elephant skin. **EmbeddingGemma 2 runs on your phone** and judges how alike the two photos look, and it shows its reasons:
 
-- **Doppel sees:** what it thinks each photo is ("tire ↔ donut"), so you know it understood you.
+- **Doppel sees:** what it thinks each photo is ("pinecone ↔ artichoke"), so you know it understood you.
 - **A twin score** from 0 to 100, in four bands: Uncanny, Cousins, Distant, Strangers.
 - **What they share:** "Both: ridged · layered · wrinkled", the visual qualities both photos have.
 
@@ -16,7 +16,7 @@ Built Oct 10 to 11, 2026 for DEV Hacktoberfest Week 1 ("Touch Grass").
 
 - **Live:** https://doppel-ws59.onrender.com (Chrome on Android or desktop; needs WebGPU)
 - **No time to go outside?** [Try a demo round](https://doppel-ws59.onrender.com/#/demo): one full round with bundled CC0 photos, no camera needed, nothing saved.
-- **Write-up:** on DEV (link coming soon)
+- **Write-up:** https://dev.to/vinmay/doppel-find-two-different-things-that-look-similar-outside-2o77
 
 ## How to play
 
@@ -33,7 +33,7 @@ EmbeddingGemma 2 can embed both photos and text into the same space, and it's sm
 
 The score is just how close your two photos are, scaled to 0–100. I calibrated the scale on 23 of my own outdoor photos (`tools/twin_calibrate.py`, numbers in `data/twin-scoring.json`).
 
-The rest comes from comparing photos to text. At build time I embedded a list of about 200 everyday things ("a tire", "moss"), a few things you shouldn't photograph (screens, rooms, people), and 45 visual words like "round" or "ridged". The closest thing is what "Doppel sees". A visual word shows up under "What they share" when it fits both photos noticeably better than usual. The same lists drive the hints and the "same kind of thing" check.
+The rest comes from comparing photos to text. At build time I embedded a list of about 200 everyday things ("a pinecone", "moss"), a few things you shouldn't photograph (screens, rooms, people), and 45 visual words like "round" or "ridged". The closest thing is what "Doppel sees". A visual word shows up under "What they share" when it fits both photos noticeably better than usual. The same lists drive the hints and the "same kind of thing" check.
 
 Nothing leaves the phone. The day's state, the photo vectors and thumbnails live in IndexedDB, and a service worker keeps the app and the model available offline.
 
