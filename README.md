@@ -72,6 +72,10 @@ Needs Node 22.12+ and a browser with WebGPU (Chrome or Edge on Android or deskto
 - **Photos:** CC0 and public-domain images from Wikimedia Commons and Openverse (Flickr, rawpixel); every file, author and license in [`web/tests/fixtures/CREDITS.md`](web/tests/fixtures/CREDITS.md), [`web/public/practice/CREDITS.md`](web/public/practice/CREDITS.md) and [`web/public/demo/CREDITS.md`](web/public/demo/CREDITS.md).
 - Fonts: IBM Plex Mono (OFL), Instrument Serif (OFL), via Fontsource.
 
+## Commits after the deadline
+
+None.
+
 ## License
 
 Apache-2.0. See `LICENSE`.
