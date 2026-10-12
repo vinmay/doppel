@@ -29,32 +29,15 @@ Shots Doppel can't use are refused and **not counted**: screens, rooms, document
 
 ## How it works
 
-```
-        ┌──────────────── at build time, on a dev PC ─────────────────┐
-        │ data/vocab.json: 208 kinds of thing, 19 not-allowed classes,│
-        │   4 "unreadable" rows, 45 visual attributes                 │
-        │ the same in-browser EmbeddingGemma 2 embeds them once       │
-        │   -> public/vocab-<hash>.bin (276 x 768 floats, 848 KB)     │
-        │ eval photos -> tools/twin_calibrate.py -> twin-scoring.json │
-        │ Gemma 4 E4B (Ollama) -> data/twin-ideas.json (69 hints)     │
-        └──────────────────────────────┬──────────────────────────────┘
-                                       ▼
-┌────────────────────────── on the phone (PWA) ─────────────────────────────┐
-│ photo ─► EmbeddingGemma 2 (LiteRT-LM, WebGPU) ─► 768-d vector             │
-│   label   = nearest "kind" row            ("Doppel sees: tire")           │
-│   margin  = top label vs the best label of a different kind (uncertainty) │
-│   attrs   = z-score of each attribute     ("Look for something ridged")   │
-│ twin ─► cosine(photo A, photo B) ─► 0..100 (calibrated) ─► band, verdict  │
-│   What they share = attributes >= 1 sd above average in BOTH photos       │
-│ IndexedDB: the day, both vectors, thumbnails. Service worker: offline.    │
-└───────────────────────────────────────────────────────────────────────────┘
-```
+EmbeddingGemma 2 can embed both photos and text into the same space, and it's small enough to run in the browser on WebGPU. Doppel leans on that for everything.
 
-EmbeddingGemma 2 puts photos and text into one vector space. Photo↔photo similarity is the score; photo↔text similarity gives the labels and the shared attributes that make the score explainable.
+The score is just how close your two photos are, scaled to 0–100. I calibrated the scale on 23 of my own outdoor photos (`tools/twin_calibrate.py`, numbers in `data/twin-scoring.json`).
 
-**Calibration** (`data/twin-scoring.json`, from `tools/twin_calibrate.py` on browser embeddings of 23 of my own outdoor photos): cosine 0.664 (10th percentile of all pairs) maps to 0 and 0.834 (95th percentile) to 100. Bands: Uncanny ≥ 80, Cousins ≥ 50, Distant ≥ 30. Same kind = label text similarity ≥ 0.90; same photo = cosine > 0.97; near-synonym labels (≥ 0.85) are shown together, not counted as doubt.
+The rest comes from comparing photos to text. At build time I embedded a list of about 200 everyday things ("a tire", "moss"), a few things you shouldn't photograph (screens, rooms, people), and 45 visual words like "round" or "ridged". The closest thing is what "Doppel sees". A visual word shows up under "What they share" when it fits both photos noticeably better than usual. The same lists drive the hints and the "same kind of thing" check.
 
-**Results** on 44 CC0 photos with the real model: see [`docs/eval.md`](docs/eval.md). Twins average 58.6, strangers 19.9; 6 of 8 twin pairs reach Cousins or better and all 8 stranger pairs stay Distant or below. It misses tire ↔ donut (18) and zebra ↔ striped awning (0).
+Nothing leaves the phone. The day's state, the photo vectors and thumbnails live in IndexedDB, and a service worker keeps the app and the model available offline.
+
+On 44 CC0 test photos, lookalike pairs average 58 and unrelated pairs 20 ([`docs/eval.md`](docs/eval.md)). It still gets some wrong: a tire and a donut only score 18.
 
 ## Privacy
 
